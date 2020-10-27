@@ -1,0 +1,19 @@
+{
+  "name": "shoppy",
+  "version": "1.0.0",
+  "description": "a modern e_commerce platform",
+  "main": "server.js",
+  "scripts": {
+    "test": "node server"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/pavankpdev/Shoppy.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/pavankpdev/Shoppy/issues"
+  },
+  "homepage": "https://github.com/pavankpdev/Shoppy#readme"
+}
