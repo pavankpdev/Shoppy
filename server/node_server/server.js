@@ -1,9 +1,19 @@
 // importing all the environment variables
 require("dotenv").config();
 
+// Libraries
 const express = require("express");
 const cors = require("cors");
 const helmet = require("helmet");
+
+// DB connection instance
+const { mysqlConnection } = require("./database");
+
+// Establishing DB connection
+mysqlConnection.connect((error) => {
+  if (error) console.log("There was an connecting to DB");
+  else console.log("Connected to DB");
+});
 
 // Initializing express application
 const Shoppy = express();

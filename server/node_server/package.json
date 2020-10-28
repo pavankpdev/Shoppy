@@ -4,7 +4,8 @@
   "description": "a modern e_commerce platform",
   "main": "server.js",
   "scripts": {
-    "test": "node server"
+    "start": "node server",
+    "dev": "nodemon server"
   },
   "repository": {
     "type": "git",
@@ -28,5 +29,8 @@
     "log4js": "^6.3.0",
     "moment": "^2.29.1",
     "mysql": "^2.18.1"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.6"
   }
 }
