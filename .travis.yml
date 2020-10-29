@@ -6,4 +6,4 @@ node_js:
 before_install:
   - "cd server && cd node_server && npm i --silent"
 script:
-  - "cd server && cd node_server && npm run test"
+  - "npm run test"
