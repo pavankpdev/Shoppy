@@ -22,3 +22,5 @@ Shoppy is a modern e-commerce platform
 - `cd shoppy`
 - `npm run setup_client`
 - `npm run setup_server`
+- `cd server/python_server`
+- `python manage.py runserver`
