@@ -5,7 +5,5 @@ node_js:
   - "stable"
 before_install:
   - "cd server && cd node_server && npm i --silent"
-  - "cd .. && cd .. && cd client && npm i --silent"
 script:
   - "cd server && cd node_server && npm run test"
-  - "cd .. && cd .. && cd client && npm run test"
