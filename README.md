@@ -22,8 +22,7 @@ Shoppy is a modern e-commerce platform
 - `git clone https://github.com/pavankpdev/Shoppy.git shoppy`
 ### install dependencies
 - `cd shoppy`
-- `npm run setup_client`
-- `npm run setup_server`
+- `npm run setup_client_and_node_server`
 ### run node server
 - `cd server/node_server`
 - `npm run dev` (server starts in development mode)
