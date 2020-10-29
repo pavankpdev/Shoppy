@@ -1,9 +1,0 @@
-{
-  "scripts": {
-    "setup_client_and_node_server": "concurrently \"cd server && cd node_server && npm i --silent\" \"cd client && npm i --silent\"",
-    "test": "jest"
-  },
-  "devDependencies": {
-    "jest": "^26.6.1"
-  }
-}
