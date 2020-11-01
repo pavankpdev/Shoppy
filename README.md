@@ -1,6 +1,6 @@
 # Shoppy
 
-Shoppy is a modern e-commerce platform
+Shoppy is a modern e-commerce platform.
 
 ## Get Started
 
