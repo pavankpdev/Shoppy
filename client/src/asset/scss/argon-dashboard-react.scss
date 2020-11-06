@@ -80,3 +80,17 @@
 
 // React Differences
 @import "react/react-differences";
+
+.carousel-item > img {
+  height: 400px !important;
+}
+
+.product-card {
+  &:hover {
+    box-shadow: 0 0 2rem 0 rgba($gray-600, 0.15)  !important;
+  }
+}
+
+.nav-tabs{
+  border-bottom: 1px solid $primary !important;
+}
