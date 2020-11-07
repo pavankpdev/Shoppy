@@ -11,7 +11,7 @@ const { mysqlConnection } = require("./database");
 
 // Establishing DB connection
 mysqlConnection.connect((error) => {
-  if (error) console.log("There was an connecting to DB");
+  if (error) console.log("There was an error connecting to DB");
   else console.log("Connected to DB");
 });
 

@@ -1,5 +1,7 @@
 /*
 shoppy sql code
+
+mysql v5.7
 */ 
 
 CREATE TABLE `shoppy`.`Customer` (

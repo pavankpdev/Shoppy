@@ -1,10 +1,17 @@
 sudo: required
 
 language: node_js
+
 node_js:
-  - "stable"
+  - "stable" # v14
+
+branches:
+  only:
+    - master
+
 before_install:
   - "cd server && cd node_server && npm i --silent"
+
 script:
   - "npm run test"
 
