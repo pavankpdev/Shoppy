@@ -1,0 +1,45 @@
+version: "3"
+services:
+  mysqlDB:
+    image: "mysql:5.7"
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: example
+      MYSQL_USER: root
+      MYSQL_PASSWORD: root
+      MYSQL_DATABASE: shoppy
+  nginx:
+    restart: always
+    build:
+      dockerfile: Dockerfile.dev
+      context: ./nginx
+    ports:
+      - "3080:80"
+    depends_on:
+      - node_server
+      - client
+  node_server:
+    restart: always
+    build:
+      dockerfile: Dockerfile.dev
+      context: ./server/node_server
+    volumes:
+      - /app/node_modules
+      - ./server/node_server:/app
+    environment:
+      - PORT=4000
+      - DB_HOST=localhost
+      - DB_USER=root
+      - DB_PWD=pavan
+      - DB_NAME=shoppy
+    ports:
+      - "4000:4000"
+  client:
+    build:
+      dockerfile: Dockerfile.dev
+      context: ./client
+    volumes:
+      - /app/node_modules
+      - ./client:/app
+    ports:
+      - "3000:3000"
