@@ -15,18 +15,18 @@ import {
   CardImg,
 } from "reactstrap";
 
-const BestSeller = ({bestSellers}) => {
+const BestSeller = ({ bestSellers }) => {
   return (
     <>
       <Row className="mt-4">
         <Col md="6">
-          <img src={bestSellers.banner} alt="banner" />
+          <img src={bestSellers.banner} alt="banner" className="img-fluid" />
         </Col>
         <Col md="6">
-          <img src={bestSellers.banner2} alt="banner" />
+          <img src={bestSellers.banner2} alt="banner" className="img-fluid mt-3 mt-ld-0" />
           <Row className="mt-3 justify-content-between">
             {bestSellers.product.map(({ img, rating, name, price }) => (
-              <Col md="4">
+              <Col xs="2" sm="3" md="4">
                 <Card className="p-2 shadow-lg " style={{ width: "10rem" }}>
                   <CardImg top width="100%" src={img} alt="Card image cap" />
                   <span>

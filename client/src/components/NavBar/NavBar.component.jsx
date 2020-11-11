@@ -1,9 +1,8 @@
+// Libraries
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import {
-  Collapse,
   Navbar,
-  NavbarToggler,
   NavbarBrand,
   Nav,
   NavItem,
@@ -20,10 +19,15 @@ import {
   Row,
   Col,
   UncontrolledCollapse,
+  Button,
 } from "reactstrap";
+import { useAuth0 } from "@auth0/auth0-react";
 
 const ShoppyNavBar = (props) => {
   const [isOpen, setisOpen] = useState(false);
+
+  // Auth0 hook to redirect for login/ register page
+  const { loginWithRedirect, logout } = useAuth0();
 
   return (
     <>
@@ -125,7 +129,51 @@ const ShoppyNavBar = (props) => {
             </InputGroup>
           </NavbarText>
           <NavbarText className="mr-4">
-            <i className="fas fa-user fa-lg" />
+            <UncontrolledDropdown nav inNavbar>
+              <DropdownToggle nav caret>
+                <i className="fas fa-user-circle fa-lg" />
+              </DropdownToggle>
+              {props.isAuth ? (
+                <>
+                  <DropdownMenu right>
+                    <DropdownItem>
+                      <i className="fas fa-user" /> {props.user.nickname}
+                    </DropdownItem>
+                    <DropdownItem><i className="fas fa-envelope" /> {props.user.email}</DropdownItem>
+                    <DropdownItem divider />
+                    <DropdownItem>
+                      <Button
+                        block
+                        outline
+                        color="primary"
+                        size="sm"
+                        onClick={() =>
+                          logout({ returnTo: window.location.origin })
+                        }
+                      >
+                        Log Out
+                      </Button>
+                    </DropdownItem>
+                  </DropdownMenu>
+                </>
+              ) : (
+                <>
+                  <DropdownMenu right>
+                    <DropdownItem>
+                      <Button
+                        block
+                        outline
+                        color="primary"
+                        size="sm"
+                        onClick={() => loginWithRedirect()}
+                      >
+                        Sign in/ Sign Up
+                      </Button>
+                    </DropdownItem>
+                  </DropdownMenu>
+                </>
+              )}
+            </UncontrolledDropdown>
           </NavbarText>
           <NavbarText className="mr-4">
             <i className="fas fa-bookmark fa-lg" />
@@ -140,11 +188,3 @@ const ShoppyNavBar = (props) => {
 };
 
 export default ShoppyNavBar;
-
-{
-  /*
-
- 
-
-*/
-}

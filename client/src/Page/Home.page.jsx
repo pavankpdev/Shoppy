@@ -12,13 +12,12 @@ import { carouselList } from "../utils/defaultData.util";
 
 const HomePage = () => {
   // Destructuring auth data from Auth0 hook
-  const { loginWithRedirect } = useAuth0();
-
+  const { isAuthenticated, user } = useAuth0();
   return (
     <>
-      <NavBar />
+      <NavBar isAuth={isAuthenticated} user={user} />
       <UncontrolledCarousel items={carouselList} />
-      <Container >
+      <Container>
         <ProductTab />
       </Container>
     </>
