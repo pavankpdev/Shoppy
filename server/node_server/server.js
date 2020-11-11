@@ -9,9 +9,12 @@ const helmet = require("helmet");
 // DB connection instance
 const { mysqlConnection } = require("./database");
 
+// importing microservices route
+const Home = require("./Api/Home.api");
+
 // Establishing DB connection
 mysqlConnection.connect((error) => {
-  if (error) console.log("There was an connecting to DB");
+  if (error) console.log("There was an error connecting to DB");
   else console.log("Connected to DB");
 });
 
@@ -24,8 +27,11 @@ Shoppy.use(express.urlencoded({ extended: false }));
 Shoppy.use(express.json());
 Shoppy.use(cors());
 
+// Initializing microservices route
+Shoppy.use("/", Home);
+
 // 404 route
-Shoppy.get("/", (req, res) => {
+Shoppy.get("*", (req, res) => {
   res.json({ error: "Invalid Route" });
 });
 

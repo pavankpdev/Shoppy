@@ -1,9 +1,13 @@
 /*
 shoppy sql code
+
+mysql v5.7
 */ 
 
+CREATE DATABASE shoppy;
+
 CREATE TABLE `shoppy`.`Customer` (
-  `Customer_ID` int,
+  `Customer_ID` int AUTO_INCREMENT,
   `Fullname` varchar(100),
   `Address` varchar(200),
   `City` varchar(50),
@@ -12,7 +16,7 @@ CREATE TABLE `shoppy`.`Customer` (
   PRIMARY KEY (`Customer_ID`)
 );
 CREATE TABLE `shoppy`.`Product` (
-  `Product_ID` int,
+  `Product_ID` int AUTO_INCREMENT,
   `Product_name` varchar(200),
   `Product_description`varchar(500),
   `Product_Price` int,
@@ -21,8 +25,8 @@ CREATE TABLE `shoppy`.`Product` (
   PRIMARY KEY (`Product_ID`)
 );
 
-CREATE TABLE `Reviews` (
-  `Review_ID`int,
+CREATE TABLE `shoppy`.`Reviews` (
+  `Review_ID`int AUTO_INCREMENT,
   `Customer_ID` int,
   `Product_ID` int,
   `Rating` int,
@@ -33,8 +37,8 @@ CREATE TABLE `Reviews` (
 );
 
 
-CREATE TABLE `Shipping` (
-  `Shipping_ID`int,
+CREATE TABLE `shoppy`.`Shipping` (
+  `Shipping_ID`int AUTO_INCREMENT,
   `Product_ID` int,
   `Customer_ID` int,
   `Address` varchar(200),
@@ -47,8 +51,8 @@ CREATE TABLE `Shipping` (
         REFERENCES Product (Product_ID)
 );
 
-CREATE TABLE `Orders` (
-    `Order_id` INT,
+CREATE TABLE `shoppy`.`Orders` (
+    `Order_id` INT AUTO_INCREMENT,
     `Customer_ID` INT,
     `Shipping_ID` INT,
     `Payment_ID` INT,
@@ -66,8 +70,8 @@ CREATE TABLE `Orders` (
 
 
 
-CREATE TABLE `Support` (
-    `Support_ID` INT,
+CREATE TABLE `shoppy`.`Support` (
+    `Support_ID` INT AUTO_INCREMENT,
     `Date` DATE,
     `Subject` VARCHAR(200),
     `Description` VARCHAR(500),
@@ -80,6 +84,6 @@ CREATE TABLE `Support` (
         REFERENCES Product (Product_ID)
 );
 
-ALTER TABLE `shipping`
+ALTER TABLE `shoppy`.`shipping`
 ADD `Order_id` INT,
 ADD FOREIGN KEY (Order_id) REFERENCES Orders(Order_id);

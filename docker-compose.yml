@@ -1,0 +1,50 @@
+version: "3"
+services:
+  mysqlDB:
+    image: mysql:5.7
+    command: --default-authentication-plugin=mysql_native_password
+    restart: always
+    volumes:
+      - ./DB:/docker-entrypoint-initdb.d
+    environment:
+      MYSQL_ROOT_PASSWORD: pavan
+      MYSQL_DATABASE: shoppy
+      MYSQL_USER: root
+      MYSQL_PASSWORD: pavan
+  nginx:
+    restart: always
+    build:
+      dockerfile: Dockerfile.dev
+      context: ./nginx
+    ports:
+      - "3080:80"
+    depends_on:
+      - node_server
+      - client
+  node_server:
+    restart: always
+    build:
+      dockerfile: Dockerfile.dev
+      context: ./server/node_server
+    volumes:
+      - /app/node_modules
+      - ./server/node_server:/app
+    environment:
+      - PORT=4000
+      - DB_HOST=mysqlDB
+      - DB_USER=root
+      - DB_PWD=pavan
+      - DB_NAME=shoppy
+    ports:
+      - "4000:4000"
+    depends_on:
+      - mysqlDB
+  client:
+    build:
+      dockerfile: Dockerfile.dev
+      context: ./client
+    volumes:
+      - /app/node_modules
+      - ./client:/app
+    ports:
+      - "3000:3000"
