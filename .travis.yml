@@ -7,7 +7,7 @@ node_js:
 
 branches:
   only:
-    - master
+    - main
 
 before_install:
   - "cd server && cd node_server && npm i --silent"
