@@ -114,8 +114,8 @@ const ShoppyNavBar = (props) => {
           <NavbarText className="mr-4">
             <InputGroup className="input-group-alternative ">
               <Input
-                className="form-control-alternative"
-                style={{ width: "16rem" }}
+                className="form-control-alternative "
+                style={{ width: "15rem" }}
                 id="search"
                 placeholder="search for products, brands and more"
                 type="search"
@@ -129,17 +129,19 @@ const ShoppyNavBar = (props) => {
             </InputGroup>
           </NavbarText>
           <NavbarText className="mr-4">
-            <UncontrolledDropdown nav inNavbar>
+            <UncontrolledDropdown nav>
               <DropdownToggle nav caret>
                 <i className="fas fa-user-circle fa-lg" />
               </DropdownToggle>
-              {props.isAuth ? (
-                <>
-                  <DropdownMenu right>
+              <DropdownMenu right>
+                {props.isAuth ? (
+                  <>
                     <DropdownItem>
                       <i className="fas fa-user" /> {props.user.nickname}
                     </DropdownItem>
-                    <DropdownItem><i className="fas fa-envelope" /> {props.user.email}</DropdownItem>
+                    <DropdownItem>
+                      <i className="fas fa-envelope" /> {props.user.email}
+                    </DropdownItem>
                     <DropdownItem divider />
                     <DropdownItem>
                       <Button
@@ -154,11 +156,9 @@ const ShoppyNavBar = (props) => {
                         Log Out
                       </Button>
                     </DropdownItem>
-                  </DropdownMenu>
-                </>
-              ) : (
-                <>
-                  <DropdownMenu right>
+                  </>
+                ) : (
+                  <>
                     <DropdownItem>
                       <Button
                         block
@@ -170,9 +170,9 @@ const ShoppyNavBar = (props) => {
                         Sign in/ Sign Up
                       </Button>
                     </DropdownItem>
-                  </DropdownMenu>
-                </>
-              )}
+                  </>
+                )}
+              </DropdownMenu>
             </UncontrolledDropdown>
           </NavbarText>
           <NavbarText className="mr-4">

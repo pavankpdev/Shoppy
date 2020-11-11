@@ -23,11 +23,15 @@ const BestSeller = ({ bestSellers }) => {
           <img src={bestSellers.banner} alt="banner" className="img-fluid" />
         </Col>
         <Col md="6">
-          <img src={bestSellers.banner2} alt="banner" className="img-fluid mt-3 mt-ld-0" />
-          <Row className="mt-3 justify-content-between">
-            {bestSellers.product.map(({ img, rating, name, price }) => (
-              <Col xs="2" sm="3" md="4">
-                <Card className="p-2 shadow-lg " style={{ width: "10rem" }}>
+          <img
+            src={bestSellers.banner2}
+            alt="banner"
+            className="img-fluid mt-3 mt-ld-0"
+          />
+          <Col>
+            <Row className="mt-3 justify-content-between">
+              {bestSellers.product.map(({ img, rating, name, price }) => (
+                <Card className="p-2 shadow-lg best-seller-card-width">
                   <CardImg top width="100%" src={img} alt="Card image cap" />
                   <span>
                     <i
@@ -59,9 +63,9 @@ const BestSeller = ({ bestSellers }) => {
                   <h4 className="mt-1 text-truncate">{name}</h4>
                   <h3 className="mt--1">₹{price}</h3>
                 </Card>
-              </Col>
-            ))}
-          </Row>
+              ))}
+            </Row>
+          </Col>
         </Col>
       </Row>
     </>

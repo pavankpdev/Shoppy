@@ -82,15 +82,33 @@
 @import "react/react-differences";
 
 .carousel-item > img {
-  height: 400px !important;
+  height: 250px !important;
 }
 
 .product-card {
   &:hover {
-    box-shadow: 0 0 2rem 0 rgba($gray-600, 0.15)  !important;
+    box-shadow: 0 0 2rem 0 rgba($gray-600, 0.15) !important;
   }
 }
 
-.nav-tabs{
+.nav-tabs {
   border-bottom: 1px solid $primary !important;
+}
+
+.best-seller-card-width {
+  width: 7rem;
+}
+
+@media (min-width: 640px) {
+  .carousel-item > img {
+    height: 300px !important;
+  }
+  .best-seller-card-width {
+    width: 10rem;
+  }
+}
+@media (min-width: 768px) {
+  .carousel-item > img {
+    height: 400px !important;
+  }
 }
