@@ -1,0 +1,2 @@
+#pulling base python image
+FROM python:latest

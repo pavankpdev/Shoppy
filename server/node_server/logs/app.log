@@ -1,0 +1,235 @@
+[2020-11-10T21:09:19.461] [ERROR] auth - TypeError: Converting circular structure to JSON
+    --> starting at object with constructor 'Query'
+    |     property '_timer' -> object with constructor 'Timer'
+    --- property '_object' closes the circle
+    at JSON.stringify (<anonymous>)
+    at stringify (C:\Users\pavan\Desktop\stuffs\Shoppy\server\node_server\node_modules\express\lib\response.js:1123:12)
+    at ServerResponse.json (C:\Users\pavan\Desktop\stuffs\Shoppy\server\node_server\node_modules\express\lib\response.js:260:14)
+    at C:\Users\pavan\Desktop\stuffs\Shoppy\server\node_server\Api\Home.api.js:31:28
+    at Layer.handle [as handle_request] (C:\Users\pavan\Desktop\stuffs\Shoppy\server\node_server\node_modules\express\lib\router\layer.js:95:5)
+    at next (C:\Users\pavan\Desktop\stuffs\Shoppy\server\node_server\node_modules\express\lib\router\route.js:137:13)
+    at Route.dispatch (C:\Users\pavan\Desktop\stuffs\Shoppy\server\node_server\node_modules\express\lib\router\route.js:112:3)
+    at Layer.handle [as handle_request] (C:\Users\pavan\Desktop\stuffs\Shoppy\server\node_server\node_modules\express\lib\router\layer.js:95:5)
+    at C:\Users\pavan\Desktop\stuffs\Shoppy\server\node_server\node_modules\express\lib\router\index.js:281:22
+    at Function.process_params (C:\Users\pavan\Desktop\stuffs\Shoppy\server\node_server\node_modules\express\lib\router\index.js:335:12)
+[2020-11-10T21:09:41.010] [ERROR] auth - TypeError: Converting circular structure to JSON
+    --> starting at object with constructor 'Query'
+    |     property '_timer' -> object with constructor 'Timer'
+    --- property '_object' closes the circle
+    at JSON.stringify (<anonymous>)
+    at stringify (C:\Users\pavan\Desktop\stuffs\Shoppy\server\node_server\node_modules\express\lib\response.js:1123:12)
+    at ServerResponse.json (C:\Users\pavan\Desktop\stuffs\Shoppy\server\node_server\node_modules\express\lib\response.js:260:14)
+    at C:\Users\pavan\Desktop\stuffs\Shoppy\server\node_server\Api\Home.api.js:31:28
+    at Layer.handle [as handle_request] (C:\Users\pavan\Desktop\stuffs\Shoppy\server\node_server\node_modules\express\lib\router\layer.js:95:5)
+    at next (C:\Users\pavan\Desktop\stuffs\Shoppy\server\node_server\node_modules\express\lib\router\route.js:137:13)
+    at Route.dispatch (C:\Users\pavan\Desktop\stuffs\Shoppy\server\node_server\node_modules\express\lib\router\route.js:112:3)
+    at Layer.handle [as handle_request] (C:\Users\pavan\Desktop\stuffs\Shoppy\server\node_server\node_modules\express\lib\router\layer.js:95:5)
+    at C:\Users\pavan\Desktop\stuffs\Shoppy\server\node_server\node_modules\express\lib\router\index.js:281:22
+    at Function.process_params (C:\Users\pavan\Desktop\stuffs\Shoppy\server\node_server\node_modules\express\lib\router\index.js:335:12)
+[2020-11-10T21:31:21.235] [ERROR] auth - Error: ER_BAD_FIELD_ERROR: Unknown column 'favicon.ico' in 'where clause'
+    at Query.Sequence._packetToError (C:\Users\pavan\Desktop\stuffs\Shoppy\server\node_server\node_modules\mysql\lib\protocol\sequences\Sequence.js:47:14)
+    at Query.ErrorPacket (C:\Users\pavan\Desktop\stuffs\Shoppy\server\node_server\node_modules\mysql\lib\protocol\sequences\Query.js:79:18)
+    at Protocol._parsePacket (C:\Users\pavan\Desktop\stuffs\Shoppy\server\node_server\node_modules\mysql\lib\protocol\Protocol.js:291:23)
+    at Parser._parsePacket (C:\Users\pavan\Desktop\stuffs\Shoppy\server\node_server\node_modules\mysql\lib\protocol\Parser.js:433:10)
+    at Parser.write (C:\Users\pavan\Desktop\stuffs\Shoppy\server\node_server\node_modules\mysql\lib\protocol\Parser.js:43:10)
+    at Protocol.write (C:\Users\pavan\Desktop\stuffs\Shoppy\server\node_server\node_modules\mysql\lib\protocol\Protocol.js:38:16)
+    at Socket.<anonymous> (C:\Users\pavan\Desktop\stuffs\Shoppy\server\node_server\node_modules\mysql\lib\Connection.js:88:28)
+    at Socket.<anonymous> (C:\Users\pavan\Desktop\stuffs\Shoppy\server\node_server\node_modules\mysql\lib\Connection.js:526:10)
+    at Socket.emit (events.js:315:20)
+    at addChunk (_stream_readable.js:295:12)
+    --------------------
+    at Protocol._enqueue (C:\Users\pavan\Desktop\stuffs\Shoppy\server\node_server\node_modules\mysql\lib\protocol\Protocol.js:144:48)
+    at Connection.query (C:\Users\pavan\Desktop\stuffs\Shoppy\server\node_server\node_modules\mysql\lib\Connection.js:198:25)
+    at C:\Users\pavan\Desktop\stuffs\Shoppy\server\node_server\database\queryInstance.js:6:21
+    at new Promise (<anonymous>)
+    at promisifiedQueryWrapper (C:\Users\pavan\Desktop\stuffs\Shoppy\server\node_server\database\queryInstance.js:5:10)
+    at C:\Users\pavan\Desktop\stuffs\Shoppy\server\node_server\Api\Home.api.js:40:33
+    at Layer.handle [as handle_request] (C:\Users\pavan\Desktop\stuffs\Shoppy\server\node_server\node_modules\express\lib\router\layer.js:95:5)
+    at next (C:\Users\pavan\Desktop\stuffs\Shoppy\server\node_server\node_modules\express\lib\router\route.js:137:13)
+    at Route.dispatch (C:\Users\pavan\Desktop\stuffs\Shoppy\server\node_server\node_modules\express\lib\router\route.js:112:3)
+    at Layer.handle [as handle_request] (C:\Users\pavan\Desktop\stuffs\Shoppy\server\node_server\node_modules\express\lib\router\layer.js:95:5) {
+  code: 'ER_BAD_FIELD_ERROR',
+  errno: 1054,
+  sqlMessage: "Unknown column 'favicon.ico' in 'where clause'",
+  sqlState: '42S22',
+  index: 0,
+  sql: 'select * from product WHERE Product_ID=favicon.ico;'
+}
+[2020-11-10T21:31:25.423] [ERROR] auth - Error: ER_BAD_FIELD_ERROR: Unknown column 'favicon.ico' in 'where clause'
+    at Query.Sequence._packetToError (C:\Users\pavan\Desktop\stuffs\Shoppy\server\node_server\node_modules\mysql\lib\protocol\sequences\Sequence.js:47:14)
+    at Query.ErrorPacket (C:\Users\pavan\Desktop\stuffs\Shoppy\server\node_server\node_modules\mysql\lib\protocol\sequences\Query.js:79:18)
+    at Protocol._parsePacket (C:\Users\pavan\Desktop\stuffs\Shoppy\server\node_server\node_modules\mysql\lib\protocol\Protocol.js:291:23)
+    at Parser._parsePacket (C:\Users\pavan\Desktop\stuffs\Shoppy\server\node_server\node_modules\mysql\lib\protocol\Parser.js:433:10)
+    at Parser.write (C:\Users\pavan\Desktop\stuffs\Shoppy\server\node_server\node_modules\mysql\lib\protocol\Parser.js:43:10)
+    at Protocol.write (C:\Users\pavan\Desktop\stuffs\Shoppy\server\node_server\node_modules\mysql\lib\protocol\Protocol.js:38:16)
+    at Socket.<anonymous> (C:\Users\pavan\Desktop\stuffs\Shoppy\server\node_server\node_modules\mysql\lib\Connection.js:88:28)
+    at Socket.<anonymous> (C:\Users\pavan\Desktop\stuffs\Shoppy\server\node_server\node_modules\mysql\lib\Connection.js:526:10)
+    at Socket.emit (events.js:315:20)
+    at addChunk (_stream_readable.js:295:12)
+    --------------------
+    at Protocol._enqueue (C:\Users\pavan\Desktop\stuffs\Shoppy\server\node_server\node_modules\mysql\lib\protocol\Protocol.js:144:48)
+    at Connection.query (C:\Users\pavan\Desktop\stuffs\Shoppy\server\node_server\node_modules\mysql\lib\Connection.js:198:25)
+    at C:\Users\pavan\Desktop\stuffs\Shoppy\server\node_server\database\queryInstance.js:6:21
+    at new Promise (<anonymous>)
+    at promisifiedQueryWrapper (C:\Users\pavan\Desktop\stuffs\Shoppy\server\node_server\database\queryInstance.js:5:10)
+    at C:\Users\pavan\Desktop\stuffs\Shoppy\server\node_server\Api\Home.api.js:40:33
+    at Layer.handle [as handle_request] (C:\Users\pavan\Desktop\stuffs\Shoppy\server\node_server\node_modules\express\lib\router\layer.js:95:5)
+    at next (C:\Users\pavan\Desktop\stuffs\Shoppy\server\node_server\node_modules\express\lib\router\route.js:137:13)
+    at Route.dispatch (C:\Users\pavan\Desktop\stuffs\Shoppy\server\node_server\node_modules\express\lib\router\route.js:112:3)
+    at Layer.handle [as handle_request] (C:\Users\pavan\Desktop\stuffs\Shoppy\server\node_server\node_modules\express\lib\router\layer.js:95:5) {
+  code: 'ER_BAD_FIELD_ERROR',
+  errno: 1054,
+  sqlMessage: "Unknown column 'favicon.ico' in 'where clause'",
+  sqlState: '42S22',
+  index: 0,
+  sql: 'select * from product WHERE Product_ID=favicon.ico;'
+}
+[2020-11-10T21:50:22.204] [ERROR] auth - Error: ER_BAD_FIELD_ERROR: Unknown column 'favicon.ico' in 'where clause'
+    at Query.Sequence._packetToError (C:\Users\pavan\Desktop\stuffs\Shoppy\server\node_server\node_modules\mysql\lib\protocol\sequences\Sequence.js:47:14)
+    at Query.ErrorPacket (C:\Users\pavan\Desktop\stuffs\Shoppy\server\node_server\node_modules\mysql\lib\protocol\sequences\Query.js:79:18)
+    at Protocol._parsePacket (C:\Users\pavan\Desktop\stuffs\Shoppy\server\node_server\node_modules\mysql\lib\protocol\Protocol.js:291:23)
+    at Parser._parsePacket (C:\Users\pavan\Desktop\stuffs\Shoppy\server\node_server\node_modules\mysql\lib\protocol\Parser.js:433:10)
+    at Parser.write (C:\Users\pavan\Desktop\stuffs\Shoppy\server\node_server\node_modules\mysql\lib\protocol\Parser.js:43:10)
+    at Protocol.write (C:\Users\pavan\Desktop\stuffs\Shoppy\server\node_server\node_modules\mysql\lib\protocol\Protocol.js:38:16)
+    at Socket.<anonymous> (C:\Users\pavan\Desktop\stuffs\Shoppy\server\node_server\node_modules\mysql\lib\Connection.js:88:28)
+    at Socket.<anonymous> (C:\Users\pavan\Desktop\stuffs\Shoppy\server\node_server\node_modules\mysql\lib\Connection.js:526:10)
+    at Socket.emit (events.js:315:20)
+    at addChunk (_stream_readable.js:295:12)
+    --------------------
+    at Protocol._enqueue (C:\Users\pavan\Desktop\stuffs\Shoppy\server\node_server\node_modules\mysql\lib\protocol\Protocol.js:144:48)
+    at Connection.query (C:\Users\pavan\Desktop\stuffs\Shoppy\server\node_server\node_modules\mysql\lib\Connection.js:198:25)
+    at C:\Users\pavan\Desktop\stuffs\Shoppy\server\node_server\database\queryInstance.js:6:21
+    at new Promise (<anonymous>)
+    at promisifiedQueryWrapper (C:\Users\pavan\Desktop\stuffs\Shoppy\server\node_server\database\queryInstance.js:5:10)
+    at C:\Users\pavan\Desktop\stuffs\Shoppy\server\node_server\Api\Home.api.js:40:33
+    at Layer.handle [as handle_request] (C:\Users\pavan\Desktop\stuffs\Shoppy\server\node_server\node_modules\express\lib\router\layer.js:95:5)
+    at next (C:\Users\pavan\Desktop\stuffs\Shoppy\server\node_server\node_modules\express\lib\router\route.js:137:13)
+    at Route.dispatch (C:\Users\pavan\Desktop\stuffs\Shoppy\server\node_server\node_modules\express\lib\router\route.js:112:3)
+    at Layer.handle [as handle_request] (C:\Users\pavan\Desktop\stuffs\Shoppy\server\node_server\node_modules\express\lib\router\layer.js:95:5) {
+  code: 'ER_BAD_FIELD_ERROR',
+  errno: 1054,
+  sqlMessage: "Unknown column 'favicon.ico' in 'where clause'",
+  sqlState: '42S22',
+  index: 0,
+  sql: 'select * from product WHERE Product_ID=favicon.ico;'
+}
+[2020-11-10T21:59:18.692] [ERROR] auth - Error: ER_PARSE_ERROR: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'CustomerID column is an auto-increment field and will be generated automatically' at line 2
+    at Query.Sequence._packetToError (C:\Users\pavan\Desktop\stuffs\Shoppy\server\node_server\node_modules\mysql\lib\protocol\sequences\Sequence.js:47:14)
+    at Query.ErrorPacket (C:\Users\pavan\Desktop\stuffs\Shoppy\server\node_server\node_modules\mysql\lib\protocol\sequences\Query.js:79:18)
+    at Protocol._parsePacket (C:\Users\pavan\Desktop\stuffs\Shoppy\server\node_server\node_modules\mysql\lib\protocol\Protocol.js:291:23)
+    at Parser._parsePacket (C:\Users\pavan\Desktop\stuffs\Shoppy\server\node_server\node_modules\mysql\lib\protocol\Parser.js:433:10)
+    at Parser.write (C:\Users\pavan\Desktop\stuffs\Shoppy\server\node_server\node_modules\mysql\lib\protocol\Parser.js:43:10)
+    at Protocol.write (C:\Users\pavan\Desktop\stuffs\Shoppy\server\node_server\node_modules\mysql\lib\protocol\Protocol.js:38:16)
+    at Socket.<anonymous> (C:\Users\pavan\Desktop\stuffs\Shoppy\server\node_server\node_modules\mysql\lib\Connection.js:88:28)
+    at Socket.<anonymous> (C:\Users\pavan\Desktop\stuffs\Shoppy\server\node_server\node_modules\mysql\lib\Connection.js:526:10)
+    at Socket.emit (events.js:315:20)
+    at addChunk (_stream_readable.js:295:12)
+    --------------------
+    at Protocol._enqueue (C:\Users\pavan\Desktop\stuffs\Shoppy\server\node_server\node_modules\mysql\lib\protocol\Protocol.js:144:48)
+    at Connection.query (C:\Users\pavan\Desktop\stuffs\Shoppy\server\node_server\node_modules\mysql\lib\Connection.js:198:25)
+    at C:\Users\pavan\Desktop\stuffs\Shoppy\server\node_server\database\queryInstance.js:6:21
+    at new Promise (<anonymous>)
+    at promisifiedQueryWrapper (C:\Users\pavan\Desktop\stuffs\Shoppy\server\node_server\database\queryInstance.js:5:10)
+    at C:\Users\pavan\Desktop\stuffs\Shoppy\server\node_server\Api\Home.api.js:58:33
+    at Layer.handle [as handle_request] (C:\Users\pavan\Desktop\stuffs\Shoppy\server\node_server\node_modules\express\lib\router\layer.js:95:5)
+    at next (C:\Users\pavan\Desktop\stuffs\Shoppy\server\node_server\node_modules\express\lib\router\route.js:137:13)
+    at Route.dispatch (C:\Users\pavan\Desktop\stuffs\Shoppy\server\node_server\node_modules\express\lib\router\route.js:112:3)
+    at Layer.handle [as handle_request] (C:\Users\pavan\Desktop\stuffs\Shoppy\server\node_server\node_modules\express\lib\router\layer.js:95:5) {
+  code: 'ER_PARSE_ERROR',
+  errno: 1064,
+  sqlMessage: "You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'CustomerID column is an auto-increment field and will be generated automatically' at line 2",
+  sqlState: '42000',
+  index: 0,
+  sql: 'INSERT INTO shoppy.product (Product_name, Product_description, Product_Price, Seller, Category ) \n' +
+    '      VALUES  (mobile, The CustomerID column is an auto-increment field and will be generated automatically when a new record is inserted into the table.,3800,Pavan KP,elec);'
+}
+[2020-11-10T22:00:13.728] [ERROR] auth - Error: ER_PARSE_ERROR: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'CustomerID column is an auto-increment field and will be generated automatically' at line 2
+    at Query.Sequence._packetToError (C:\Users\pavan\Desktop\stuffs\Shoppy\server\node_server\node_modules\mysql\lib\protocol\sequences\Sequence.js:47:14)
+    at Query.ErrorPacket (C:\Users\pavan\Desktop\stuffs\Shoppy\server\node_server\node_modules\mysql\lib\protocol\sequences\Query.js:79:18)
+    at Protocol._parsePacket (C:\Users\pavan\Desktop\stuffs\Shoppy\server\node_server\node_modules\mysql\lib\protocol\Protocol.js:291:23)
+    at Parser._parsePacket (C:\Users\pavan\Desktop\stuffs\Shoppy\server\node_server\node_modules\mysql\lib\protocol\Parser.js:433:10)
+    at Parser.write (C:\Users\pavan\Desktop\stuffs\Shoppy\server\node_server\node_modules\mysql\lib\protocol\Parser.js:43:10)
+    at Protocol.write (C:\Users\pavan\Desktop\stuffs\Shoppy\server\node_server\node_modules\mysql\lib\protocol\Protocol.js:38:16)
+    at Socket.<anonymous> (C:\Users\pavan\Desktop\stuffs\Shoppy\server\node_server\node_modules\mysql\lib\Connection.js:88:28)
+    at Socket.<anonymous> (C:\Users\pavan\Desktop\stuffs\Shoppy\server\node_server\node_modules\mysql\lib\Connection.js:526:10)
+    at Socket.emit (events.js:315:20)
+    at addChunk (_stream_readable.js:295:12)
+    --------------------
+    at Protocol._enqueue (C:\Users\pavan\Desktop\stuffs\Shoppy\server\node_server\node_modules\mysql\lib\protocol\Protocol.js:144:48)
+    at Connection.query (C:\Users\pavan\Desktop\stuffs\Shoppy\server\node_server\node_modules\mysql\lib\Connection.js:198:25)
+    at C:\Users\pavan\Desktop\stuffs\Shoppy\server\node_server\database\queryInstance.js:6:21
+    at new Promise (<anonymous>)
+    at promisifiedQueryWrapper (C:\Users\pavan\Desktop\stuffs\Shoppy\server\node_server\database\queryInstance.js:5:10)
+    at C:\Users\pavan\Desktop\stuffs\Shoppy\server\node_server\Api\Home.api.js:58:33
+    at Layer.handle [as handle_request] (C:\Users\pavan\Desktop\stuffs\Shoppy\server\node_server\node_modules\express\lib\router\layer.js:95:5)
+    at next (C:\Users\pavan\Desktop\stuffs\Shoppy\server\node_server\node_modules\express\lib\router\route.js:137:13)
+    at Route.dispatch (C:\Users\pavan\Desktop\stuffs\Shoppy\server\node_server\node_modules\express\lib\router\route.js:112:3)
+    at Layer.handle [as handle_request] (C:\Users\pavan\Desktop\stuffs\Shoppy\server\node_server\node_modules\express\lib\router\layer.js:95:5) {
+  code: 'ER_PARSE_ERROR',
+  errno: 1064,
+  sqlMessage: "You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'CustomerID column is an auto-increment field and will be generated automatically' at line 2",
+  sqlState: '42000',
+  index: 0,
+  sql: 'INSERT INTO product (Product_name, Product_description, Product_Price, Seller, Category ) \n' +
+    '      VALUES  (mobile, The CustomerID column is an auto-increment field and will be generated automatically when a new record is inserted into the table.,3800,Pavan KP,elec);'
+}
+[2020-11-10T22:00:40.929] [ERROR] auth - Error: ER_PARSE_ERROR: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'CustomerID column is an auto-increment field and will be generated automatically' at line 2
+    at Query.Sequence._packetToError (C:\Users\pavan\Desktop\stuffs\Shoppy\server\node_server\node_modules\mysql\lib\protocol\sequences\Sequence.js:47:14)
+    at Query.ErrorPacket (C:\Users\pavan\Desktop\stuffs\Shoppy\server\node_server\node_modules\mysql\lib\protocol\sequences\Query.js:79:18)
+    at Protocol._parsePacket (C:\Users\pavan\Desktop\stuffs\Shoppy\server\node_server\node_modules\mysql\lib\protocol\Protocol.js:291:23)
+    at Parser._parsePacket (C:\Users\pavan\Desktop\stuffs\Shoppy\server\node_server\node_modules\mysql\lib\protocol\Parser.js:433:10)
+    at Parser.write (C:\Users\pavan\Desktop\stuffs\Shoppy\server\node_server\node_modules\mysql\lib\protocol\Parser.js:43:10)
+    at Protocol.write (C:\Users\pavan\Desktop\stuffs\Shoppy\server\node_server\node_modules\mysql\lib\protocol\Protocol.js:38:16)
+    at Socket.<anonymous> (C:\Users\pavan\Desktop\stuffs\Shoppy\server\node_server\node_modules\mysql\lib\Connection.js:88:28)
+    at Socket.<anonymous> (C:\Users\pavan\Desktop\stuffs\Shoppy\server\node_server\node_modules\mysql\lib\Connection.js:526:10)
+    at Socket.emit (events.js:315:20)
+    at addChunk (_stream_readable.js:295:12)
+    --------------------
+    at Protocol._enqueue (C:\Users\pavan\Desktop\stuffs\Shoppy\server\node_server\node_modules\mysql\lib\protocol\Protocol.js:144:48)
+    at Connection.query (C:\Users\pavan\Desktop\stuffs\Shoppy\server\node_server\node_modules\mysql\lib\Connection.js:198:25)
+    at C:\Users\pavan\Desktop\stuffs\Shoppy\server\node_server\database\queryInstance.js:6:21
+    at new Promise (<anonymous>)
+    at promisifiedQueryWrapper (C:\Users\pavan\Desktop\stuffs\Shoppy\server\node_server\database\queryInstance.js:5:10)
+    at C:\Users\pavan\Desktop\stuffs\Shoppy\server\node_server\Api\Home.api.js:59:33
+    at Layer.handle [as handle_request] (C:\Users\pavan\Desktop\stuffs\Shoppy\server\node_server\node_modules\express\lib\router\layer.js:95:5)
+    at next (C:\Users\pavan\Desktop\stuffs\Shoppy\server\node_server\node_modules\express\lib\router\route.js:137:13)
+    at Route.dispatch (C:\Users\pavan\Desktop\stuffs\Shoppy\server\node_server\node_modules\express\lib\router\route.js:112:3)
+    at Layer.handle [as handle_request] (C:\Users\pavan\Desktop\stuffs\Shoppy\server\node_server\node_modules\express\lib\router\layer.js:95:5) {
+  code: 'ER_PARSE_ERROR',
+  errno: 1064,
+  sqlMessage: "You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'CustomerID column is an auto-increment field and will be generated automatically' at line 2",
+  sqlState: '42000',
+  index: 0,
+  sql: 'INSERT INTO product (Product_name, Product_description, Product_Price, Seller, Category ) \n' +
+    '      VALUES  (mobile, The CustomerID column is an auto-increment field and will be generated automatically when a new record is inserted into the table.,3800,Pavan KP,elec);'
+}
+[2020-11-10T22:03:39.842] [ERROR] auth - Error: ER_PARSE_ERROR: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'CustomerID column is an auto-increment field and will be generated automatically' at line 2
+    at Query.Sequence._packetToError (C:\Users\pavan\Desktop\stuffs\Shoppy\server\node_server\node_modules\mysql\lib\protocol\sequences\Sequence.js:47:14)
+    at Query.ErrorPacket (C:\Users\pavan\Desktop\stuffs\Shoppy\server\node_server\node_modules\mysql\lib\protocol\sequences\Query.js:79:18)
+    at Protocol._parsePacket (C:\Users\pavan\Desktop\stuffs\Shoppy\server\node_server\node_modules\mysql\lib\protocol\Protocol.js:291:23)
+    at Parser._parsePacket (C:\Users\pavan\Desktop\stuffs\Shoppy\server\node_server\node_modules\mysql\lib\protocol\Parser.js:433:10)
+    at Parser.write (C:\Users\pavan\Desktop\stuffs\Shoppy\server\node_server\node_modules\mysql\lib\protocol\Parser.js:43:10)
+    at Protocol.write (C:\Users\pavan\Desktop\stuffs\Shoppy\server\node_server\node_modules\mysql\lib\protocol\Protocol.js:38:16)
+    at Socket.<anonymous> (C:\Users\pavan\Desktop\stuffs\Shoppy\server\node_server\node_modules\mysql\lib\Connection.js:88:28)
+    at Socket.<anonymous> (C:\Users\pavan\Desktop\stuffs\Shoppy\server\node_server\node_modules\mysql\lib\Connection.js:526:10)
+    at Socket.emit (events.js:315:20)
+    at addChunk (_stream_readable.js:295:12)
+    --------------------
+    at Protocol._enqueue (C:\Users\pavan\Desktop\stuffs\Shoppy\server\node_server\node_modules\mysql\lib\protocol\Protocol.js:144:48)
+    at Connection.query (C:\Users\pavan\Desktop\stuffs\Shoppy\server\node_server\node_modules\mysql\lib\Connection.js:198:25)
+    at C:\Users\pavan\Desktop\stuffs\Shoppy\server\node_server\database\queryInstance.js:6:21
+    at new Promise (<anonymous>)
+    at promisifiedQueryWrapper (C:\Users\pavan\Desktop\stuffs\Shoppy\server\node_server\database\queryInstance.js:5:10)
+    at C:\Users\pavan\Desktop\stuffs\Shoppy\server\node_server\Api\Home.api.js:58:33
+    at Layer.handle [as handle_request] (C:\Users\pavan\Desktop\stuffs\Shoppy\server\node_server\node_modules\express\lib\router\layer.js:95:5)
+    at next (C:\Users\pavan\Desktop\stuffs\Shoppy\server\node_server\node_modules\express\lib\router\route.js:137:13)
+    at Route.dispatch (C:\Users\pavan\Desktop\stuffs\Shoppy\server\node_server\node_modules\express\lib\router\route.js:112:3)
+    at Layer.handle [as handle_request] (C:\Users\pavan\Desktop\stuffs\Shoppy\server\node_server\node_modules\express\lib\router\layer.js:95:5) {
+  code: 'ER_PARSE_ERROR',
+  errno: 1064,
+  sqlMessage: "You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'CustomerID column is an auto-increment field and will be generated automatically' at line 2",
+  sqlState: '42000',
+  index: 0,
+  sql: 'INSERT INTO product (Product_name, Product_description, Product_Price, Seller, Category ) \n' +
+    '      VALUES  (mobile, The CustomerID column is an auto-increment field and will be generated automatically when a new record is inserted into the table.,3800,Pavan KP,elec);'
+}
