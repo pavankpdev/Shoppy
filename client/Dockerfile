@@ -1,7 +1,7 @@
 FROM node:alpine 
 WORKDIR /app
 COPY ./package.json ./
-RUN npm install --legacy-peer-deps
+RUN npm install:clean
 COPY . .
 RUN npm run build
 
