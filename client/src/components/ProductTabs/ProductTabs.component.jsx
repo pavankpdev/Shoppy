@@ -8,13 +8,14 @@ import {
   NavItem,
   NavLink,
   Card,
-  Button,
-  CardTitle,
   CardText,
   Row,
   Col,
   CardImg,
+  CardBody,
+  CardFooter,
 } from "reactstrap";
+import { Link } from "react-router-dom";
 
 // components
 import BestSeller from "./BestSeller.component";
@@ -105,7 +106,56 @@ const ProductTabs = (props) => {
             <BestSeller bestSellers={bestSellers} />
           </TabPane>
           <TabPane tabId="2">
-            <BestSeller bestSellers={bestSellers} />
+            <Row className="justify-content-between mt-4 bg-gradient-info p-3 rounded">
+              <Card className="shadow-lg w-md-25 mt-md-3">
+                <CardImg
+                  top
+                  className="img-fluid "
+                  src="https://images-eu.ssl-images-amazon.com/images/G/31/img20/Wireless/Jupiter2020/Phase_4_CC_QC/D18553048_Jupiter-_Phase_4esktopGateway_CategoryCard_758X608_2x._SY304_CB416489355_.jpg"
+                  alt="mobile"
+                />
+                <CardBody>
+                  <CardText className="font-weight-700 h2">
+                    Up to 40% off | Festive deals on top mobiles and accessories
+                  </CardText>
+                </CardBody>
+                <CardFooter>
+                  <Link> See all offers</Link>
+                </CardFooter>
+              </Card>
+              <Card className="shadow-lg w-md-25 mt-md-3">
+                <CardImg
+                  bottom
+                  className="img-fluid "
+                  src="https://images-eu.ssl-images-amazon.com/images/G/31/img20/CEPC/Jupiter/GW/Phase-4/DesktopGateway_CategoryCard_758X608_GPS_Wave_40.5x._SY304_CB418244413_.jpg"
+                  alt="mobile"
+                />
+                <CardBody>
+                  <CardText className="font-weight-700 h2">
+                    Up to 40% off | Festive deals on top mobiles and accessories
+                  </CardText>
+                </CardBody>
+                <CardFooter>
+                  <Link> See all offers</Link>
+                </CardFooter>
+              </Card>
+              <Card className="shadow-lg w-md-25 mt-md-3">
+                <CardImg
+                  top
+                  className="img-fluid "
+                  src="https://images-eu.ssl-images-amazon.com/images/G/31/img20/TVs/Jupiter20/GW/Phase4/DesktopGateway_CategoryCard_379X304._SY304_CB416337732_.jpg"
+                  alt="mobile"
+                />
+                <CardBody>
+                  <CardText className="font-weight-700 h2">
+                    Up to 40% off | Festive deals on top mobiles and accessories
+                  </CardText>
+                </CardBody>
+                <CardFooter>
+                  <Link> See all offers</Link>
+                </CardFooter>
+              </Card>
+            </Row>
           </TabPane>
           <TabPane tabId="3">
             <BestSeller bestSellers={bestSellers} />

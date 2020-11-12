@@ -1,25 +1,46 @@
 sudo: required
 
-language: node_js
-
-node_js:
-  - "stable" # v14
-
-branches:
-  only:
-    - main
+services:
+  - docker
 
 before_install:
-  - "cd server && cd node_server && npm i --silent"
+  - docker build -t pavanleton/shoppy -f ./server/node_server/Dockerfile.dev ./server/node_server
 
 script:
-  - "npm run test"
+  - docker run -e CI=true pavanleton/shoppy npm run test -- --coverage
 
 after_success:
+  # Build docker images
+  - docker build -t pavanleton/shoppy-client ./client
+  - docker build -t pavanleton/shoppy-nginx ./nginx
+  - docker build -t pavanleton/shoppy-node_server ./server/node_server
+
+  # Log in to the docker CLI
+  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
+
+  # Take those images and push them to docker hub
+  - docker push pavanleton/shoppy-client
+  - docker push pavanleton/shoppy-nginx
+  - docker push pavanleton/shoppy-node_server
+
+  # send notification to discord
   - wget https://raw.githubusercontent.com/DiscordHooks/travis-ci-discord-webhook/master/send.sh
   - chmod +x send.sh
   - ./send.sh success $WEBHOOK_URL
+
 after_failure:
+  # send notification to discord
   - wget https://raw.githubusercontent.com/DiscordHooks/travis-ci-discord-webhook/master/send.sh
   - chmod +x send.sh
   - ./send.sh failure $WEBHOOK_URL
+# deploy:
+#   provider: elasticbeanstalk
+#   region: ap-south-1
+#   app: multi-dock
+#   env: MultiDock-env-1
+#   bucket_name: elasticbeanstalk-ap-south-1-701994403871
+#   bucket_path: multi-docker
+#   on:
+#     branch: master
+#   access_key_id: $AWS_ACCESS_KEY
+#   secret_access_key: "$AWS_SECRET_KEY"
