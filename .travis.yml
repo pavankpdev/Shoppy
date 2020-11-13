@@ -40,7 +40,7 @@ deploy:
   provider: elasticbeanstalk
   region: ap-south-1
   app: shoppy
-  env: Shoppy-env
+  env: Shoppy-env-1
   bucket_name: elasticbeanstalk-ap-south-1-701994403871
   bucket_path: shoppy
   on:
