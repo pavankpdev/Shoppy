@@ -1,8 +1,6 @@
 FROM node:12.19.0 
 WORKDIR /app
 COPY package*.json ./
-RUN node -v
-RUN npm install node-sass@4.14.1
 RUN npm install
 COPY . ./
 RUN npm run build
