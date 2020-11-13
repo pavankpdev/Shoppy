@@ -1,6 +1,7 @@
 FROM node:alpine 
 WORKDIR /app
 COPY package*.json ./
+RUN echo node -v
 RUN npm install node-sass@4.14.1
 RUN npm install
 COPY . ./
