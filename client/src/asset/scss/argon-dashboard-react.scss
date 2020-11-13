@@ -99,6 +99,10 @@
   width: 6rem;
 }
 
+.trendingCard {
+  width: 100%;
+}
+
 @media (min-width: 640px) {
   .carousel-item > img {
     height: 300px !important;
@@ -110,5 +114,8 @@
 @media (min-width: 768px) {
   .carousel-item > img {
     height: 400px !important;
+  }
+  .trendingCard {
+    width: 25%;
   }
 }
