@@ -1,8 +1,8 @@
 FROM node:alpine 
 WORKDIR /app
 COPY package*.json ./
-RUN npm install --unsafe-perm node-sass
-RUN npm install
+RUN sudo npm install --unsafe-perm node-sass
+RUN sudo npm install
 COPY . ./
 RUN npm run build
 
