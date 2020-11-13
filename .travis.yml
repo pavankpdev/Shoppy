@@ -42,7 +42,6 @@ deploy:
   app: shoppy
   env: Shoppy-env-1
   bucket_name: elasticbeanstalk-ap-south-1-701994403871
-  bucket_path: shoppy
   on:
     branch: main
   access_key_id: $AWS_ACCESS_KEY
