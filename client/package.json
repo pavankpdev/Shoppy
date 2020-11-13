@@ -27,8 +27,8 @@
     "@testing-library/user-event": "^12.1.10"
   },
   "scripts": {
-    "compile-sass": "node-sass src/assets/scss/argon-dashboard-react.scss src/assets/css/argon-dashboard-react.css",
-    "minify-sass": "node-sass src/assets/scss/argon-dashboard-react.scss src/assets/css/argon-dashboard-react.min.css --output-style compressed",
+    "compile-sass": "node-sass ./src/asset/scss/argon-dashboard-react.scss ./src/asset/css/argon-dashboard-react.css",
+    "minify-sass": "node-sass ./src/asset/scss/argon-dashboard-react.scss ./src/asset/css/argon-dashboard-react.min.css --output-style compressed",
     "start": "react-scripts start",
     "build": "npm run minify-sass && react-scripts build",
     "test": "react-scripts test",
