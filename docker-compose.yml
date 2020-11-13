@@ -18,9 +18,10 @@ services:
     ports:
       - "3080:80"
     depends_on:
-      - node_server
+      - nodeserver
+      - pythonserver
       - client
-  node_server:
+  nodeserver:
     restart: always
     build:
       dockerfile: Dockerfile.dev
@@ -37,7 +38,7 @@ services:
       - "4000:4000"
     depends_on:
       - mysqlDB
-  python_server:
+  pythonserver:
     restart: always
     build:
       dockerfile: Dockerfile.dev

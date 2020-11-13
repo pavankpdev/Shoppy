@@ -13,8 +13,8 @@ after_success:
   # Build docker images
   - docker build -t pavanleton/shoppy-client ./client
   - docker build -t pavanleton/shoppy-nginx ./nginx
-  - docker build -t pavanleton/shoppy-node_server ./server/node_server
-  - docker build -t pavanleton/shoppy-python_server ./server/python_server
+  - docker build -t pavanleton/shoppy-nodeserver ./server/node_server
+  - docker build -t pavanleton/shoppy-pythonserver ./server/python_server
 
   # Log in to the docker CLI
   - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
@@ -22,8 +22,8 @@ after_success:
   # Take those images and push them to docker hub
   - docker push pavanleton/shoppy-client
   - docker push pavanleton/shoppy-nginx
-  - docker push pavanleton/shoppy-node_server
-  - docker push pavanleton/shoppy-python_server
+  - docker push pavanleton/shoppy-nodeserver
+  - docker push pavanleton/shoppy-pythonserver
 
   # send notification to discord
   - wget https://raw.githubusercontent.com/DiscordHooks/travis-ci-discord-webhook/master/send.sh

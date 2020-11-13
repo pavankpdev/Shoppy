@@ -1,4 +1,3 @@
-
 {
   "AWSEBDockerrunVersion": 2,
   "containerDefinitions": [
@@ -11,15 +10,15 @@
     },
     {
       "name": "nodeserver",
-      "image": "pavanleton/shoppy-node_server",
-      "hostname": "node_server",
+      "image": "pavanleton/shoppy-nodeserver",
+      "hostname": "nodeserver",
       "essential": false,
       "memory": 128
     },
     {
       "name": "pythonserver",
-      "image": "pavanleton/shoppy-python_server",
-      "hostname": "python_server",
+      "image": "pavanleton/shoppy-pythonserver",
+      "hostname": "pythonserver",
       "essential": false,
       "memory": 128
     },
