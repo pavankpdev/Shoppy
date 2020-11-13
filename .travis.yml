@@ -35,14 +35,15 @@ after_failure:
   - wget https://raw.githubusercontent.com/DiscordHooks/travis-ci-discord-webhook/master/send.sh
   - chmod +x send.sh
   - ./send.sh failure $WEBHOOK_URL
-# deploy:
-#   provider: elasticbeanstalk
-#   region: ap-south-1
-#   app: multi-dock
-#   env: MultiDock-env-1
-#   bucket_name: elasticbeanstalk-ap-south-1-701994403871
-#   bucket_path: multi-docker
-#   on:
-#     branch: master
-#   access_key_id: $AWS_ACCESS_KEY
-#   secret_access_key: "$AWS_SECRET_KEY"
+
+deploy:
+  provider: elasticbeanstalk
+  region: ap-south-1
+  app: shoppy
+  env: Shoppy-env
+  bucket_name: elasticbeanstalk-ap-south-1-701994403871
+  bucket_path: shoppy
+  on:
+    branch: main
+  access_key_id: $AWS_ACCESS_KEY
+  secret_access_key: "$AWS_SECRET_KEY"
