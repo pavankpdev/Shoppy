@@ -1,5 +1,6 @@
 FROM node:alpine 
 WORKDIR /app
+RUN npm install --global windows-build-tools
 COPY package*.json ./
 RUN npm install
 COPY . ./
