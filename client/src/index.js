@@ -6,7 +6,6 @@ import { Auth0Provider } from "@auth0/auth0-react";
 
 // assets
 import "./asset/scss/argon-dashboard-react.scss";
-import "./asset/scss/productcard.scss";
 import "./index.css";
 
 // component
