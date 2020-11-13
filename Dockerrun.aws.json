@@ -9,16 +9,16 @@
       "memory": 128
     },
     {
-      "name": "node_server",
+      "name": "nodeserver",
       "image": "pavanleton/shoppy-node_server",
-      "hostname": "nodeserver",
+      "hostname": "node_server",
       "essential": false,
       "memory": 128
     },
     {
-      "name": "python_server",
+      "name": "pythonserver",
       "image": "pavanleton/shoppy-python_server",
-      "hostname": "pythonserver",
+      "hostname": "python_server",
       "essential": false,
       "memory": 128
     },
