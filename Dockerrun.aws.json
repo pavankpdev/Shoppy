@@ -28,7 +28,7 @@
       "hostname": "nginx",
       "essential": true,
       "portMappings": [{ "hostPort": 80, "containerPort": 80 }],
-      "links": ["client", "node_server", "python_server"],
+      "links": ["client", "nodeserver", "pythonserver"],
       "memory": 128
     }
   ]
