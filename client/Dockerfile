@@ -1,7 +1,7 @@
 FROM node:alpine 
 WORKDIR /app
 COPY package*.json ./
-RUN npm i node-gyp node-sass
+RUN npm install --unsafe-perm node-sass
 RUN npm install
 COPY . ./
 RUN npm run build
