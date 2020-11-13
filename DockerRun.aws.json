@@ -1,0 +1,35 @@
+{
+  "AWSEBDockerrunVersion": 2,
+  "containerDefinitions": [
+    {
+      "name": "client",
+      "image": "pavanleton/shoppy-client",
+      "hostname": "client",
+      "essential": false,
+      "memory": 128
+    },
+    {
+      "name": "node_server",
+      "image": "pavanleton/shoppy-node_server",
+      "hostname": "node_server",
+      "essential": false,
+      "memory": 128
+    },
+    {
+      "name": "python_server",
+      "image": "pavanleton/shoppy-python_server",
+      "hostname": "python_server",
+      "essential": false,
+      "memory": 128
+    },
+    {
+      "name": "nginx",
+      "image": "pavanleton/shoppy-nginx",
+      "hostname": "nginx",
+      "essential": true,
+      "portMappings": [{ "hostPort": 80, "containerPort": 80 }],
+      "links": ["client", "node_server", "python_server"],
+      "memory": 128
+    }
+  ]
+}

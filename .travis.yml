@@ -3,10 +3,6 @@ sudo: required
 services:
   - docker
 
-language: node_js
-node_js:
-  - 12
-
 before_install:
   - docker build -t pavanleton/shoppy -f ./server/node_server/Dockerfile.dev ./server/node_server
 
@@ -18,6 +14,7 @@ after_success:
   - docker build -t pavanleton/shoppy-client ./client
   - docker build -t pavanleton/shoppy-nginx ./nginx
   - docker build -t pavanleton/shoppy-node_server ./server/node_server
+  - docker build -t pavanleton/shoppy-python_server ./server/python_server
 
   # Log in to the docker CLI
   - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
@@ -26,6 +23,7 @@ after_success:
   - docker push pavanleton/shoppy-client
   - docker push pavanleton/shoppy-nginx
   - docker push pavanleton/shoppy-node_server
+  - docker push pavanleton/shoppy-python_server
 
   # send notification to discord
   - wget https://raw.githubusercontent.com/DiscordHooks/travis-ci-discord-webhook/master/send.sh

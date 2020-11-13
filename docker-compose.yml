@@ -9,7 +9,6 @@ services:
     environment:
       MYSQL_ROOT_PASSWORD: pavan
       MYSQL_DATABASE: shoppy
-      MYSQL_USER: root
       MYSQL_PASSWORD: pavan
   nginx:
     restart: always
@@ -31,12 +30,23 @@ services:
       - ./server/node_server:/app
     environment:
       - PORT=4000
-      - DB_HOST=mysqlDB
-      - DB_USER=root
+      - DB_HOST=mysqlDB     
       - DB_PWD=pavan
       - DB_NAME=shoppy
     ports:
       - "4000:4000"
+    depends_on:
+      - mysqlDB
+  python_server:
+    restart: always
+    build:
+      dockerfile: Dockerfile.dev
+      context: ./server/python_server
+    volumes:
+      - /app/
+      - ./server/python_server:/app
+    ports:
+      - "8000:8000"
     depends_on:
       - mysqlDB
   client:

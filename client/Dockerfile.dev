@@ -1,7 +1,6 @@
-FROM node:alpine
+FROM node:12.19.0
 WORKDIR /app
-RUN npm install --global windows-build-tools
 COPY ./package.json ./
 RUN npm install 
 COPY . .
-CMD ["npm", "run", "install-clean"]
+CMD ["npm", "start"]
