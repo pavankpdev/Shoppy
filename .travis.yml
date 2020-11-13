@@ -3,6 +3,10 @@ sudo: required
 services:
   - docker
 
+language: node_js
+node_js:
+  - 12
+
 before_install:
   - docker build -t pavanleton/shoppy -f ./server/node_server/Dockerfile.dev ./server/node_server
 
