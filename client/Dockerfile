@@ -1,8 +1,8 @@
 FROM node:alpine 
 WORKDIR /app
 COPY package*.json ./
+RUN npm install node-sass@latest
 RUN npm install
-RUN npm rebuild node-sass
 COPY . ./
 RUN npm run build
 
