@@ -15,8 +15,16 @@ ReactDOM.render(
   <React.StrictMode>
     <Auth0Provider
       domain="shoppy-auth.us.auth0.com"
-      clientId="pwvXkV7QSR9T7KbwcpQt5aYqUD2r3wwA"
-      redirectUri="http://localhost:3000/"
+      clientId={
+        process.env.NODE_ENV === "development"
+          ? "pwvXkV7QSR9T7KbwcpQt5aYqUD2r3wwA"
+          : "wmJoBJQUzcorhhTwRYM5slECcUfBaKEq"
+      }
+      redirectUri={
+        process.env.NODE_ENV === "development"
+          ? "http://localhost:3000/"
+          : "https://shoppyapp.live/"
+      }
     >
       <BrowserRouter>
         <App />
