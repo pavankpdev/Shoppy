@@ -11,7 +11,7 @@ Shoppy is a modern e-commerce platform.
 - **git**: [download](https://git-scm.com/download/)
 - **node**: [download](https://nodejs.org/en/)
 - **python**: [download](https://www.python.org/)
-- **MySql**: [download](https://dev.mysql.com/downloads/mysql/5.7.html)
+- **MySql**: [download](https://dev.mysql.com/downloads/windows/installer/5.7.html)
 
 > optional
 
