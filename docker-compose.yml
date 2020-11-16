@@ -5,7 +5,7 @@ services:
     command: --default-authentication-plugin=mysql_native_password
     restart: always
     volumes:
-      - ./DB:/docker-entrypoint-initdb.d
+      - ./DB:/docker-entrypoint-initdb.d/
     environment:
       MYSQL_ROOT_PASSWORD: pavan
       MYSQL_DATABASE: shoppy

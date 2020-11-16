@@ -4,7 +4,7 @@ shoppy sql code
 mysql v5.7
 */ 
 
-CREATE DATABASE shoppy;
+CREATE DATABASE IF NOT EXISTS shoppy;
 
 CREATE TABLE `shoppy`.`Customer` (
   `Customer_ID` int AUTO_INCREMENT,
