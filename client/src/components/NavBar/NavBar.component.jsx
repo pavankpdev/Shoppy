@@ -57,7 +57,7 @@ const ShoppyNavBar = (props) => {
               <Col className="collapse-brand" xs="6">
                 <Link to="/">
                   <h1 className="font-weight-900 text-primary text-capitalize">
-                    Shoppy
+                    Pavan
                   </h1>
                 </Link>
               </Col>
