@@ -10,7 +10,8 @@ const helmet = require("helmet");
 const { mysqlConnection } = require("./database");
 
 // importing microservices route
-const Home = require("./Api/Home.api");
+const Home = require("./Api/Home/Home.api");
+const Products = require("./Api/Products/Products.api");
 
 // Establishing DB connection
 mysqlConnection.connect((error) => {
@@ -29,6 +30,7 @@ Shoppy.use(cors());
 
 // Initializing microservices route
 Shoppy.use("/", Home);
+Shoppy.use("/products", Products);
 
 // 404 route
 Shoppy.get("*", (req, res) => {
@@ -36,7 +38,7 @@ Shoppy.get("*", (req, res) => {
 });
 
 // Specifying the port to run the server
-const port = process.env.PORT;
+const port = process.env.PORT || 4000;
 Shoppy.listen(port, () => {
   console.log(`Listening on port ${port}...`);
 });

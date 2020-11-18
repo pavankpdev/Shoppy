@@ -18,7 +18,9 @@ CREATE TABLE `shoppy`.`Customer` (
 CREATE TABLE `shoppy`.`Product` (
   `Product_ID` int AUTO_INCREMENT,
   `Product_name` varchar(200),
-  `Product_description`varchar(500),
+  `Product_description`varchar(2000),
+  `Product_image1`varchar(500),
+  `Product_image2`varchar(500),
   `Product_Price` int,
   `Seller` varchar(100),
   `Category` varchar(100),

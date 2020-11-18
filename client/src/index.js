@@ -3,6 +3,8 @@ import React from "react";
 import ReactDOM from "react-dom";
 import { BrowserRouter } from "react-router-dom";
 import { Auth0Provider } from "@auth0/auth0-react";
+import { Provider } from "react-redux";
+import { PersistGate } from "redux-persist/integration/react";
 
 // assets
 import "./asset/scss/argon-dashboard-react.scss";
@@ -10,6 +12,7 @@ import "./index.css";
 
 // component
 import App from "./App";
+import { store, persistor } from "./redux/store";
 
 ReactDOM.render(
   <React.StrictMode>
@@ -26,9 +29,13 @@ ReactDOM.render(
           : "https://shoppyapp.live/"
       }
     >
-      <BrowserRouter>
-        <App />
-      </BrowserRouter>
+      <Provider store={store}>
+        <PersistGate persistor={persistor}>
+          <BrowserRouter>
+            <App />
+          </BrowserRouter>
+        </PersistGate>
+      </Provider>
     </Auth0Provider>
   </React.StrictMode>,
   document.getElementById("root")
