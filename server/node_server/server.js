@@ -15,7 +15,7 @@ const Products = require("./Api/Products/Products.api");
 
 // Establishing DB connection
 mysqlConnection.connect((error) => {
-  if (error) console.log("There was an error connecting to DB");
+  if (error) console.log(error);
   else console.log("Connected to DB");
 });
 
