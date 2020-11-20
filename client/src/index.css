@@ -1,6 +1,7 @@
 body {
   margin: 0;
   font-family: "Asap";
+  background-color: #e2e8f0;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }

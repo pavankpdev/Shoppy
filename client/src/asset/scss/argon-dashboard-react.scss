@@ -103,6 +103,11 @@
   width: 100%;
 }
 
+.slick-prev:before,
+.slick-next:before {
+  color: $primary !important;
+}
+
 @media (min-width: 640px) {
   .carousel-item > img {
     height: 300px !important;
@@ -120,8 +125,8 @@
   }
 }
 
-@media (min-width: 1200px){
-  .trendingCard{
+@media (min-width: 1200px) {
+  .trendingCard {
     width: 30%;
   }
 }

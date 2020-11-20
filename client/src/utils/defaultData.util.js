@@ -14,8 +14,7 @@ export const carouselList = [
     header: "",
   },
   {
-    src:
-      "https://i.ytimg.com/vi/Mf5M0DTuVMM/maxresdefault.jpg",
+    src: "https://i.ytimg.com/vi/Mf5M0DTuVMM/maxresdefault.jpg",
     altText: "",
     caption: "",
     header: "",

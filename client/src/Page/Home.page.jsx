@@ -1,11 +1,20 @@
 // Libraries
 import React, { useState } from "react";
-import { Container, UncontrolledCarousel, Row } from "reactstrap";
+import {
+  Container,
+  UncontrolledCarousel,
+  Row,
+  Card,
+  CardBody,
+  Col,
+} from "reactstrap";
 import { useAuth0 } from "@auth0/auth0-react";
 
 // Components
 import NavBar from "../components/NavBar/NavBar.component";
-import ProductTab from "../components/ProductTabs/ProductTabs.component";
+import SelectedProducts from "../components/ProductTabs/SelectedProducts/SelectedProducts.component";
+import FeaturedProducts from "../components/ProductTabs/FeaturedProducts/FeaturedProducts.components";
+import Footer from "../components/Footer/Footer.components";
 
 // Utilities
 import { carouselList } from "../utils/defaultData.util";
@@ -18,8 +27,10 @@ const HomePage = () => {
       <NavBar isAuth={isAuthenticated} user={user} />
       <UncontrolledCarousel items={carouselList} />
       <Container>
-        <ProductTab />
+        <SelectedProducts />
+        <FeaturedProducts />
       </Container>
+      <Footer />
     </>
   );
 };

@@ -81,35 +81,29 @@ const ShoppyNavBar = (props) => {
           <Nav className="mr-auto" navbar>
             <NavItem>
               <NavLink>
-                <Link className="text-default"> Best Sellers</Link>
+                <Link className="text-default"> Home</Link>
               </NavLink>
             </NavItem>
             <NavItem>
               <NavLink>
-                <Link className="text-default"> Today's Deal</Link>
+                <Link className="text-default"> Electricals & Electronics</Link>
               </NavLink>
             </NavItem>
             <NavItem>
               <NavLink>
-                <Link className="text-default"> Mobile</Link>
+                <Link className="text-default"> Home Appliances</Link>
               </NavLink>
             </NavItem>
             <NavItem>
               <NavLink>
-                <Link className="text-default"> Computers</Link>
+                <Link className="text-default"> Furniture</Link>
               </NavLink>
             </NavItem>
-            <UncontrolledDropdown nav inNavbar>
-              <DropdownToggle nav caret>
-                Categories
-              </DropdownToggle>
-              <DropdownMenu right>
-                <DropdownItem>Option 1</DropdownItem>
-                <DropdownItem>Option 2</DropdownItem>
-                <DropdownItem divider />
-                <DropdownItem>Reset</DropdownItem>
-              </DropdownMenu>
-            </UncontrolledDropdown>
+            <NavItem>
+              <NavLink>
+                <Link className="text-default"> Sports</Link>
+              </NavLink>
+            </NavItem>
           </Nav>
           <NavbarText className="mr-4">
             <InputGroup className="input-group-alternative ">
