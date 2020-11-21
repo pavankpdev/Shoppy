@@ -43,7 +43,7 @@ const UploadProduct = () => {
 
   // Initializing Hooks
   const dispatch = useDispatch();
-  
+
   // eslint-disable-line
   useEffect(() => {
     if (reduxstate.error.server)
@@ -53,9 +53,10 @@ const UploadProduct = () => {
   useEffect(() => setTimeout(() => setUploadStatus(""), 3000), [uploadStatus]);
 
   const options = [
-    { value: "chocolate", label: "Chocolate" },
-    { value: "strawberry", label: "Strawberry" },
-    { value: "vanilla", label: "Vanilla" },
+    { value: "Electricals & Electronics", label: "Electricals & Electronics" },
+    { value: "Home Appliances", label: "Home Appliances" },
+    { value: "Furniture", label: "Furniture" },
+    { value: "Sports", label: "Sports" },
   ];
 
   const updateProductData = (e) => {

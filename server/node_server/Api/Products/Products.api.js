@@ -32,7 +32,13 @@ Router.post("/upload", async (req, res) => {
     // Upload product to DB
     const uploadProduct = await Query(
       `INSERT INTO product (Product_name, Product_description, Product_image1, Product_image2, Product_Price, Seller, Category ) 
-        VALUES  ("${name}", "${description}","${img1}","${img2}",${price},"${seller}","${category}");`
+        VALUES  ("${name.replace(/[^a-zA-Z ]/g, "")}", "${description.replace(
+        /[^a-zA-Z ]/g,
+        ""
+      )}","${img1}","${img2}",${price},"${seller.replace(
+        /[^a-zA-Z ]/g,
+        ""
+      )}","${category}");`
     );
 
     return res.status(200).json({
