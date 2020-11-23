@@ -81,27 +81,27 @@ const ShoppyNavBar = (props) => {
           <Nav className="mr-auto" navbar>
             <NavItem>
               <NavLink>
-                <Link className="text-default"> Home</Link>
+                <Link className="text-default" to="/"> Home</Link>
               </NavLink>
             </NavItem>
             <NavItem>
               <NavLink>
-                <Link className="text-default"> Electricals & Electronics</Link>
+                <Link className="text-default" to="/products/Electricals%20&%20Electronics" > Electricals & Electronics</Link>
               </NavLink>
             </NavItem>
             <NavItem>
               <NavLink>
-                <Link className="text-default"> Home Appliances</Link>
+                <Link className="text-default" to="/products/Home%20Appliances"> Home Appliances</Link>
               </NavLink>
             </NavItem>
             <NavItem>
               <NavLink>
-                <Link className="text-default"> Furniture</Link>
+                <Link className="text-default" to="/products/Furniture"> Furniture</Link>
               </NavLink>
             </NavItem>
             <NavItem>
               <NavLink>
-                <Link className="text-default"> Sports</Link>
+                <Link className="text-default" to="/products/Sports"> Sports</Link>
               </NavLink>
             </NavItem>
           </Nav>

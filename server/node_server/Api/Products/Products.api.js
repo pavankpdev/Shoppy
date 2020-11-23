@@ -35,7 +35,7 @@ Router.post("/upload", async (req, res) => {
         VALUES  ("${name.replace(/[^a-zA-Z ]/g, "")}", "${description.replace(
         /[^a-zA-Z ]/g,
         ""
-      )}","${img1}","${img2}",${price},"${seller.replace(
+      )}","${img1}","${img2}",${price.replace(/[^0-9 ]/g, "")},"${seller.replace(
         /[^a-zA-Z ]/g,
         ""
       )}","${category}");`

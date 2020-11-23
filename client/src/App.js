@@ -2,18 +2,32 @@
 import React, { Suspense } from "react";
 import { Route, Link, Switch } from "react-router-dom";
 import { Spinner } from "reactstrap";
+import { useAuth0 } from "@auth0/auth0-react";
 
 // Components
-import HomePage from "./Page/Home.page";
+import NavBar from "./components/NavBar/NavBar.component";
+
+// Pages
+const HomePage = React.lazy(() => import("./Page/Home.page"));
 const UploadPage = React.lazy(() => import("./Page/UploadProduct.page"));
+const ProductPage = React.lazy(() => import("./Page/Products.page"));
+const CartPage = React.lazy(() => import("./Page/Cart.page"));
 
 function App() {
+  // Destructuring auth data from Auth0 hook
+  const { isAuthenticated, user } = useAuth0();
+
   return (
     <div>
+      <NavBar isAuth={isAuthenticated} user={user} />
       <Switch>
-        <Route path="/" exact component={HomePage} />
-        <Suspense fallback={<Spinner color="primary" className="text-center" />}>
+        <Suspense
+          fallback={<Spinner color="primary" className="text-center" />}
+        >
+          <Route path="/" exact component={HomePage} />
           <Route path="/upload" exact component={UploadPage} />
+          <Route path="/products/:product" exact component={ProductPage} />
+          <Route path="/cart" exact component={CartPage} />
         </Suspense>
       </Switch>
     </div>
