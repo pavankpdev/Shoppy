@@ -34,3 +34,27 @@ export const productsList = [
   "https://images.unsplash.com/photo-1521939094609-93aba1af40d7?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=667&q=80",
   "https://images.unsplash.com/photo-1584198541667-f790d4f62742?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=750&q=80",
 ];
+
+export const cartData = [
+  {
+    title: "MSI Optix G241-24 inch IPS Gaming Monitor – Full HD - 144hz Refresh Rate - 1ms Response time – AMD Freeync for Esports",
+    quantity: 0,
+    price: 3800,
+  },
+  {
+    title: "MSI Optix G241-24 inch IPS Gaming Monitor – Full HD - 144hz Refresh Rate - 1ms Response time – AMD Freeync for Esports",
+    quantity: 0,
+    price: 3800,
+  },
+  {
+    title: "MSI Optix G241-24 inch IPS Gaming Monitor – Full HD - 144hz Refresh Rate - 1ms Response time – AMD Freeync for Esports",
+    quantity: 0,
+    price: 3800,
+  },
+  {
+    title: "MSI Optix G241-24 inch IPS Gaming Monitor – Full HD - 144hz Refresh Rate - 1ms Response time – AMD Freeync for Esports",
+    quantity: 0,
+    price: 3800,
+  },
+  
+];
