@@ -1,6 +1,7 @@
 // Libraries
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
+import { useSelector } from "react-redux";
 import {
   Navbar,
   NavbarBrand,
@@ -26,6 +27,9 @@ import { useAuth0 } from "@auth0/auth0-react";
 
 const ShoppyNavBar = (props) => {
   const [isOpen, setisOpen] = useState(false);
+
+  // Redux state
+  const reduxState = useSelector(({ cart }) => ({ cart }));
 
   // Auth0 hook to redirect for login/ register page
   const { loginWithRedirect, logout } = useAuth0();
@@ -188,7 +192,7 @@ const ShoppyNavBar = (props) => {
             <Link className="text-default" to="/cart">
               <i className="fas fa-shopping-cart fa-lg" />
               <Badge color="primary" className="bg-primary text-white">
-                0
+                {reduxState.cart.cart.length}
               </Badge>
             </Link>
           </NavbarText>

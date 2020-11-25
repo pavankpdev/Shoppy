@@ -1,69 +1,22 @@
+// Libraries
 import React, { useState } from "react";
 import classnames from "classnames";
+import { useSelector } from "react-redux";
 import { TabContent, TabPane, Nav, NavItem, NavLink } from "reactstrap";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+
+// Configs
+import { FeaturedProductsCarousal } from "../../../config/Carousal.config";
+
 // Components
-import ElectricalsElectronics from "./ElectricalsElectronics.component";
+import FeaturedProductCard from "./FeaturedProductCard.component";
 
 const FeaturedProducts = () => {
   const [activeTab, setActiveTab] = useState("1");
 
-  const settings = {
-    autoplay: true,
-    centerMode: true,
-    centerPadding: "60px",
-    slidesToShow: 3,
-    slidesToScroll: 1,
-    arrows: true,
-    responsive: [
-      {
-        breakpoint: 2000,
-        settings: {
-          arrows: true,
-          centerMode: true,
-          centerPadding: "50px",
-          slidesToShow: 4,
-        },
-      },
-      {
-        breakpoint: 1500,
-        settings: {
-          arrows: true,
-          centerMode: true,
-          centerPadding: "35px",
-          slidesToShow: 4,
-        },
-      },
-      {
-        breakpoint: 1300,
-        settings: {
-          arrows: true,
-          centerMode: true,
-          centerPadding: "160px",
-        },
-      },
-      {
-        breakpoint: 768,
-        settings: {
-          arrows: true,
-          centerMode: true,
-          centerPadding: "5px",
-          slidesToShow: 2,
-        },
-      },
-      {
-        breakpoint: 480,
-        settings: {
-          arrows: true,
-          centerMode: true,
-          centerPadding: "40px",
-          slidesToShow: 1,
-        },
-      },
-    ],
-  };
+  const reduxState = useSelector(({ products }) => ({ products }));
 
   const toggle = (tab) => {
     if (activeTab !== tab) setActiveTab(tab);
@@ -133,65 +86,65 @@ const FeaturedProducts = () => {
         <TabContent activeTab={activeTab}>
           <TabPane tabId="1">
             <div className="mt-4">
-              <Slider {...settings}>
-                <ElectricalsElectronics />
-                <ElectricalsElectronics />
-                <ElectricalsElectronics />
-                <ElectricalsElectronics />
-                <ElectricalsElectronics />
-                <ElectricalsElectronics />
-                <ElectricalsElectronics />
-                <ElectricalsElectronics />
-                <ElectricalsElectronics />
-                <ElectricalsElectronics />
+              <Slider {...FeaturedProductsCarousal}>
+                {reduxState.products.home.map(
+                  (product) =>
+                    product.Category.includes("Electricals") && (
+                      <FeaturedProductCard
+                        img={product.Product_image1}
+                        name={product.Product_name}
+                        price={product.Product_Price}
+                      />
+                    )
+                )}
               </Slider>
             </div>
           </TabPane>
           <TabPane tabId="2">
             <div className="mt-4">
-              <Slider {...settings}>
-                <ElectricalsElectronics />
-                <ElectricalsElectronics />
-                <ElectricalsElectronics />
-                <ElectricalsElectronics />
-                <ElectricalsElectronics />
-                <ElectricalsElectronics />
-                <ElectricalsElectronics />
-                <ElectricalsElectronics />
-                <ElectricalsElectronics />
-                <ElectricalsElectronics />
+              <Slider {...FeaturedProductsCarousal}>
+                {reduxState.products.home.map(
+                  (product) =>
+                    product.Category.includes("Home") && (
+                      <FeaturedProductCard
+                        img={product.Product_image1}
+                        name={product.Product_name}
+                        price={product.Product_Price}
+                      />
+                    )
+                )}
               </Slider>
             </div>
           </TabPane>
           <TabPane tabId="3">
             <div className="mt-4">
-              <Slider {...settings}>
-                <ElectricalsElectronics />
-                <ElectricalsElectronics />
-                <ElectricalsElectronics />
-                <ElectricalsElectronics />
-                <ElectricalsElectronics />
-                <ElectricalsElectronics />
-                <ElectricalsElectronics />
-                <ElectricalsElectronics />
-                <ElectricalsElectronics />
-                <ElectricalsElectronics />
+              <Slider {...FeaturedProductsCarousal}>
+                {reduxState.products.home.map(
+                  (product) =>
+                    product.Category.includes("Furniture") && (
+                      <FeaturedProductCard
+                        img={product.Product_image1}
+                        name={product.Product_name}
+                        price={product.Product_Price}
+                      />
+                    )
+                )}
               </Slider>
             </div>
           </TabPane>
           <TabPane tabId="4">
             <div className="mt-4">
-              <Slider {...settings}>
-                <ElectricalsElectronics />
-                <ElectricalsElectronics />
-                <ElectricalsElectronics />
-                <ElectricalsElectronics />
-                <ElectricalsElectronics />
-                <ElectricalsElectronics />
-                <ElectricalsElectronics />
-                <ElectricalsElectronics />
-                <ElectricalsElectronics />
-                <ElectricalsElectronics />
+              <Slider {...FeaturedProductsCarousal}>
+                {reduxState.products.home.map(
+                  (product) =>
+                    product.Category.includes("Sports") && (
+                      <FeaturedProductCard
+                        img={product.Product_image1}
+                        name={product.Product_name}
+                        price={product.Product_Price}
+                      />
+                    )
+                )}
               </Slider>
             </div>
           </TabPane>

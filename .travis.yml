@@ -1,16 +1,19 @@
 sudo: required
 
+# Installing Docker
 services:
   - docker
 
 before_install:
+  #Building node_server development docker container
   - docker build -t pavanleton/shoppy -f ./server/node_server/Dockerfile.dev ./server/node_server
 
 script:
+  # Executing node_server test cases inside container
   - docker run -e CI=true pavanleton/shoppy npm run test -- --coverage
 
 after_success:
-  # Build docker images
+  # Build production docker images
   - docker build -t pavanleton/shoppy-client ./client
   - docker build -t pavanleton/shoppy-nginx ./nginx
   - docker build -t pavanleton/shoppy-nodeserver ./server/node_server
@@ -37,6 +40,7 @@ after_failure:
   - ./send.sh failure $WEBHOOK_URL
 
 deploy:
+  # deploy to AWS Beanstalk
   provider: elasticbeanstalk
   region: ap-south-1
   app: shoppy
