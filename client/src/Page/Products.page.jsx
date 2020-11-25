@@ -10,6 +10,7 @@ import {
   Label,
 } from "reactstrap";
 import { useParams } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 // Components
 import ProductCard from "../components/ProductCard/ProductCard.component";
@@ -17,8 +18,11 @@ import ProductCard from "../components/ProductCard/ProductCard.component";
 const ProductPage = () => {
   const [showFilter, setShowFilter] = useState(false);
 
+  // Redux state
+  const reduxState = useSelector(({ products }) => ({ products }));
+
   // Params hooks
-  const { product } = useParams();
+  const { category } = useParams();
 
   // Function to toggle filter modal
   const toggle = () => setShowFilter(!showFilter);
@@ -46,7 +50,7 @@ const ProductPage = () => {
       </Modal>
       <Container>
         <Row className="mt-3 justify-content-between border-bottom border-primary">
-          <h1 className="text-primary">{product}</h1>
+          <h1 className="text-primary">{category}</h1>
           <h3
             className="text-default pointer"
             onClick={() => setShowFilter(!showFilter)}
@@ -55,16 +59,24 @@ const ProductPage = () => {
           </h3>
         </Row>
         <Row className="justify-content-center">
-          <ProductCard img="https://images-na.ssl-images-amazon.com/images/I/61pRgm0%2BbbL._SL1024_.jpg" />
-          <ProductCard img="https://images-na.ssl-images-amazon.com/images/I/41XWQI4A6LL.jpg" />
-          <ProductCard img="https://images-na.ssl-images-amazon.com/images/I/71LcWGgFOkL._SL1500_.jpg" />
-          <ProductCard img="https://images-na.ssl-images-amazon.com/images/I/81ho2uFyrLL._SL1500_.jpg" />
-          <ProductCard img="https://images-na.ssl-images-amazon.com/images/I/61B7e9pNOPL.jpg" />
-          <ProductCard img="https://images-na.ssl-images-amazon.com/images/I/71Wxed3-zrL._SL1384_.jpg" />
-          <ProductCard img="https://images-na.ssl-images-amazon.com/images/I/711h5gqoBLL._SL1500_.jpg" />
-          <ProductCard img="https://images-na.ssl-images-amazon.com/images/I/71hdYpK6ioL._SL1500_.jpg" />
-          <ProductCard img="https://images-na.ssl-images-amazon.com/images/I/61pRgm0%2BbbL._SL1024_.jpg" />
-          <ProductCard img="https://images-na.ssl-images-amazon.com/images/I/61pRgm0%2BbbL._SL1024_.jpg" />
+          {reduxState.products.home.map(
+            ({
+              Category,
+              Product_image1,
+              Product_name,
+              Product_Price,
+              Product_ID,
+            }) =>
+              Category.includes(category) && (
+                <ProductCard
+                  img={Product_image1}
+                  name={Product_name}
+                  price={Product_Price}
+                  Product_ID={Product_ID}
+                  category={Category}
+                />
+              )
+          )}
         </Row>
       </Container>
     </>

@@ -8,12 +8,14 @@ import { persistConfig } from "../../config/reduxPersist.config";
 // Reducers
 import productsReducer from "./Products/Products.reducer";
 import redirectReducer from "./Redirect/Redirect.reducer";
+import cartReducer from "./Cart/Cart.reducer";
 import errorReducer from "./Error/error.reducer";
 
 // root reducer
 const rootReducer = combineReducers({
   products: productsReducer,
   redirect: redirectReducer,
+  cart: cartReducer,
   error: errorReducer,
 });
 

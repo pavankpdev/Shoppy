@@ -1,5 +1,6 @@
 import { createTransform } from "redux-persist";
-import storage from "redux-persist/lib/storage/session";
+import sessionStorage from "redux-persist/lib/storage/session";
+import localStorage from "redux-persist/lib/storage";
 import { stringify, parse } from "flatted";
 
 const StateTransform = createTransform(
@@ -13,8 +14,9 @@ const StateTransform = createTransform(
 
 export const persistConfig = {
   key: "redux",
-  storage,
+  storage:
+    process.env.NODE_ENV === "development" ? sessionStorage : localStorage,
   transforms: [StateTransform],
-  whitelist: ["products"],
+  whitelist: ["products", "cart"],
   blacklist: ["redirect", "error"],
 };

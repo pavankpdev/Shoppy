@@ -11,6 +11,7 @@ import NavBar from "./components/NavBar/NavBar.component";
 const HomePage = React.lazy(() => import("./Page/Home.page"));
 const UploadPage = React.lazy(() => import("./Page/UploadProduct.page"));
 const ProductPage = React.lazy(() => import("./Page/Products.page"));
+const SelectedProduct = React.lazy(() => import("./Page/SelectedProduct.page"));
 const CartPage = React.lazy(() => import("./Page/Cart.page"));
 
 function App() {
@@ -26,8 +27,17 @@ function App() {
         >
           <Route path="/" exact component={HomePage} />
           <Route path="/upload" exact component={UploadPage} />
-          <Route path="/products/:product" exact component={ProductPage} />
-          <Route path="/cart" exact component={CartPage} />
+          <Route path="/products/:category" exact component={ProductPage} />
+          <Route
+            path="/products/:category/:product_id"
+            exact
+            component={SelectedProduct}
+          />
+          <Route
+            path="/cart"
+            exact
+            component={() => <CartPage isAuth={isAuthenticated} user={user} />}
+          />
         </Suspense>
       </Switch>
     </div>

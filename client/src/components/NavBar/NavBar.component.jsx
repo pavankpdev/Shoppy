@@ -1,6 +1,7 @@
 // Libraries
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
+import { useSelector } from "react-redux";
 import {
   Navbar,
   NavbarBrand,
@@ -20,11 +21,15 @@ import {
   Col,
   UncontrolledCollapse,
   Button,
+  Badge,
 } from "reactstrap";
 import { useAuth0 } from "@auth0/auth0-react";
 
 const ShoppyNavBar = (props) => {
   const [isOpen, setisOpen] = useState(false);
+
+  // Redux state
+  const reduxState = useSelector(({ cart }) => ({ cart }));
 
   // Auth0 hook to redirect for login/ register page
   const { loginWithRedirect, logout } = useAuth0();
@@ -81,27 +86,40 @@ const ShoppyNavBar = (props) => {
           <Nav className="mr-auto" navbar>
             <NavItem>
               <NavLink>
-                <Link className="text-default" to="/"> Home</Link>
+                <Link className="text-default" to="/">
+                  Home
+                </Link>
               </NavLink>
             </NavItem>
             <NavItem>
               <NavLink>
-                <Link className="text-default" to="/products/Electricals%20&%20Electronics" > Electricals & Electronics</Link>
+                <Link
+                  className="text-default"
+                  to="/products/Electricals%20&%20Electronics"
+                >
+                  Electricals & Electronics
+                </Link>
               </NavLink>
             </NavItem>
             <NavItem>
               <NavLink>
-                <Link className="text-default" to="/products/Home%20Appliances"> Home Appliances</Link>
+                <Link className="text-default" to="/products/Home%20Appliances">
+                  Home Appliances
+                </Link>
               </NavLink>
             </NavItem>
             <NavItem>
               <NavLink>
-                <Link className="text-default" to="/products/Furniture"> Furniture</Link>
+                <Link className="text-default" to="/products/Furniture">
+                  Furniture
+                </Link>
               </NavLink>
             </NavItem>
             <NavItem>
               <NavLink>
-                <Link className="text-default" to="/products/Sports"> Sports</Link>
+                <Link className="text-default" to="/products/Sports">
+                  Sports
+                </Link>
               </NavLink>
             </NavItem>
           </Nav>
@@ -125,7 +143,7 @@ const ShoppyNavBar = (props) => {
           <NavbarText className="mr-4">
             <UncontrolledDropdown nav>
               <DropdownToggle nav caret>
-                <i className="fas fa-user-circle fa-lg" />
+                <i className="fas fa-user-circle fa-lg  text-default" />
               </DropdownToggle>
               <DropdownMenu right>
                 {props.isAuth ? (
@@ -169,11 +187,14 @@ const ShoppyNavBar = (props) => {
               </DropdownMenu>
             </UncontrolledDropdown>
           </NavbarText>
-          <NavbarText className="mr-4">
-            <i className="fas fa-bookmark fa-lg" />
-          </NavbarText>
+
           <NavbarText className="mr-2">
-            <i className="fas fa-shopping-cart fa-lg" />
+            <Link className="text-default" to="/cart">
+              <i className="fas fa-shopping-cart fa-lg" />
+              <Badge color="primary" className="bg-primary text-white">
+                {reduxState.cart.cart.length}
+              </Badge>
+            </Link>
           </NavbarText>
         </UncontrolledCollapse>
       </Navbar>

@@ -4,10 +4,8 @@
 
 //  Libraries
 const Router = require("express").Router();
-const mysql = require("mysql");
-const axios = require("axios");
 
-// Mysql connection instance
+// Mysql query wrapper
 const { Query } = require("../../database/index");
 
 // Configs

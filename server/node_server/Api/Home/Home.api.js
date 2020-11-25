@@ -21,7 +21,7 @@ Router.get("/", async (req, res) => {
   try {
     // Get all product data
     const allProducts = await Query("select * from product;");
-
+    
     return res.status(200).json(allProducts);
   } catch (error) {
     homeLogger.error(error);

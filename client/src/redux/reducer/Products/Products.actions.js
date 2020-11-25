@@ -10,7 +10,7 @@ import { requestfailed } from "../Error/error.action";
 import { requestSuccess, loading } from "../../../utils/Global.util";
 
 // Reducer Types
-import { UPLOAD_DATA } from "./Products.type";
+import { UPLOAD_DATA, GET_HOME_pAGE_DATA } from "./Products.type";
 
 // Utilities
 import { keys } from "../../../utils/keys";
@@ -29,5 +29,23 @@ export const uploadProductData = (productData) => async (dispatch) => {
     return dispatch(requestSuccess(UPLOAD_DATA, uploadProductDataApi.data));
   } catch (error) {
     return dispatch(requestfailed(error));
+  }
+};
+
+// Action to get home page product data from server
+export const getHomePageData = () => async (dispatch) => {
+  try {
+    dispatch(loading());
+
+    const getHomePageDataApi = await axios({
+      method: "GET",
+      url: `${keys.NODE_API_URL}`,
+    });
+
+    return dispatch(
+      requestSuccess(GET_HOME_pAGE_DATA, getHomePageDataApi.data)
+    );
+  } catch (error) {
+    requestfailed(error);
   }
 };

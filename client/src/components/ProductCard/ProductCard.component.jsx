@@ -1,60 +1,32 @@
+// Libraries
 import React from "react";
-import {
-  Container,
-  Row,
-  Card,
-  CardImg,
-  CardFooter,
-  CardBody,
-  Col,
-} from "reactstrap";
+import { Card, CardImg, CardBody, Col } from "reactstrap";
 import classnames from "classnames";
-import ProductPage from "../../Page/Products.page";
+import { Link } from "react-router-dom";
 
-const ProductCard = ({ rating, img, name, price }) => {
+// Components
+import RatingStar from "../RatingStars/RatingStars.component";
+
+const ProductCard = ({ rating, img, name, price, category, Product_ID }) => {
   return (
     <>
       <Col className="my-3" sm="6" lg="3">
         <Card className="shadow">
-          <CardImg
-            top
-            src={img}
-            alt="Card image cap"
-            style={{ height: "30vh", padding: "1rem" }}
-          />
+          <Link to={`/products/${category}/${Product_ID}`}>
+            <CardImg
+              top
+              src={img}
+              alt="Card image cap"
+              style={{ height: "30vh", padding: "1rem" }}
+            />
+          </Link>
           <CardBody>
-            <span>
-              <i
-                className={classnames("fas fa-star fa-xs text-primary", {
-                  "text-gray": 5 - 1 < 0,
-                })}
-              />
-              <i
-                className={classnames("fas fa-star fa-xs text-primary", {
-                  "text-gray": 5 - 2 < 0,
-                })}
-              />
-              <i
-                className={classnames("fas fa-star fa-xs text-primary", {
-                  "text-gray": 5 - 3 < 0,
-                })}
-              />
-              <i
-                className={classnames("fas fa-star fa-xs text-primary", {
-                  "text-gray": 5 - 4 < 0,
-                })}
-              />
-              <i
-                className={classnames("fas fa-star fa-xs text-primary", {
-                  "text-gray": 5 - 5 < 0,
-                })}
-              />
-            </span>
-            <h4 className="mt-1 text-truncate font-weight-400">
-              MSI Optix G27C4 27" Full HD 1920 x 1080 1ms (MPRT) 165 Hz HDMI,
-              DisplayPort AMD FreeSync Curved Gaming Monitor
-            </h4>
-            <h2 className="mt--1 font-weight-900">₹ 23,990</h2>
+            <RatingStar rating={5} />
+
+            <Link to={`/products/cat/product`}>
+              <h4 className="mt-1 text-truncate font-weight-400">{name}</h4>
+            </Link>
+            <h2 className="mt--1 font-weight-900">₹ {price}</h2>
           </CardBody>
         </Card>
       </Col>
