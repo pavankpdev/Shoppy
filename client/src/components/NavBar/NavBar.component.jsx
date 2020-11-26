@@ -40,7 +40,7 @@ const ShoppyNavBar = (props) => {
         <NavbarBrand>
           <Link to="/">
             <h1 className="font-weight-900 text-primary text-capitalize">
-              Puppy-sree
+              Shoppy
             </h1>
           </Link>
         </NavbarBrand>
@@ -62,7 +62,7 @@ const ShoppyNavBar = (props) => {
               <Col className="collapse-brand" xs="6">
                 <Link to="/">
                   <h1 className="font-weight-900 text-primary text-capitalize">
-                    Puppy-sree
+                    Shoppy
                   </h1>
                 </Link>
               </Col>
