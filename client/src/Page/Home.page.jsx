@@ -16,13 +16,18 @@ import { carouselList } from "../utils/defaultData.util";
 import { getHomePageData } from "../redux/reducer/Products/Products.actions";
 
 const HomePage = () => {
-  const [home, setHome] = useState({});
+  const [home, setHome] = useState([]);
 
   const dispatch = useDispatch();
   const reduxState = useSelector(({ products }) => ({ products }));
 
   useEffect(() => {
-    dispatch(getHomePageData());
+    const homeDataAction = async () => {
+      const homeData = await dispatch(getHomePageData());
+      setHome(homeData.payload);
+      console.log(homeData.payload);
+    };
+    homeDataAction();
   }, []);
 
   return (
@@ -34,7 +39,7 @@ const HomePage = () => {
           <UncontrolledCarousel items={carouselList} />
           <Container>
             <SelectedProducts />
-            <FeaturedProducts />
+            <FeaturedProducts list={home} />
           </Container>
           <Footer />
         </>

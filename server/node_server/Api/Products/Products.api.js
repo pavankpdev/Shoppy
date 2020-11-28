@@ -33,10 +33,10 @@ Router.post("/upload", async (req, res) => {
         VALUES  ("${name.replace(/[^a-zA-Z ]/g, "")}", "${description.replace(
         /[^a-zA-Z ]/g,
         ""
-      )}","${img1}","${img2}",${price.replace(/[^0-9 ]/g, "")},"${seller.replace(
-        /[^a-zA-Z ]/g,
+      )}","${img1}","${img2}",${price.replace(
+        /[^0-9 ]/g,
         ""
-      )}","${category}");`
+      )},"${seller.replace(/[^a-zA-Z ]/g, "")}","${category}");`
     );
 
     return res.status(200).json({
@@ -49,10 +49,10 @@ Router.post("/upload", async (req, res) => {
   }
 });
 
-// @Route   GET /products/:id
+// @Route   GET /products/p/:id
 // @des     GET specific product details
 // @access  PUBLIC
-Router.get("/:product_id", async (req, res) => {
+Router.get("/p/:product_id", async (req, res) => {
   try {
     const { product_id } = req.params;
 
@@ -60,6 +60,37 @@ Router.get("/:product_id", async (req, res) => {
     const productDetail = await Query(
       `select * from product WHERE Product_ID=${product_id};`
     );
+
+    if (productDetail.length === 0)
+      return res
+        .status(400)
+        .json({ error: `Product with the id ${product_id}, was not found` });
+
+    return res.status(200).json(productDetail[0]);
+  } catch (error) {
+    productsLogger.error(error);
+    return res.status(500).json({ error: error.message });
+  }
+});
+
+// @Route   GET /products/c/:category
+// @des     GET product data of a specific category
+// @access  PUBLIC
+Router.get("/c/:category", async (req, res) => {
+  try {
+    const { category } = req.params;
+
+    // get specific product details using category
+    const productDetail = await Query(
+      `select * from product where Category="${category}"`
+    );
+
+    if (productDetail.length === 0)
+      return res
+        .status(400)
+        .json({
+          error: `Product with the category ${category}, was not found`,
+        });
 
     return res.status(200).json(productDetail);
   } catch (error) {

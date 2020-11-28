@@ -5,6 +5,7 @@ import {
   INCREMENT_QUANTITY,
   DECREMENT_QUANTITY,
   DELETE_PRODUCT,
+  CLEAR_CART,
 } from "./Cart.type";
 
 // Utilities
@@ -60,7 +61,7 @@ const cartReducer = (state = INITIAL_STATE, action) => {
           return e;
         }),
       };
-    
+
     case DELETE_PRODUCT:
       return {
         ...state,
@@ -68,6 +69,9 @@ const cartReducer = (state = INITIAL_STATE, action) => {
           ({ Product_ID }) => action.payload !== Product_ID
         ),
       };
+
+    case CLEAR_CART:
+      return { ...state, cart: [] };
 
     case REHYDRATE:
       return action.payload ? action.payload.cart : INITIAL_STATE;

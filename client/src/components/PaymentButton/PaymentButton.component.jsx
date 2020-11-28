@@ -1,12 +1,21 @@
 // Libraries
-import React from "react";
-import { Button } from "reactstrap";
-import { Redirect } from "react-router-dom";
+import React, { useState } from "react";
+import { Button, Modal, ModalBody } from "reactstrap";
+import { useDispatch } from "react-redux";
 import { useAuth0 } from "@auth0/auth0-react";
 
-const PaymentButton = ({ price, isAuth }) => {
+// Redux Actions
+import { clearCart } from "../../redux/reducer/Cart/Cart.action";
+
+const PaymentButton = ({
+  price,
+  setPaymentSuccess,
+  paymentSuccess,
+}) => {
   // Auth0 hook to redirect for login/ register page
-  const { loginWithRedirect, user } = useAuth0();
+  const { loginWithRedirect, user, isAuthenticated } = useAuth0();
+
+  const dispatch = useDispatch();
 
   const launchRazorPay = () => {
     let data = {
@@ -22,7 +31,10 @@ const PaymentButton = ({ price, isAuth }) => {
       name: "Shoppy",
       description: "Product Purchase",
       image: "https://i.ibb.co/zbpj9k1/Shoppy.png",
-      handler: function (response) {},
+      handler: function (response) {
+        dispatch(clearCart());
+        return setPaymentSuccess(!paymentSuccess);
+      },
       prefill: {
         name: user.fullname,
         email: user.email,
@@ -36,7 +48,7 @@ const PaymentButton = ({ price, isAuth }) => {
     rzp.open();
   };
 
-  if (!isAuth) {
+  if (!isAuthenticated) {
     loginWithRedirect();
   }
   return (

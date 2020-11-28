@@ -1,5 +1,5 @@
 // Libraries
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
   Container,
   Row,
@@ -8,21 +8,35 @@ import {
   Col,
   ModalBody,
   Label,
+  Spinner,
 } from "reactstrap";
 import { useParams } from "react-router-dom";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 
 // Components
 import ProductCard from "../components/ProductCard/ProductCard.component";
 
+// Actions
+import { getProductsWithCategory } from "../redux/reducer/Products/Products.actions";
+
 const ProductPage = () => {
   const [showFilter, setShowFilter] = useState(false);
+  const [productData, setProductData] = useState([]);
 
   // Redux state
   const reduxState = useSelector(({ products }) => ({ products }));
 
   // Params hooks
   const { category } = useParams();
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    const getProductsAction = async () => {
+      const getproductsData = await dispatch(getProductsWithCategory(category));
+      setProductData(getproductsData.payload);
+    };
+    getProductsAction();
+  }, [category]);
 
   // Function to toggle filter modal
   const toggle = () => setShowFilter(!showFilter);
@@ -59,23 +73,28 @@ const ProductPage = () => {
           </h3>
         </Row>
         <Row className="justify-content-center">
-          {reduxState.products.home.map(
-            ({
-              Category,
-              Product_image1,
-              Product_name,
-              Product_Price,
-              Product_ID,
-            }) =>
-              Category.includes(category) && (
-                <ProductCard
-                  img={Product_image1}
-                  name={Product_name}
-                  price={Product_Price}
-                  Product_ID={Product_ID}
-                  category={Category}
-                />
-              )
+          {reduxState.products.loading ? (
+            <Spinner color="primary" />
+          ) : (
+            productData.map(
+              ({
+                Category,
+                Product_image1,
+                Product_name,
+                Product_Price,
+                Product_ID,
+              }) =>
+                Category.includes(category) && (
+                  <ProductCard
+                    img={Product_image1}
+                    name={Product_name}
+                    price={Product_Price}
+                    Product_ID={Product_ID}
+                    category={Category}
+                    key={Product_ID}
+                  />
+                )
+            )
           )}
         </Row>
       </Container>

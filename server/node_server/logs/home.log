@@ -27,3 +27,17 @@
   index: 0,
   sql: 'select * from product;'
 }
+[2020-11-27T19:26:52.398] [ERROR] home - Error: Cannot enqueue Query after fatal error.
+    at Protocol._validateEnqueue (C:\Users\pavan\Desktop\stuffs\Shoppy\server\node_server\node_modules\mysql\lib\protocol\Protocol.js:212:16)
+    at Protocol._enqueue (C:\Users\pavan\Desktop\stuffs\Shoppy\server\node_server\node_modules\mysql\lib\protocol\Protocol.js:138:13)
+    at Connection.query (C:\Users\pavan\Desktop\stuffs\Shoppy\server\node_server\node_modules\mysql\lib\Connection.js:198:25)
+    at C:\Users\pavan\Desktop\stuffs\Shoppy\server\node_server\database\queryInstance.js:6:21
+    at new Promise (<anonymous>)
+    at promisifiedQueryWrapper (C:\Users\pavan\Desktop\stuffs\Shoppy\server\node_server\database\queryInstance.js:5:10)
+    at C:\Users\pavan\Desktop\stuffs\Shoppy\server\node_server\Api\Home\Home.api.js:23:31
+    at Layer.handle [as handle_request] (C:\Users\pavan\Desktop\stuffs\Shoppy\server\node_server\node_modules\express\lib\router\layer.js:95:5)
+    at next (C:\Users\pavan\Desktop\stuffs\Shoppy\server\node_server\node_modules\express\lib\router\route.js:137:13)
+    at Route.dispatch (C:\Users\pavan\Desktop\stuffs\Shoppy\server\node_server\node_modules\express\lib\router\route.js:112:3) {
+  code: 'PROTOCOL_ENQUEUE_AFTER_FATAL_ERROR',
+  fatal: false
+}

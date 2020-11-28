@@ -154,6 +154,11 @@ const ShoppyNavBar = (props) => {
                     <DropdownItem>
                       <i className="fas fa-envelope" /> {props.user.email}
                     </DropdownItem>
+                    <Link to="/orders">
+                      <DropdownItem>
+                        <i className="fas fa-box-open" /> Your Orders
+                      </DropdownItem>
+                    </Link>
                     <DropdownItem divider />
                     <DropdownItem>
                       <Button

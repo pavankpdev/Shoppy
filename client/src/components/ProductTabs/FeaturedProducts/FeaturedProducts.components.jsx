@@ -13,14 +13,13 @@ import { FeaturedProductsCarousal } from "../../../config/Carousal.config";
 // Components
 import FeaturedProductCard from "./FeaturedProductCard.component";
 
-const FeaturedProducts = () => {
+const FeaturedProducts = ({ list }) => {
   const [activeTab, setActiveTab] = useState("1");
-
-  const reduxState = useSelector(({ products }) => ({ products }));
 
   const toggle = (tab) => {
     if (activeTab !== tab) setActiveTab(tab);
   };
+
   return (
     <>
       <div className="mt-5 ">
@@ -87,14 +86,10 @@ const FeaturedProducts = () => {
           <TabPane tabId="1">
             <div className="mt-4">
               <Slider {...FeaturedProductsCarousal}>
-                {reduxState.products.home.map(
+                {list.map(
                   (product) =>
                     product.Category.includes("Electricals") && (
-                      <FeaturedProductCard
-                        img={product.Product_image1}
-                        name={product.Product_name}
-                        price={product.Product_Price}
-                      />
+                      <FeaturedProductCard {...product} />
                     )
                 )}
               </Slider>
@@ -103,14 +98,10 @@ const FeaturedProducts = () => {
           <TabPane tabId="2">
             <div className="mt-4">
               <Slider {...FeaturedProductsCarousal}>
-                {reduxState.products.home.map(
+                {list.map(
                   (product) =>
                     product.Category.includes("Home") && (
-                      <FeaturedProductCard
-                        img={product.Product_image1}
-                        name={product.Product_name}
-                        price={product.Product_Price}
-                      />
+                      <FeaturedProductCard {...product} />
                     )
                 )}
               </Slider>
@@ -119,14 +110,10 @@ const FeaturedProducts = () => {
           <TabPane tabId="3">
             <div className="mt-4">
               <Slider {...FeaturedProductsCarousal}>
-                {reduxState.products.home.map(
+                {list.map(
                   (product) =>
                     product.Category.includes("Furniture") && (
-                      <FeaturedProductCard
-                        img={product.Product_image1}
-                        name={product.Product_name}
-                        price={product.Product_Price}
-                      />
+                      <FeaturedProductCard {...product} />
                     )
                 )}
               </Slider>
@@ -135,14 +122,10 @@ const FeaturedProducts = () => {
           <TabPane tabId="4">
             <div className="mt-4">
               <Slider {...FeaturedProductsCarousal}>
-                {reduxState.products.home.map(
+                {list.map(
                   (product) =>
                     product.Category.includes("Sports") && (
-                      <FeaturedProductCard
-                        img={product.Product_image1}
-                        name={product.Product_name}
-                        price={product.Product_Price}
-                      />
+                      <FeaturedProductCard {...product} />
                     )
                 )}
               </Slider>
