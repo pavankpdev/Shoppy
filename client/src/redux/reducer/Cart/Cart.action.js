@@ -14,6 +14,7 @@ import {
   INCREMENT_QUANTITY,
   DECREMENT_QUANTITY,
   DELETE_PRODUCT,
+  CLEAR_CART,
 } from "./Cart.type";
 
 export const addToCart = (product) => (dispatch) =>
@@ -30,3 +31,6 @@ export const decrementQuantity = (product) => (dispatch) =>
 
 export const deleteProduct = (product) => (dispatch) =>
   dispatch(requestSuccess(DELETE_PRODUCT, product));
+
+export const clearCart = () => (dispatch) =>
+  dispatch(requestSuccess(CLEAR_CART, null));

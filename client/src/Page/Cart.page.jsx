@@ -1,23 +1,24 @@
 // Libraries
-import React from "react";
-import { Container, Row, Col, Card } from "reactstrap";
+import React, { useState } from "react";
+import { Container, Row, Col, Card, Modal, ModalBody } from "reactstrap";
 import { useSelector, useDispatch } from "react-redux";
+import { Link } from "react-router-dom";
 import SumBy from "lodash/sumBy";
 
 // Components
 import PaymentButton from "../components/PaymentButton/PaymentButton.component";
-
-// Utilities
-import { cartData } from "../utils/defaultData.util";
 
 // Redux Action
 import {
   incrementQuantity,
   decrementQuantity,
   deleteProduct,
+  clearCart,
 } from "../redux/reducer/Cart/Cart.action";
 
 const Cart = (props) => {
+  const [paymentSuccess, setPaymentSuccess] = useState(false);
+
   // Redux state
   const reduxState = useSelector(({ cart }) => ({ cart }));
 
@@ -31,6 +32,26 @@ const Cart = (props) => {
   return (
     <>
       <Container>
+        <Modal
+          isOpen={paymentSuccess}
+          toggle={() => setPaymentSuccess(!paymentSuccess)}
+        >
+          <ModalBody>
+            <div className="d-flex justify-content-center">
+              <img
+                src="https://assets-ouch.icons8.com/free-download/304/ff381043-e5e3-4b0a-95d3-708000f97eda.png?filename=kingdom-order-completed.png"
+                className="img-fluid w-50"
+                alt="payment success image"
+              />
+            </div>
+            <h2 className="mt-3 display-3 text-default text-center">
+              Your Order has been placed{" "}
+              <Link to="/" className="h4 text-primary font-weight-700">
+                <i className="fas fa-arrpw-left" /> Explore more products
+              </Link>
+            </h2>
+          </ModalBody>
+        </Modal>
         <div className="mt-3 border-bottom border-primary d-flex justify-content-between">
           <h1 className="text-primary">Your Cart</h1>
           <h1 className="font-weight-700">
@@ -103,6 +124,9 @@ const Cart = (props) => {
                 )}
                 isAuth={props.isAuth}
                 user={props.user}
+                paymentSuccess={paymentSuccess}
+                setPaymentSuccess={setPaymentSuccess}
+                clearCart={clearCart}
               />
             </Col>
           </>

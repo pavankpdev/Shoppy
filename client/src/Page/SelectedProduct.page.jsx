@@ -15,14 +15,16 @@ import {
   ModalHeader,
 } from "reactstrap";
 import { useSelector, useDispatch } from "react-redux";
+import { toNumber } from "lodash";
 
 // Components
 import RatingStars from "../components/RatingStars/RatingStars.component";
 import Footer from "../components/Footer/Footer.components";
-import { toNumber, update } from "lodash";
+import ReviewCard from "../components/ReviewCard/ReviewCard.component";
 
 // Redux Actions
 import { addToCart, removeFromCart } from "../redux/reducer/Cart/Cart.action";
+import { getSpecificProductData } from "../redux/reducer/Products/Products.actions";
 
 const SelectedProduct = () => {
   // Component State
@@ -47,7 +49,7 @@ const SelectedProduct = () => {
   const reduxState = useSelector(({ products, cart }) => ({ products, cart }));
 
   // Initializing Hooks
-  const { product_id, category } = useParams();
+  const { product_id } = useParams();
   const dispatch = useDispatch();
 
   // Updating selected product
@@ -56,25 +58,56 @@ const SelectedProduct = () => {
       ({ Product_ID }) => Product_ID === toNumber(product_id)
     );
 
-    const isInCart = reduxState.cart.cart.filter(
-      ({ Product_ID }) => Product_ID === toNumber(product_id)
-    );
+    if (selectedProduct.length !== 0) {
+      const isInCart = reduxState.cart.cart.filter(
+        ({ Product_ID }) => Product_ID === toNumber(product_id)
+      );
 
-    if (isInCart.length !== 0) {
-      setAddedToCart(true);
+      if (isInCart.length !== 0) {
+        setAddedToCart(true);
+      }
+
+      setSelectedProductData(selectedProduct[0]);
+      setCarousalImage([
+        {
+          key: "1",
+          src: selectedProduct[0].Product_image1,
+        },
+        {
+          key: "2",
+          src: selectedProduct[0].Product_image2,
+        },
+      ]);
+      return;
     }
 
-    setSelectedProductData(selectedProduct[0]);
-    setCarousalImage([
-      {
-        key: "1",
-        src: selectedProduct[0].Product_image1,
-      },
-      {
-        key: "2",
-        src: selectedProduct[0].Product_image2,
-      },
-    ]);
+    const getSelectedProductDataAction = async () => {
+      const getSelectedProductData = await dispatch(
+        getSpecificProductData(product_id)
+      );
+
+      const isInCart = reduxState.cart.cart.filter(
+        ({ Product_ID }) => Product_ID === toNumber(product_id)
+      );
+
+      if (isInCart.length !== 0) {
+        setAddedToCart(true);
+      }
+      console.log(getSelectedProductData.payload);
+      setSelectedProductData(getSelectedProductData.payload);
+      setCarousalImage([
+        {
+          key: "1",
+          src: getSelectedProductData.payload.Product_image1,
+        },
+        {
+          key: "2",
+          src: getSelectedProductData.payload.Product_image2,
+        },
+      ]);
+    };
+
+    getSelectedProductDataAction();
   }, []);
 
   //  Function add the selected product to cart
@@ -223,75 +256,12 @@ const SelectedProduct = () => {
             overflowY: "auto",
           }}
         >
-          <div className="mt-4 d-flex justify-content-center">
-            <Col lg="8">
-              <div className="d-flex justify-content-start align-items-center">
-                <i className="fas fa-user-circle fa-3x" />
-                <h3 className="mt-2 ml-2">
-                  Pavan Kumar{" "}
-                  <span className="h5 font-weight-300">
-                    ( Reviewed on 2 October 2020 )
-                  </span>
-                </h3>
-              </div>
-              <RatingStars rating={5} />
-              <h4 className="mt-1">Waste of money</h4>
-              <p>
-                Very bad product.customer care service is very .They deliver me
-                defective laptop and not returning or replacing it within its
-                period .Amazon say talk to Dell and Dell say your product is not
-                register so you talk to amazon .In these day amazon service is
-                very bad. I suggest you all to chose another online platforms to
-                buy any thing
-              </p>
-            </Col>
-          </div>
-          <div className="mt-4 d-flex justify-content-center">
-            <Col lg="8">
-              <div className="d-flex justify-content-start align-items-center">
-                <i className="fas fa-user-circle fa-3x" />
-                <h3 className="mt-2 ml-2">
-                  Pavan Kumar{" "}
-                  <span className="h5 font-weight-300">
-                    ( Reviewed on 2 October 2020 )
-                  </span>
-                </h3>
-              </div>
-              <RatingStars rating={5} />
-              <h4 className="mt-1">Waste of money</h4>
-              <p>
-                Very bad product.customer care service is very .They deliver me
-                defective laptop and not returning or replacing it within its
-                period .Amazon say talk to Dell and Dell say your product is not
-                register so you talk to amazon .In these day amazon service is
-                very bad. I suggest you all to chose another online platforms to
-                buy any thing
-              </p>
-            </Col>
-          </div>
-          <div className="mt-4 d-flex justify-content-center">
-            <Col lg="8">
-              <div className="d-flex justify-content-start align-items-center">
-                <i className="fas fa-user-circle fa-3x" />
-                <h3 className="mt-2 ml-2">
-                  Pavan Kumar{" "}
-                  <span className="h5 font-weight-300">
-                    ( Reviewed on 2 October 2020 )
-                  </span>
-                </h3>
-              </div>
-              <RatingStars rating={5} />
-              <h4 className="mt-1">Waste of money</h4>
-              <p>
-                Very bad product.customer care service is very .They deliver me
-                defective laptop and not returning or replacing it within its
-                period .Amazon say talk to Dell and Dell say your product is not
-                register so you talk to amazon .In these day amazon service is
-                very bad. I suggest you all to chose another online platforms to
-                buy any thing
-              </p>
-            </Col>
-          </div>
+          <ReviewCard />
+          <ReviewCard />
+          <ReviewCard />
+          <ReviewCard />
+          <ReviewCard />
+          <ReviewCard />
         </div>
       </Container>
       <Footer />

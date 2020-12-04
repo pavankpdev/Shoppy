@@ -10,7 +10,12 @@ import { requestfailed } from "../Error/error.action";
 import { requestSuccess, loading } from "../../../utils/Global.util";
 
 // Reducer Types
-import { UPLOAD_DATA, GET_HOME_pAGE_DATA } from "./Products.type";
+import {
+  UPLOAD_DATA,
+  GET_HOME_pAGE_DATA,
+  GET_PRODUCT_WITH_CATEGORY,
+  GET_PRODUCT_DETAILS,
+} from "./Products.type";
 
 // Utilities
 import { keys } from "../../../utils/keys";
@@ -44,6 +49,41 @@ export const getHomePageData = () => async (dispatch) => {
 
     return dispatch(
       requestSuccess(GET_HOME_pAGE_DATA, getHomePageDataApi.data)
+    );
+  } catch (error) {
+    requestfailed(error);
+  }
+};
+
+// Action to get products data based on category
+export const getProductsWithCategory = (category) => async (dispatch) => {
+  try {
+    dispatch(loading());
+    const getProductsWithCategoryApi = await axios({
+      method: "GET",
+      url: `${keys.NODE_API_URL}products/c/${category}`,
+    });
+
+    return dispatch(
+      requestSuccess(GET_PRODUCT_WITH_CATEGORY, getProductsWithCategoryApi.data)
+    );
+  } catch (error) {
+    requestfailed(error);
+  }
+};
+
+// Actions to get specific product data
+export const getSpecificProductData = (productId) => async (dispatch) => {
+  try {
+    dispatch(loading());
+
+    const getSpecificProductDataApi = await axios({
+      method: "GET",
+      url: `${keys.NODE_API_URL}products/p/${productId}`,
+    });
+
+    return dispatch(
+      requestSuccess(GET_PRODUCT_DETAILS, getSpecificProductDataApi.data)
     );
   } catch (error) {
     requestfailed(error);

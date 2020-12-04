@@ -12,6 +12,7 @@ const { mysqlConnection } = require("./database");
 // importing microservices route
 const Home = require("./Api/Home/Home.api");
 const Products = require("./Api/Products/Products.api");
+const Orders = require("./Api/Orders/Orders.api");
 
 // Establishing DB connection
 mysqlConnection.connect((error) => {
@@ -31,6 +32,7 @@ Shoppy.use(cors());
 // Initializing microservices route
 Shoppy.use("/", Home);
 Shoppy.use("/products", Products);
+Shoppy.use("/orders", Orders);
 
 // 404 route
 Shoppy.get("*", (req, res) => {
