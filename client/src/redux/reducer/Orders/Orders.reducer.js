@@ -1,5 +1,5 @@
 // Redux Types
-import { GET_ALL_ORDERS, NEW_ORDER } from "./Orders.type";
+import { GET_ALL_ORDERS, NEW_ORDER, GET_TRACKING_DATA } from "./Orders.type";
 
 // Utilities
 import { REHYDRATE } from "../../../utils/Global.util";
@@ -7,6 +7,7 @@ import { REHYDRATE } from "../../../utils/Global.util";
 const INITIAL_STATE = {
   loading: false,
   allOrders: [],
+  tracking: {},
 };
 
 const orderReducer = (state = INITIAL_STATE, action) => {
@@ -28,6 +29,13 @@ const orderReducer = (state = INITIAL_STATE, action) => {
       return {
         ...state,
         loading: false,
+      };
+      
+    case GET_TRACKING_DATA:
+      return {
+        ...state,
+        loading: false,
+        tracking: action.payload,
       };
 
     case REHYDRATE:

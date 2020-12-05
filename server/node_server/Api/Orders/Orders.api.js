@@ -24,19 +24,22 @@ Router.get("/:customer_id", async (req, res) => {
     const { customer_id } = req.params;
 
     const allOrders = await Query(`
-    SELECT product.product_image1      AS image1,
-       product.product_image2      AS image2,
-       product.product_name        AS productName,
-       product.product_description AS productDescription,
-       orders.price                AS price,
-       orders.shippind_date        AS shippingDate,
-       orders.shipping_status      AS shippingStatus,
-       orders.address              AS shippingAddress,
-       orders.quantity             AS quantity,
-       orders.current_order_id     AS orderId
-FROM   product
-       INNER JOIN orders
-               ON orders.product_id = product.product_id AND orders.customer_id = ${customer_id}; 
+    SELECT product.product_image1      AS image1, 
+       product.product_image2      AS image2, 
+       product.product_name        AS productName, 
+       product.product_description AS productDescription, 
+       orders.price                AS price, 
+       orders.shippind_date        AS shippingDate, 
+       orders.shipping_status      AS shippingStatus, 
+       orders.address              AS shippingAddress, 
+       orders.quantity             AS quantity, 
+       orders.current_order_id     AS orderId, 
+       orders.order_id             AS shippingId,
+       orders.Product_ID           AS productID  
+FROM   product 
+       INNER JOIN orders 
+               ON orders.product_id = product.product_id 
+                  AND orders.customer_id = ${customer_id}; 
     `);
 
     return res.status(200).json(allOrders);
@@ -91,6 +94,42 @@ Router.post("/new/:customer_id", async (req, res) => {
     return res
       .status(200)
       .json({ message: "Order has been successfuly placed" });
+  } catch (error) {
+    ordersLogger.error(error);
+    return res.json({ error: error.message });
+  }
+});
+
+// @Route   GET /orders/track/:shipping_id/:customer_id
+// @des     get tracking of the requested order
+// @access  PRIVATE
+Router.get("/track/:shipping_id/:customer_id", async (req, res) => {
+  try {
+    const { shipping_id, customer_id } = req.params;
+
+    const getTrackingData = await Query(`
+    SELECT product.product_image1      AS image1, 
+       product.product_image2      AS image2, 
+       product.product_name        AS productName, 
+       product.product_description AS productDescription, 
+       orders.price                AS price, 
+       orders.shippind_date        AS shippingDate, 
+       orders.shipping_status      AS shippingStatus, 
+       orders.address              AS shippingAddress, 
+       orders.quantity             AS quantity, 
+       orders.current_order_id     AS orderId, 
+       orders.order_id             AS shippingId,
+       orders.Product_ID           AS productID 
+FROM   product 
+       INNER JOIN orders 
+               ON orders.product_id = product.product_id 
+                  AND orders.order_id = ${shipping_id} 
+                  AND orders.customer_id = ${customer_id};  `);
+    if (getTrackingData.length === 0) {
+      return res.status(400).json({ error: "Product tracking data not found" });
+    }
+
+    return res.json(getTrackingData[0]);
   } catch (error) {
     ordersLogger.error(error);
     return res.json({ error: error.message });

@@ -1,7 +1,8 @@
 import React from "react";
-import {Col,Card,Table,Button} from "reactstrap";
+import { Col, Card, Table, Button } from "reactstrap";
 import classnames from "classnames";
-import moment from "moment"
+import moment from "moment";
+import { Link } from "react-router-dom";
 
 const OrderList = ({ allOrders }) => {
   return (
@@ -30,9 +31,11 @@ const OrderList = ({ allOrders }) => {
                     shippingStatus,
                     shippingAddress,
                     quantity,
+                    productID,
+                    shippingId,
                   }) => (
                     <>
-                      <tr>
+                      <tr key={productID}>
                         <td
                           style={{
                             whiteSpace: "nowrap",
@@ -67,9 +70,11 @@ const OrderList = ({ allOrders }) => {
                           </span>
                         </td>
                         <td>
-                          <Button outline size="sm">
-                            track <i className="fas fa-map-marker-alt ml-1" />
-                          </Button>
+                          <Link to={`/track/${shippingId}/`}>
+                            <Button outline size="sm">
+                              track <i className="fas fa-map-marker-alt ml-1" />
+                            </Button>
+                          </Link>
                         </td>
                       </tr>
                     </>

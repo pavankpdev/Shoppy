@@ -10,7 +10,7 @@ import { requestfailed } from "../Error/error.action";
 import { requestSuccess, loading } from "../../../utils/Global.util";
 
 // Reducer Types
-import { GET_ALL_ORDERS, NEW_ORDER } from "./Orders.type";
+import { GET_ALL_ORDERS, NEW_ORDER, GET_TRACKING_DATA } from "./Orders.type";
 
 // Utilities
 import { keys } from "../../../utils/keys";
@@ -45,6 +45,20 @@ export const placeNewOrder = (customerId, purchaseData, address) => async (
     });
 
     return dispatch(requestSuccess(NEW_ORDER, placeNewOrderApi.data));
+  } catch (error) {
+    return dispatch(requestfailed(error));
+  }
+};
+
+// Action to get tracking data
+export const getTrackingData = (customerId, shippingId) => async (dispatch) => {
+  try {
+    dispatch(loading());
+    const getTrackingDataApi = await axios({
+      method: "GET",
+      url: `${keys.NODE_API_URL}orders/track/${shippingId}/${customerId}`,
+    });
+    return dispatch(requestSuccess(GET_TRACKING_DATA, getTrackingDataApi.data));
   } catch (error) {
     return dispatch(requestfailed(error));
   }
