@@ -1,11 +1,11 @@
 // Libraries
-import React, { Suspense } from "react";
+import React, { Suspense, useEffect } from "react";
 import { Route, Link, Switch } from "react-router-dom";
-import { Spinner } from "reactstrap";
 import { useAuth0 } from "@auth0/auth0-react";
 
 // Components
 import NavBar from "./components/NavBar/NavBar.component";
+import Spinner from "./components/CustomSpinner/CustomSpinner.component";
 
 // Pages
 const HomePage = React.lazy(() => import("./Page/Home.page"));
@@ -18,6 +18,7 @@ const OrderPage = React.lazy(() => import("./Page/Orders.page"));
 function App() {
   // Destructuring auth data from Auth0 hook
   const { isAuthenticated, user } = useAuth0();
+
 
   return (
     <div>

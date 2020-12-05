@@ -11,12 +11,14 @@ log4js.configure({
     products: { type: "file", filename: "./logs/products.log" },
     orders: { type: "file", filename: "./logs/orders.log" },
     home: { type: "file", filename: "./logs/home.log" },
+    customer: { type: "file", filename: "./logs/customer.log" },
   },
   categories: {
     default: { appenders: ["app"], level: "debug" },
     home: { appenders: ["home"], level: "debug" },
     products: { appenders: ["products"], level: "debug" },
     orders: { appenders: ["orders"], level: "debug" },
+    customer: { appenders: ["customer"], level: "debug" },
   },
 });
 

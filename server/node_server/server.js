@@ -13,6 +13,7 @@ const { mysqlConnection } = require("./database");
 const Home = require("./Api/Home/Home.api");
 const Products = require("./Api/Products/Products.api");
 const Orders = require("./Api/Orders/Orders.api");
+const Customer = require("./Api/Customer/Customer.api");
 
 // Establishing DB connection
 mysqlConnection.connect((error) => {
@@ -33,6 +34,7 @@ Shoppy.use(cors());
 Shoppy.use("/", Home);
 Shoppy.use("/products", Products);
 Shoppy.use("/orders", Orders);
+Shoppy.use("/customer", Customer);
 
 // 404 route
 Shoppy.get("*", (req, res) => {

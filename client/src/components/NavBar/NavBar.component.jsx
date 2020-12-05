@@ -1,5 +1,5 @@
 // Libraries
-import React, { useState } from "react";
+import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
 import {
@@ -26,13 +26,12 @@ import {
 import { useAuth0 } from "@auth0/auth0-react";
 
 const ShoppyNavBar = (props) => {
-  const [isOpen, setisOpen] = useState(false);
-
   // Redux state
   const reduxState = useSelector(({ cart }) => ({ cart }));
 
   // Auth0 hook to redirect for login/ register page
-  const { loginWithRedirect, logout } = useAuth0();
+  const { loginWithRedirect, logout, user } = useAuth0();
+
 
   return (
     <>
@@ -40,7 +39,7 @@ const ShoppyNavBar = (props) => {
         <NavbarBrand>
           <Link to="/">
             <h1 className="font-weight-900 text-primary text-capitalize">
-              Puppy-sree
+              Shoppy
             </h1>
           </Link>
         </NavbarBrand>
@@ -62,7 +61,7 @@ const ShoppyNavBar = (props) => {
               <Col className="collapse-brand" xs="6">
                 <Link to="/">
                   <h1 className="font-weight-900 text-primary text-capitalize">
-                    Puppy-sree
+                    Shoppy
                   </h1>
                 </Link>
               </Col>
@@ -149,10 +148,10 @@ const ShoppyNavBar = (props) => {
                 {props.isAuth ? (
                   <>
                     <DropdownItem>
-                      <i className="fas fa-user" /> {props.user.nickname}
+                      <i className="fas fa-user" /> {user.nickname}
                     </DropdownItem>
                     <DropdownItem>
-                      <i className="fas fa-envelope" /> {props.user.email}
+                      <i className="fas fa-envelope" /> {user.email}
                     </DropdownItem>
                     <Link to="/orders">
                       <DropdownItem>
