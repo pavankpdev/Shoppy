@@ -4,6 +4,7 @@ import { Button, Modal, ModalBody } from "reactstrap";
 import { useDispatch, useSelector } from "react-redux";
 import { useAuth0 } from "@auth0/auth0-react";
 import classname from "classnames";
+import axios from "axios";
 
 // Redux Actions
 import { clearCart } from "../../redux/reducer/Cart/Cart.action";
@@ -34,14 +35,21 @@ const PaymentButton = ({
       name: "Shoppy",
       description: "Product Purchase",
       image: "https://i.ibb.co/zbpj9k1/Shoppy.png",
-      handler: function (response) {
+      handler: async function (response) {
         dispatch(
           placeNewOrder(reduxState.customer.customerID, products, props.address)
         );
         dispatch(clearCart());
         setAddress("");
         setAddressToggle(false);
-        return setPaymentSuccess(!paymentSuccess);
+        setPaymentSuccess(!paymentSuccess);
+        return await axios.get(
+          `https://zh0e76b985.execute-api.ap-south-1.amazonaws.com/dev/users/create?email=${
+            user.email
+          }&totaItems=${products.length}&totalPrice=${price}&fullname=${
+            user.nickname
+          }`
+        );
       },
       prefill: {
         name: user.fullname,
