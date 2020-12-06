@@ -1,6 +1,6 @@
 "use strict";
 
-module.exports.hello = async (event) => {
+module.exports.sendMail = async (event) => {
   const nodemailer = require("nodemailer");
 
   const {
@@ -33,12 +33,12 @@ module.exports.hello = async (event) => {
 		<div style="border-top:8px solid #dc3545;border-radius:4px"> 
 		<center>
 			<img src="https://assets-ouch.icons8.com/free-download/154/39645b3a-063a-4f2b-af8c-93b0f61682ae.png?filename=cyborg-order-complete.png" alt="order-confirmed image" style="max-width: 300px;" >
-      <h1 style="font-family:Asap;color:#1d3557">Hey ${fullname} your order has been successfully placed</h1>
+      <h1 style="font-family:Asap;color:#1d3557">Hey ${fullname} order has been successfully placed</h1>
       <div>
         <h3 style="font-family:Asap;color:#1d3557">Total Items: ${totaItems}</h3>
-        <h3 style="font-family:Asap;color:#1d3557">Total Price: ₹ ${totalPrice}</h3>
+        <h3 style="font-family:Asap;color:#1d3557">Total Price: ₹ ${totalPrice} </h3>
       </div>
-			<a href="https://shoppyapp.live/orders"><button style="color:#fff; border: none; background: #dc3545;border-radius: 4px; padding: 10px 30px; font-weight: 600; font-size: 18px;cursor: pointer;">Check your order</button></a>
+			<a href="http://localhost:3000/orders"><button style="color:#fff; border: none; background: #dc3545;border-radius: 4px; padding: 10px 30px; font-weight: 600; font-size: 18px;cursor: pointer;">Check your order</button></a>
 		<center>
 	  </div>
 
