@@ -85,6 +85,10 @@
   cursor: pointer;
 }
 
+.noCursor {
+  cursor: not-allowed;
+}
+
 .carousel-item > img {
   height: 250px !important;
 }

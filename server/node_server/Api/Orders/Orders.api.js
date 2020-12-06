@@ -4,6 +4,7 @@
 
 //  Libraries
 const Router = require("express").Router();
+const uniq = require("lodash/uniq");
 
 // Mysql connection instance
 const { Query } = require("../../database/index");
@@ -15,18 +16,30 @@ const { getCurrentDateTime } = require("../../utils");
 const { log4js } = require("../../config/logs.config");
 const ordersLogger = log4js.getLogger("orders");
 
-// @Route   GET /orders
+// @Route   GET /orders/:customer_id
 // @des     GET all orders of a customer
 // @access  PRIVATE
-Router.get("/", async (_, res) => {
+Router.get("/:customer_id", async (req, res) => {
   try {
+    const { customer_id } = req.params;
+
     const allOrders = await Query(`
-    SELECT product.Product_image1 as image1 , product.Product_image2 as image1, 
-    product.Product_name as image2, orders.Price as price, 
-    orders.Date as orderDate, shipping.Status  as shippingStatus
-    FROM product 
-    INNER JOIN orders ON product.Product_ID = orders.Order_id 
-    INNER JOIN shipping ON orders.Order_id = shipping.Shipping_ID
+    SELECT product.product_image1      AS image1, 
+       product.product_image2      AS image2, 
+       product.product_name        AS productName, 
+       product.product_description AS productDescription, 
+       orders.price                AS price, 
+       orders.shippind_date        AS shippingDate, 
+       orders.shipping_status      AS shippingStatus, 
+       orders.address              AS shippingAddress, 
+       orders.quantity             AS quantity, 
+       orders.current_order_id     AS orderId, 
+       orders.order_id             AS shippingId,
+       orders.Product_ID           AS productID  
+FROM   product 
+       INNER JOIN orders 
+               ON orders.product_id = product.product_id 
+                  AND orders.customer_id = ${customer_id}; 
     `);
 
     return res.status(200).json(allOrders);
@@ -36,13 +49,13 @@ Router.get("/", async (_, res) => {
   }
 });
 
-// @Route   POST /orders/:cutomer_id
+// @Route   POST /orders/new/:customer_id
 // @des     ADD new product to database when purchase is successfull
 // @access  PRIVATE
-Router.post("/:customer_id", async (req, res) => {
+Router.post("/new/:customer_id", async (req, res) => {
   try {
     const { customer_id } = req.params;
-    const { purchaseData } = req.body;
+    const { purchaseData, address } = req.body;
 
     // get the Current order ID
     let getCurrentOrderID = await Query(
@@ -54,7 +67,7 @@ Router.post("/:customer_id", async (req, res) => {
       : 1;
     console.log(getCurrentOrderID);
     for (let index = 0; index < purchaseData.length; index++) {
-      const { price, quantity, address, productID } = purchaseData[index];
+      const { Product_Price, quantity, Product_ID } = purchaseData[index];
 
       // add the product data to order table
       await Query(`INSERT INTO orders
@@ -70,8 +83,8 @@ Router.post("/:customer_id", async (req, res) => {
       VALUES (
         ${customer_id}, 
         ${quantity}, 
-        ${productID}, 
-        ${price},
+        ${Product_ID}, 
+        ${Product_Price},
         ${getCurrentOrderID},
         "${address}", 
         "${getCurrentDateTime("date")}"
@@ -81,6 +94,42 @@ Router.post("/:customer_id", async (req, res) => {
     return res
       .status(200)
       .json({ message: "Order has been successfuly placed" });
+  } catch (error) {
+    ordersLogger.error(error);
+    return res.json({ error: error.message });
+  }
+});
+
+// @Route   GET /orders/track/:shipping_id/:customer_id
+// @des     get tracking of the requested order
+// @access  PRIVATE
+Router.get("/track/:shipping_id/:customer_id", async (req, res) => {
+  try {
+    const { shipping_id, customer_id } = req.params;
+
+    const getTrackingData = await Query(`
+    SELECT product.product_image1      AS image1, 
+       product.product_image2      AS image2, 
+       product.product_name        AS productName, 
+       product.product_description AS productDescription, 
+       orders.price                AS price, 
+       orders.shippind_date        AS shippingDate, 
+       orders.shipping_status      AS shippingStatus, 
+       orders.address              AS shippingAddress, 
+       orders.quantity             AS quantity, 
+       orders.current_order_id     AS orderId, 
+       orders.order_id             AS shippingId,
+       orders.Product_ID           AS productID 
+FROM   product 
+       INNER JOIN orders 
+               ON orders.product_id = product.product_id 
+                  AND orders.order_id = ${shipping_id} 
+                  AND orders.customer_id = ${customer_id};  `);
+    if (getTrackingData.length === 0) {
+      return res.status(400).json({ error: "Product tracking data not found" });
+    }
+
+    return res.json(getTrackingData[0]);
   } catch (error) {
     ordersLogger.error(error);
     return res.json({ error: error.message });

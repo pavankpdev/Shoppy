@@ -8,14 +8,13 @@ import {
   Col,
   ModalBody,
   Label,
-  Spinner,
 } from "reactstrap";
 import { useParams } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 
 // Components
 import ProductCard from "../components/ProductCard/ProductCard.component";
-
+import Spinner from "../components/CustomSpinner/CustomSpinner.component";
 // Actions
 import { getProductsWithCategory } from "../redux/reducer/Products/Products.actions";
 
@@ -74,25 +73,12 @@ const ProductPage = () => {
         </Row>
         <Row className="justify-content-center">
           {reduxState.products.loading ? (
-            <Spinner color="primary" />
+            <Spinner color="primary" text={`Fetching ${category} data`} />
           ) : (
             productData.map(
-              ({
-                Category,
-                Product_image1,
-                Product_name,
-                Product_Price,
-                Product_ID,
-              }) =>
-                Category.includes(category) && (
-                  <ProductCard
-                    img={Product_image1}
-                    name={Product_name}
-                    price={Product_Price}
-                    Product_ID={Product_ID}
-                    category={Category}
-                    key={Product_ID}
-                  />
+              (product) =>
+              product.Category.includes(category) && (
+                  <ProductCard {...product} key={product.Product_ID} />
                 )
             )
           )}

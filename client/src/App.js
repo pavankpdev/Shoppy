@@ -1,11 +1,11 @@
 // Libraries
-import React, { Suspense } from "react";
+import React, { Suspense, useEffect } from "react";
 import { Route, Link, Switch } from "react-router-dom";
-import { Spinner } from "reactstrap";
 import { useAuth0 } from "@auth0/auth0-react";
 
 // Components
 import NavBar from "./components/NavBar/NavBar.component";
+import Spinner from "./components/CustomSpinner/CustomSpinner.component";
 
 // Pages
 const HomePage = React.lazy(() => import("./Page/Home.page"));
@@ -14,6 +14,7 @@ const ProductPage = React.lazy(() => import("./Page/Products.page"));
 const SelectedProduct = React.lazy(() => import("./Page/SelectedProduct.page"));
 const CartPage = React.lazy(() => import("./Page/Cart.page"));
 const OrderPage = React.lazy(() => import("./Page/Orders.page"));
+const TrackPage = React.lazy(() => import("./Page/Track.page"));
 
 function App() {
   // Destructuring auth data from Auth0 hook
@@ -36,6 +37,7 @@ function App() {
           />
           <Route path="/cart" exact component={CartPage} />
           <Route path="/orders" exact component={OrderPage} />
+          <Route path="/track/:shippingId" exact component={TrackPage} />
         </Suspense>
       </Switch>
     </div>
