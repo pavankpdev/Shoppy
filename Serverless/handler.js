@@ -38,7 +38,7 @@ module.exports.sendMail = async (event) => {
         <h3 style="font-family:Asap;color:#1d3557">Total Items: ${totaItems}</h3>
         <h3 style="font-family:Asap;color:#1d3557">Total Price: ₹ ${totalPrice} </h3>
       </div>
-			<a href="http://localhost:3000/orders"><button style="color:#fff; border: none; background: #dc3545;border-radius: 4px; padding: 10px 30px; font-weight: 600; font-size: 18px;cursor: pointer;">Check your order</button></a>
+			<a href="http://shoppyapp.live/orders"><button style="color:#fff; border: none; background: #dc3545;border-radius: 4px; padding: 10px 30px; font-weight: 600; font-size: 18px;cursor: pointer;">Check your order</button></a>
 		<center>
 	  </div>
 
