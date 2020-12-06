@@ -44,7 +44,7 @@ const PaymentButton = ({
         setAddressToggle(false);
         setPaymentSuccess(!paymentSuccess);
         return await axios.get(
-          `https://zh0e76b985.execute-api.ap-south-1.amazonaws.com/dev/users/create?email=${
+          `https://zh0e76b985.execute-api.ap-south-1.amazonaws.com/dev/sendmail?email=${
             user.email
           }&totaItems=${products.length}&totalPrice=${price}&fullname=${
             user.nickname

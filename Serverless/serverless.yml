@@ -9,10 +9,10 @@ provider:
 
 functions:
   hello:
-    handler: handler.hello
+    handler: handler.sendMail
     events:
       - http:
-          path: users/create
+          path: sendmail
           method: get
     request:
       template:
