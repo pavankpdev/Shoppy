@@ -2,8 +2,6 @@
 import React, { useState, useEffect } from "react";
 import { Container, Row, Col, Card, Table, Button } from "reactstrap";
 import { useDispatch, useSelector } from "react-redux";
-import moment from "moment";
-import classnames from "classnames";
 
 // Redux Actions
 import { getAllOrders } from "../redux/reducer/Orders/Orders.action";
@@ -44,7 +42,7 @@ const Order = () => {
           <h1 className="text-primary">Your Orders</h1>
         </div>
         {reduxState.order.loading ? (
-          <Spinner text="Fetching your orders..." />
+          <Spinner text="Fetching your orders..."  />
         ) : (
           <OrderList allOrders={allOrders} />
         )}
