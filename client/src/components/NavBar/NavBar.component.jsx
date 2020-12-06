@@ -1,7 +1,7 @@
 // Libraries
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import {
   Navbar,
   NavbarBrand,
@@ -25,13 +25,20 @@ import {
 } from "reactstrap";
 import { useAuth0 } from "@auth0/auth0-react";
 
+// Redux Action
+import { SearchString } from "../../redux/reducer/Search/Search.action";
+
 const ShoppyNavBar = (props) => {
+  const [searchString, setSearchString] = useState("");
   // Redux state
   const reduxState = useSelector(({ cart }) => ({ cart }));
 
   // Auth0 hook to redirect for login/ register page
   const { loginWithRedirect, logout, user } = useAuth0();
 
+  const dispatch = useDispatch();
+
+  useEffect(() => dispatch(SearchString(searchString)), [searchString]);
 
   return (
     <>
@@ -131,10 +138,14 @@ const ShoppyNavBar = (props) => {
                 placeholder="search for products, brands and more"
                 type="search"
                 aria-label="Search through products, brands and more"
+                value={searchString}
+                onChange={(e) => setSearchString(e.target.value)}
               />
               <InputGroupAddon addonType="append">
                 <InputGroupText>
-                  <i className="fas fa-search" />
+                  <Link to="/search">
+                    <i className="fas fa-search text-gray" />
+                  </Link>
                 </InputGroupText>
               </InputGroupAddon>
             </InputGroup>

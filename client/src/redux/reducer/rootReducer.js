@@ -6,21 +6,23 @@ import { persistReducer } from "redux-persist";
 import { persistConfig } from "../../config/reduxPersist.config";
 
 // Reducers
-import productsReducer from "./Products/Products.reducer";
-import redirectReducer from "./Redirect/Redirect.reducer";
-import cartReducer from "./Cart/Cart.reducer";
-import orderReducer from "./Orders/Orders.reducer";
-import customerReducer from "./Customer/Customer.reducer";
-import errorReducer from "./Error/error.reducer";
+import products from "./Products/Products.reducer";
+import redirect from "./Redirect/Redirect.reducer";
+import cart from "./Cart/Cart.reducer";
+import order from "./Orders/Orders.reducer";
+import customer from "./Customer/Customer.reducer";
+import search from "./Search/Search.reducer";
+import error from "./Error/error.reducer";
 
 // root reducer
 const rootReducer = combineReducers({
-  products: productsReducer,
-  redirect: redirectReducer,
-  cart: cartReducer,
-  order: orderReducer,
-  customer: customerReducer,
-  error: errorReducer,
+  products,
+  redirect,
+  cart,
+  order,
+  customer,
+  search,
+  error,
 });
 
 // warpping up the root reducer with redux-persist to store state in session storage

@@ -15,6 +15,7 @@ const SelectedProduct = React.lazy(() => import("./Page/SelectedProduct.page"));
 const CartPage = React.lazy(() => import("./Page/Cart.page"));
 const OrderPage = React.lazy(() => import("./Page/Orders.page"));
 const TrackPage = React.lazy(() => import("./Page/Track.page"));
+const SearchPage = React.lazy(() => import("./Page/Search.page"));
 
 function App() {
   // Destructuring auth data from Auth0 hook
@@ -38,6 +39,7 @@ function App() {
           <Route path="/cart" exact component={CartPage} />
           <Route path="/orders" exact component={OrderPage} />
           <Route path="/track/:shippingId" exact component={TrackPage} />
+          <Route path="/search" exact component={SearchPage} />
         </Suspense>
       </Switch>
     </div>
