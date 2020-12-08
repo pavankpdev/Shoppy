@@ -23,7 +23,7 @@ module.exports.sendMail = async (event) => {
 
   // send mail with our transport object
   let info = await transport.sendMail({
-    from: "app@shoppyapp.live",
+    from: "Shoppy <app@shoppyapp.live>",
     to: email,
     subject: "Order confirmation mail",
     html: `

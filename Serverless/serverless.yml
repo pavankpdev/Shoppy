@@ -8,7 +8,7 @@ provider:
   region: ap-south-1
 
 functions:
-  hello:
+  sendmail:
     handler: handler.sendMail
     events:
       - http:
