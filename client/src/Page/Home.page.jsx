@@ -19,6 +19,7 @@ import { authCustomer } from "../redux/reducer/Customer/Customer.action";
 
 const HomePage = () => {
   const [home, setHome] = useState([]);
+  const [newArrivals, setNewArrivals] = useState([]);
 
   const dispatch = useDispatch();
   const reduxState = useSelector(({ products }) => ({ products }));
@@ -29,7 +30,8 @@ const HomePage = () => {
   useEffect(() => {
     const homeDataAction = async () => {
       const homeData = await dispatch(getHomePageData());
-      setHome(homeData.payload);
+      setHome(homeData.payload.allProducts);
+      setNewArrivals(homeData.payload.newArrivals)
     };
     homeDataAction();
   }, []);
@@ -37,11 +39,13 @@ const HomePage = () => {
   useEffect(() => {
     const authAction = async () => {
       if (user) {
-        const id = await dispatch(authCustomer(user.email, user.nickname));
+        const id = await dispatch(authCustomer(user.email, user.nickname, user.picture));
       }
     };
     authAction();
   }, [user]);
+
+  console.log(user);
 
   return (
     <>
@@ -51,7 +55,7 @@ const HomePage = () => {
         <>
           <UncontrolledCarousel items={carouselList} />
           <Container>
-            <SelectedProducts />
+            <SelectedProducts newArrivals={newArrivals} />
             <FeaturedProducts list={home} />
           </Container>
           <Footer />

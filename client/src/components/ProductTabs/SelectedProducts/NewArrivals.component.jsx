@@ -3,7 +3,7 @@ import { Card, CardBody, CardImg } from "reactstrap";
 import { Link } from "react-router-dom";
 import classnames from "classnames";
 
-const NewArrivals = (props) => {
+const NewArrivals = ({ Product_image1, Product_name, Product_Price }) => {
   return (
     <>
       <div className="pr-2 pr-md-3">
@@ -12,7 +12,7 @@ const NewArrivals = (props) => {
             <CardImg
               top
               className="img-fluid px-auto mx-auto"
-              src="https://images.unsplash.com/photo-1496181133206-80ce9b88a853?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=751&q=80"
+              src={Product_image1}
               alt="mobile"
             />
             <CardBody>
@@ -43,11 +43,10 @@ const NewArrivals = (props) => {
                   })}
                 />
               </span>
-              <h4>
-                Dell Vostro 3401 14inch FHD AG 2 Side Narrow Border Display
-                Laptop
-              </h4>
-              <h1 className="font-weight-700 text-primary">₹ 5000</h1>
+              <h4>{Product_name}</h4>
+              <h1 className="font-weight-700 text-primary">
+                ₹ {Product_Price}
+              </h1>
             </CardBody>
           </Card>
         </Link>

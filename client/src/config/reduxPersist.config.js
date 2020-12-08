@@ -17,6 +17,6 @@ export const persistConfig = {
   storage:
     process.env.NODE_ENV === "development" ? sessionStorage : localStorage,
   transforms: [StateTransform],
-  whitelist: ["products", "cart", "order", "customer", "search"],
+  whitelist: ["products", "cart", "order", "customer", "search", "review"],
   blacklist: ["redirect", "error"],
 };

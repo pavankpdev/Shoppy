@@ -24,34 +24,11 @@ import BestSeller from "./BestSeller.component";
 import Trending from "./TrendingProducts.components";
 import NewArrivals from "./NewArrivals.component";
 
-const ProductTabs = (props) => {
+const ProductTabs = ({ newArrivals }) => {
   const [activeTab, setActiveTab] = useState("1");
   const [bestSellers, setBestSellers] = useState({
     banner: "https://i.ibb.co/52vQY7V/banner.png",
     banner2: "https://i.ibb.co/0XH0KtZ/banner1.png",
-    product: [
-      {
-        img:
-          "https://i.ibb.co/FJxfg5N/DHL-Free-10-inch-Tablet-PC-Android-7-0-4-GB-RAM-64-GB-ROM-Octa-Core-8-jpg-220x220.png",
-        name: "DHL Free 10 inch Tablet",
-        rating: 4,
-        price: 5000,
-      },
-      {
-        img:
-          "https://i.ibb.co/YfcpQWn/ZEUSLAP-15-6inch-Narrow-Frame-1920x1080-P-FHD-IPS-Intel-Quad-Core-CPU-4-GB-DDR3-64-GB-e-MMC-jpg-220x.png",
-        name: "ZEUSLAP 6inch",
-        rating: 4,
-        price: 20000,
-      },
-      {
-        img:
-          "https://i.ibb.co/WG7mY0Q/Original-Xiaomi-Mi-Notebook-Air-Intel-Core-i5-6200-U-CPU-8-GB-DDR4-RAM-Intel-GPU-13-jpg-220x220.png",
-        name: "Original Xiaomi Mi Notebook",
-        rating: 3,
-        price: 25000,
-      },
-    ],
   });
   const [trending, setTrending] = useState([
     {
@@ -179,7 +156,10 @@ const ProductTabs = (props) => {
         </Nav>
         <TabContent activeTab={activeTab}>
           <TabPane tabId="1">
-            <BestSeller bestSellers={bestSellers} />
+            <BestSeller
+              bestSellers={newArrivals.slice(0, 3)}
+              {...bestSellers}
+            />
           </TabPane>
           <TabPane tabId="2">
             <Row className="justify-content-between mt-4 bg-gradient-info p-3 rounded">
@@ -193,16 +173,9 @@ const ProductTabs = (props) => {
           <TabPane tabId="3">
             <div className="mt-4">
               <Slider {...settings}>
-                <NewArrivals />
-                <NewArrivals />
-                <NewArrivals />
-                <NewArrivals />
-                <NewArrivals />
-                <NewArrivals />
-                <NewArrivals />
-                <NewArrivals />
-                <NewArrivals />
-                <NewArrivals />
+                {newArrivals.map((product) => (
+                  <NewArrivals {...product} />
+                ))}
               </Slider>
             </div>
           </TabPane>

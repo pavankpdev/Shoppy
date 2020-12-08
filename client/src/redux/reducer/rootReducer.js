@@ -12,6 +12,7 @@ import cart from "./Cart/Cart.reducer";
 import order from "./Orders/Orders.reducer";
 import customer from "./Customer/Customer.reducer";
 import search from "./Search/Search.reducer";
+import review from "./Review/Review.reducer";
 import error from "./Error/error.reducer";
 
 // root reducer
@@ -22,6 +23,7 @@ const rootReducer = combineReducers({
   order,
   customer,
   search,
+  review,
   error,
 });
 

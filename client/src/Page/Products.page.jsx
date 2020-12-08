@@ -11,6 +11,7 @@ import {
 } from "reactstrap";
 import { useParams } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
+import { toNumber } from "lodash";
 
 // Components
 import ProductCard from "../components/ProductCard/ProductCard.component";
@@ -21,6 +22,7 @@ import { getProductsWithCategory } from "../redux/reducer/Products/Products.acti
 const ProductPage = () => {
   const [showFilter, setShowFilter] = useState(false);
   const [productData, setProductData] = useState([]);
+  const [priceRange, setPriceRange] = useState("100");
 
   // Redux state
   const reduxState = useSelector(({ products }) => ({ products }));
@@ -37,6 +39,14 @@ const ProductPage = () => {
     getProductsAction();
   }, [category]);
 
+  useEffect(() => {
+    setProductData(
+      productData.filter(
+        ({ Product_Price }) => Product_Price < toNumber(priceRange)
+      )
+    );
+  }, [priceRange]);
+
   // Function to toggle filter modal
   const toggle = () => setShowFilter(!showFilter);
 
@@ -48,15 +58,18 @@ const ProductPage = () => {
         </ModalHeader>
         <ModalBody>
           <Col>
-            <Label className="font-weight-600">Price Range</Label>
+            <Label className="font-weight-600">
+              Price Range - {priceRange}
+            </Label>
             <input
               type="range"
               className="custom-range"
               id="customRange1"
               min={100}
-              max={500}
+              max={30000}
               step={50}
-              // onChange={(e) => setPoints(e.target.value)}
+              value={priceRange}
+              onChange={(e) => setPriceRange(e.target.value)}
             />
           </Col>
         </ModalBody>
@@ -77,7 +90,7 @@ const ProductPage = () => {
           ) : (
             productData.map(
               (product) =>
-              product.Category.includes(category) && (
+                product.Category.includes(category) && (
                   <ProductCard {...product} key={product.Product_ID} />
                 )
             )

@@ -25,6 +25,7 @@ import ReviewCard from "../components/ReviewCard/ReviewCard.component";
 // Redux Actions
 import { addToCart, removeFromCart } from "../redux/reducer/Cart/Cart.action";
 import { getSpecificProductData } from "../redux/reducer/Products/Products.actions";
+import { getReviews, postReview } from "../redux/reducer/Review/Review.action";
 
 const SelectedProduct = () => {
   // Component State
@@ -44,9 +45,16 @@ const SelectedProduct = () => {
   const [toggleReview, setToggleReview] = useState(false);
   const [rating, setRating] = useState(1);
   const [addedToCart, setAddedToCart] = useState(false);
+  const [subject, setSubject] = useState("");
+  const [review, setReview] = useState("");
+  const [reviewData, setReviewData] = useState([]);
 
   // Redux State
-  const reduxState = useSelector(({ products, cart }) => ({ products, cart }));
+  const reduxState = useSelector(({ products, cart, customer }) => ({
+    products,
+    cart,
+    customer,
+  }));
 
   // Initializing Hooks
   const { product_id } = useParams();
@@ -54,7 +62,7 @@ const SelectedProduct = () => {
 
   // Updating selected product
   useEffect(() => {
-    const selectedProduct = reduxState.products.home.filter(
+    const selectedProduct = reduxState.products.home.allProducts.filter(
       ({ Product_ID }) => Product_ID === toNumber(product_id)
     );
 
@@ -93,7 +101,7 @@ const SelectedProduct = () => {
       if (isInCart.length !== 0) {
         setAddedToCart(true);
       }
-      console.log(getSelectedProductData.payload);
+
       setSelectedProductData(getSelectedProductData.payload);
       setCarousalImage([
         {
@@ -110,6 +118,15 @@ const SelectedProduct = () => {
     getSelectedProductDataAction();
   }, []);
 
+  useEffect(() => {
+    const getReviewsAction = async () => {
+      const getReviewsData = await dispatch(getReviews(product_id));
+      console.log(getReviewsData);
+      setReviewData(getReviewsData.payload);
+    };
+    getReviewsAction();
+  }, []);
+
   //  Function add the selected product to cart
   const addProductToCart = () => {
     const updateCart = dispatch(addToCart(selectedProductData));
@@ -123,6 +140,21 @@ const SelectedProduct = () => {
     if (updateCart.payload) {
       setAddedToCart(false);
     }
+  };
+
+  // Function to post review
+  const addnewReview = async () => {
+    const postReviewAction = await dispatch(
+      postReview(
+        product_id,
+        reduxState.customer.customerID,
+        rating,
+        review,
+        subject
+      )
+    );
+    setToggleReview(!toggleReview);
+    setReviewData(postReviewAction.payload.getReviews);
   };
 
   return (
@@ -152,6 +184,8 @@ const SelectedProduct = () => {
                 className="form-control-alternative"
                 placeholder="Type your review subject"
                 type="text"
+                value={subject}
+                onChange={(e) => setSubject(e.target.value)}
               />
               <Label className="mt-3 font-weight-700">Review</Label>
               <Input
@@ -159,49 +193,62 @@ const SelectedProduct = () => {
                 placeholder="Type your review"
                 rows="3"
                 type="textarea"
+                value={review}
+                onChange={(e) => setReview(e.target.value)}
               />
               <Label className="mt-3 font-weight-700 mr-2">Rating</Label>
               <span>
                 <i
                   className={
                     rating > 0
-                      ? "fas fa-star text-primary"
-                      : "fas fa-star text-gray"
+                      ? "fas fa-star text-primary pointer"
+                      : "fas fa-star text-gray pointer"
                   }
+                  onClick={() => setRating(1)}
                 />
                 <i
                   className={
                     rating > 1
-                      ? "fas fa-star text-primary"
-                      : "fas fa-star text-gray"
+                      ? "fas fa-star text-primary pointer"
+                      : "fas fa-star text-gray pointer"
                   }
+                  onClick={() => setRating(2)}
                 />
                 <i
                   className={
                     rating > 2
-                      ? "fas fa-star text-primary"
-                      : "fas fa-star text-gray"
+                      ? "fas fa-star text-primary pointer"
+                      : "fas fa-star text-gray pointer"
                   }
+                  onClick={() => setRating(3)}
                 />
                 <i
                   className={
                     rating > 3
-                      ? "fas fa-star text-primary"
-                      : "fas fa-star text-gray"
+                      ? "fas fa-star text-primary pointer"
+                      : "fas fa-star text-gray pointer"
                   }
+                  onClick={() => setRating(4)}
                 />
                 <i
                   className={
                     rating > 4
-                      ? "fas fa-star text-primary"
-                      : "fas fa-star text-gray"
+                      ? "fas fa-star text-primary pointer"
+                      : "fas fa-star text-gray pointer"
                   }
+                  onClick={() => setRating(5)}
                 />
               </span>
             </Col>
           </ModalBody>
           <ModalFooter>
-            <Button color="primary">Submit review</Button>
+            <Button
+              color="primary"
+              disabled={!subject && !review}
+              onClick={addnewReview}
+            >
+              Submit review
+            </Button>
           </ModalFooter>
         </Modal>
         <Row>
@@ -256,12 +303,25 @@ const SelectedProduct = () => {
             overflowY: "auto",
           }}
         >
-          <ReviewCard />
-          <ReviewCard />
-          <ReviewCard />
-          <ReviewCard />
-          <ReviewCard />
-          <ReviewCard />
+          {reviewData.length > 0 ? (
+            reviewData.map((review) => <ReviewCard {...review} />)
+          ) : (
+            <>
+              <h1 className="text-center text-default">
+                There are no reviews for this product yet,
+              </h1>
+              <div className="d-flex justify-content-center">
+                <Button
+                  outline
+                  color="primary"
+                  className="text-center"
+                  onClick={() => setToggleReview(!toggleReview)}
+                >
+                  Be the first one to review
+                </Button>
+              </div>
+            </>
+          )}
         </div>
       </Container>
       <Footer />
