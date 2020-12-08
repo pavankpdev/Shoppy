@@ -12,6 +12,9 @@ const { Query } = require("../../database/index");
 const { log4js } = require("../../config/logs.config");
 const reviewLogger = log4js.getLogger("review");
 
+// Utils
+const { getCurrentDateTime } = require("../../utils");
+
 // @Route   GET /review/:product_id
 // @des     Get all the reviews of the specified product
 // @access  PRIVATE
@@ -46,7 +49,7 @@ FROM   reviews
 Router.post("/new/:product_id/:customer_id", async (req, res) => {
   try {
     const { product_id, customer_id } = req.params;
-    const { rating, review, subject, date } = req.body.reviewData;
+    const { rating, review, subject } = req.body.reviewData;
 
     // add new review
     const addNewreview = await Query(`
@@ -66,7 +69,7 @@ Router.post("/new/:product_id/:customer_id", async (req, res) => {
       ${rating},
       "${review}",
       "${subject}",
-      "${date}"
+      "${getCurrentDateTime("date")}"
     )`);
 
     // get new updated set of reviews

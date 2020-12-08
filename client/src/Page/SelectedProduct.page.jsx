@@ -25,6 +25,7 @@ import ReviewCard from "../components/ReviewCard/ReviewCard.component";
 // Redux Actions
 import { addToCart, removeFromCart } from "../redux/reducer/Cart/Cart.action";
 import { getSpecificProductData } from "../redux/reducer/Products/Products.actions";
+import { getReviews, postReview } from "../redux/reducer/Review/Review.action";
 
 const SelectedProduct = () => {
   // Component State
@@ -46,9 +47,14 @@ const SelectedProduct = () => {
   const [addedToCart, setAddedToCart] = useState(false);
   const [subject, setSubject] = useState("");
   const [review, setReview] = useState("");
+  const [reviewData, setReviewData] = useState([]);
 
   // Redux State
-  const reduxState = useSelector(({ products, cart }) => ({ products, cart }));
+  const reduxState = useSelector(({ products, cart, customer }) => ({
+    products,
+    cart,
+    customer,
+  }));
 
   // Initializing Hooks
   const { product_id } = useParams();
@@ -95,7 +101,7 @@ const SelectedProduct = () => {
       if (isInCart.length !== 0) {
         setAddedToCart(true);
       }
-      console.log(getSelectedProductData.payload);
+
       setSelectedProductData(getSelectedProductData.payload);
       setCarousalImage([
         {
@@ -112,6 +118,15 @@ const SelectedProduct = () => {
     getSelectedProductDataAction();
   }, []);
 
+  useEffect(() => {
+    const getReviewsAction = async () => {
+      const getReviewsData = await dispatch(getReviews(product_id));
+      console.log(getReviewsData);
+      setReviewData(getReviewsData.payload);
+    };
+    getReviewsAction();
+  }, []);
+
   //  Function add the selected product to cart
   const addProductToCart = () => {
     const updateCart = dispatch(addToCart(selectedProductData));
@@ -125,6 +140,21 @@ const SelectedProduct = () => {
     if (updateCart.payload) {
       setAddedToCart(false);
     }
+  };
+
+  // Function to post review
+  const addnewReview = async () => {
+    const postReviewAction = await dispatch(
+      postReview(
+        product_id,
+        reduxState.customer.customerID,
+        rating,
+        review,
+        subject
+      )
+    );
+    setToggleReview(!toggleReview);
+    setReviewData(postReviewAction.payload.getReviews);
   };
 
   return (
@@ -212,7 +242,13 @@ const SelectedProduct = () => {
             </Col>
           </ModalBody>
           <ModalFooter>
-            <Button color="primary">Submit review</Button>
+            <Button
+              color="primary"
+              disabled={!subject && !review}
+              onClick={addnewReview}
+            >
+              Submit review
+            </Button>
           </ModalFooter>
         </Modal>
         <Row>
@@ -267,12 +303,25 @@ const SelectedProduct = () => {
             overflowY: "auto",
           }}
         >
-          <ReviewCard />
-          <ReviewCard />
-          <ReviewCard />
-          <ReviewCard />
-          <ReviewCard />
-          <ReviewCard />
+          {reviewData.length > 0 ? (
+            reviewData.map((review) => <ReviewCard {...review} />)
+          ) : (
+            <>
+              <h1 className="text-center text-default">
+                There are no reviews for this product yet,
+              </h1>
+              <div className="d-flex justify-content-center">
+                <Button
+                  outline
+                  color="primary"
+                  className="text-center"
+                  onClick={() => setToggleReview(!toggleReview)}
+                >
+                  Be the first one to review
+                </Button>
+              </div>
+            </>
+          )}
         </div>
       </Container>
       <Footer />

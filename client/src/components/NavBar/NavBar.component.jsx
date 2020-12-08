@@ -31,7 +31,7 @@ import { SearchString } from "../../redux/reducer/Search/Search.action";
 const ShoppyNavBar = (props) => {
   const [searchString, setSearchString] = useState("");
   // Redux state
-  const reduxState = useSelector(({ cart }) => ({ cart }));
+  const reduxState = useSelector(({ cart, customer }) => ({ cart, customer }));
 
   // Auth0 hook to redirect for login/ register page
   const { loginWithRedirect, logout, user } = useAuth0();

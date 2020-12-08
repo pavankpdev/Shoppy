@@ -17,7 +17,7 @@ const SearchPage = () => {
   useEffect(
     () =>
       setSearchResult(
-        reduxState.products.home.filter(({ Product_name }) =>
+        reduxState.products.home.allProducts.filter(({ Product_name }) =>
           Product_name.includes(reduxState.search.search)
         )
       ),
@@ -26,7 +26,7 @@ const SearchPage = () => {
   useEffect(
     () =>
       setSearchResult(
-        reduxState.products.home.filter(({ Product_name }) =>
+        reduxState.products.home.allProducts.filter(({ Product_name }) =>
           Product_name.includes(reduxState.search.search)
         )
       ),
