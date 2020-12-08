@@ -16,6 +16,7 @@ import {
 } from "reactstrap";
 import { useSelector, useDispatch } from "react-redux";
 import { toNumber } from "lodash";
+import { useAuth0 } from "@auth0/auth0-react";
 
 // Components
 import RatingStars from "../components/RatingStars/RatingStars.component";
@@ -59,6 +60,7 @@ const SelectedProduct = () => {
   // Initializing Hooks
   const { product_id } = useParams();
   const dispatch = useDispatch();
+  const { isAuthenticated, loginWithPopup } = useAuth0();
 
   // Updating selected product
   useEffect(() => {
@@ -140,6 +142,14 @@ const SelectedProduct = () => {
     if (updateCart.payload) {
       setAddedToCart(false);
     }
+  };
+
+  // Function to check for auth and toggle review modal
+  const addnewReviewToggle = () => {
+    if (isAuthenticated) {
+      setToggleReview(!toggleReview);
+    }
+    loginWithPopup();
   };
 
   // Function to post review
@@ -288,11 +298,7 @@ const SelectedProduct = () => {
         <p>{selectedProductData.Product_description}</p>
         <div className="mt-6 border-bottom border-primary d-flex justify-content-between align-items-center">
           <h1 className="text-primary">Product reviews</h1>
-          <Button
-            outline
-            color="primary"
-            onClick={() => setToggleReview(!toggleReview)}
-          >
+          <Button outline color="primary" onClick={addnewReviewToggle}>
             Write a product review
           </Button>
         </div>
@@ -315,7 +321,7 @@ const SelectedProduct = () => {
                   outline
                   color="primary"
                   className="text-center"
-                  onClick={() => setToggleReview(!toggleReview)}
+                  onClick={addnewReviewToggle}
                 >
                   Be the first one to review
                 </Button>
