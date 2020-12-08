@@ -8,6 +8,7 @@ import {
   Col,
   ModalBody,
   Label,
+  Button,
 } from "reactstrap";
 import { useParams } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
@@ -23,6 +24,7 @@ const ProductPage = () => {
   const [showFilter, setShowFilter] = useState(false);
   const [productData, setProductData] = useState([]);
   const [priceRange, setPriceRange] = useState("100");
+  const [productDataCopy, setProductDataCopy] = useState([]);
 
   // Redux state
   const reduxState = useSelector(({ products }) => ({ products }));
@@ -35,13 +37,14 @@ const ProductPage = () => {
     const getProductsAction = async () => {
       const getproductsData = await dispatch(getProductsWithCategory(category));
       setProductData(getproductsData.payload);
+      setProductDataCopy(getproductsData.payload);
     };
     getProductsAction();
   }, [category]);
 
   useEffect(() => {
     setProductData(
-      productData.filter(
+      productDataCopy.filter(
         ({ Product_Price }) => Product_Price < toNumber(priceRange)
       )
     );
@@ -49,6 +52,13 @@ const ProductPage = () => {
 
   // Function to toggle filter modal
   const toggle = () => setShowFilter(!showFilter);
+
+  // Function to reset price range filter
+  const resetPriceRange = () => {
+    toggle();
+    setProductData(productDataCopy);
+    setPriceRange("30000");
+  };
 
   return (
     <>
@@ -58,15 +68,20 @@ const ProductPage = () => {
         </ModalHeader>
         <ModalBody>
           <Col>
-            <Label className="font-weight-600">
-              Price Range - {priceRange}
-            </Label>
+            <div className="d-flex justify-content-between">
+              <Label className="font-weight-600">
+                Price Range - {priceRange}
+              </Label>
+              <Button outline size="sm" onClick={resetPriceRange}>
+                Reset <i className="fas fa-redo-alt" />
+              </Button>
+            </div>
             <input
               type="range"
               className="custom-range"
               id="customRange1"
               min={100}
-              max={30000}
+              max={330000}
               step={50}
               value={priceRange}
               onChange={(e) => setPriceRange(e.target.value)}
