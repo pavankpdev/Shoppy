@@ -16,14 +16,14 @@ import { AUTH_CUSTOMER } from "./Customer.types";
 import { keys } from "../../../utils/keys";
 
 // Action to authenticate customer
-export const authCustomer = (email, fullname) => async (dispatch) => {
+export const authCustomer = (email, fullname, picture) => async (dispatch) => {
   try {
     dispatch(loading());
     console.log(email);
     const authCustomerApi = await axios({
       method: "POST",
       url: `${keys.NODE_API_URL}customer/`,
-      data: { email, fullname },
+      data: { email, fullname, picture },
     });
 
     return dispatch(requestSuccess(AUTH_CUSTOMER, authCustomerApi.data));

@@ -18,7 +18,7 @@ const customerLogger = log4js.getLogger("customer");
 
 Router.post("/", async (req, res) => {
   try {
-    const { email, fullname } = req.body;
+    const { email, fullname, picture } = req.body;
 
     // check if customer already exisit in database
     const getCustomer = await Query(`SELECT Customer_ID 
@@ -32,10 +32,10 @@ Router.post("/", async (req, res) => {
     // Create new customer record in database
     const addCustomer = await Query(`INSERT INTO customer
     (
-    Fullname, Email
+    Fullname, Email,profilepic
     )
     VALUES(
-        "${fullname}","${email}"
+        "${fullname}","${email}", "${picture}"
     );
     `);
 
@@ -43,7 +43,9 @@ Router.post("/", async (req, res) => {
       `SELECT Customer_ID FROM customer WHERE Email= "${email}";`
     );
 
-    return res.status(200).json({ customerID: getNewCustomerId[0].Customer_ID });
+    return res
+      .status(200)
+      .json({ customerID: getNewCustomerId[0].Customer_ID });
   } catch (error) {
     customerLogger.error(error);
     return res.json({ error: error.message });

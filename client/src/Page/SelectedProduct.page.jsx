@@ -44,6 +44,8 @@ const SelectedProduct = () => {
   const [toggleReview, setToggleReview] = useState(false);
   const [rating, setRating] = useState(1);
   const [addedToCart, setAddedToCart] = useState(false);
+  const [subject, setSubject] = useState("");
+  const [review, setReview] = useState("");
 
   // Redux State
   const reduxState = useSelector(({ products, cart }) => ({ products, cart }));
@@ -54,7 +56,7 @@ const SelectedProduct = () => {
 
   // Updating selected product
   useEffect(() => {
-    const selectedProduct = reduxState.products.home.filter(
+    const selectedProduct = reduxState.products.home.allProducts.filter(
       ({ Product_ID }) => Product_ID === toNumber(product_id)
     );
 
@@ -152,6 +154,8 @@ const SelectedProduct = () => {
                 className="form-control-alternative"
                 placeholder="Type your review subject"
                 type="text"
+                value={subject}
+                onChange={(e) => setSubject(e.target.value)}
               />
               <Label className="mt-3 font-weight-700">Review</Label>
               <Input
@@ -159,43 +163,50 @@ const SelectedProduct = () => {
                 placeholder="Type your review"
                 rows="3"
                 type="textarea"
+                value={review}
+                onChange={(e) => setReview(e.target.value)}
               />
               <Label className="mt-3 font-weight-700 mr-2">Rating</Label>
               <span>
                 <i
                   className={
                     rating > 0
-                      ? "fas fa-star text-primary"
-                      : "fas fa-star text-gray"
+                      ? "fas fa-star text-primary pointer"
+                      : "fas fa-star text-gray pointer"
                   }
+                  onClick={() => setRating(1)}
                 />
                 <i
                   className={
                     rating > 1
-                      ? "fas fa-star text-primary"
-                      : "fas fa-star text-gray"
+                      ? "fas fa-star text-primary pointer"
+                      : "fas fa-star text-gray pointer"
                   }
+                  onClick={() => setRating(2)}
                 />
                 <i
                   className={
                     rating > 2
-                      ? "fas fa-star text-primary"
-                      : "fas fa-star text-gray"
+                      ? "fas fa-star text-primary pointer"
+                      : "fas fa-star text-gray pointer"
                   }
+                  onClick={() => setRating(3)}
                 />
                 <i
                   className={
                     rating > 3
-                      ? "fas fa-star text-primary"
-                      : "fas fa-star text-gray"
+                      ? "fas fa-star text-primary pointer"
+                      : "fas fa-star text-gray pointer"
                   }
+                  onClick={() => setRating(4)}
                 />
                 <i
                   className={
                     rating > 4
-                      ? "fas fa-star text-primary"
-                      : "fas fa-star text-gray"
+                      ? "fas fa-star text-primary pointer"
+                      : "fas fa-star text-gray pointer"
                   }
+                  onClick={() => setRating(5)}
                 />
               </span>
             </Col>
