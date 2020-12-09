@@ -1,14 +1,15 @@
 // Libraries
 import React, { useState, useEffect } from "react";
-import { Container, Spinner, UncontrolledCarousel } from "reactstrap";
+import { Container, Spinner, UncontrolledCarousel, Col, Row } from "reactstrap";
 import { useSelector, useDispatch } from "react-redux";
 import { useAuth0 } from "@auth0/auth0-react";
+import { Link } from "react-router-dom";
 
 // Components
-import SelectedProducts from "../components/ProductTabs/SelectedProducts/SelectedProducts.component";
-import FeaturedProducts from "../components/ProductTabs/FeaturedProducts/FeaturedProducts.components";
 import CustomSpinner from "../components/CustomSpinner/CustomSpinner.component";
 import Footer from "../components/Footer/Footer.components";
+import CategoryCard from "../components/CategoryCard/CategoryCard.component";
+import FeaturedProducts from "../components/FeaturedProducts/FeaturedProducts.component";
 
 // Utilities
 import { carouselList } from "../utils/defaultData.util";
@@ -31,7 +32,7 @@ const HomePage = () => {
     const homeDataAction = async () => {
       const homeData = await dispatch(getHomePageData());
       setHome(homeData.payload.allProducts);
-      setNewArrivals(homeData.payload.newArrivals)
+      setNewArrivals(homeData.payload.newArrivals);
     };
     homeDataAction();
   }, []);
@@ -39,7 +40,9 @@ const HomePage = () => {
   useEffect(() => {
     const authAction = async () => {
       if (user) {
-        const id = await dispatch(authCustomer(user.email, user.nickname, user.picture));
+        const id = await dispatch(
+          authCustomer(user.email, user.nickname, user.picture)
+        );
       }
     };
     authAction();
@@ -53,11 +56,12 @@ const HomePage = () => {
         <CustomSpinner />
       ) : (
         <>
-          <UncontrolledCarousel items={carouselList} />
-          <Container>
-            <SelectedProducts newArrivals={newArrivals} />
-            <FeaturedProducts list={home} />
-          </Container>
+          <div className="carousel_style">
+            <UncontrolledCarousel items={carouselList} />
+          </div>
+          <CategoryCard />
+
+          <FeaturedProducts />
           <Footer />
         </>
       )}

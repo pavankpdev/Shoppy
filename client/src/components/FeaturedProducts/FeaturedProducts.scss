@@ -1,0 +1,54 @@
+@import url(https://fonts.googleapis.com/css?family=Playfair+Display:regular,500,600,700,800,900,italic,500italic,600italic,700italic,800italic,900italic);
+
+.title {
+  font-family: "Playfair Display" !important;
+}
+
+.featured_product__cards_parent {
+  margin: 4rem 2rem;
+}
+
+.featured_product__card__container {
+  margin-top: 2rem !important;
+  position: relative !important;
+  max-width: 380px !important;
+}
+
+.featured_product__card__image {
+  width: 100% !important;
+  height: 22rem !important;
+  background-color: #fff !important;
+  object-fit: fill !important;
+  border-radius: 0.5rem !important;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1),
+    0 2px 4px -1px rgba(0, 0, 0, 0.06) !important;
+}
+
+.featured_product__card__contents__container {
+  position: relative !important;
+  padding: 1rem 0.75rem !important;
+
+  margin-top: -2.5rem !important;
+}
+
+.featured_product__card__contents {
+  padding: 10px 1rem 10px 1rem !important;
+  background-color: #fff !important;
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1),
+    0 10px 10px -5px rgba(0, 0, 0, 0.04) !important;
+  border-radius: 0.5rem !important;
+}
+
+.top_card {
+  margin-bottom: 6rem;
+}
+
+.bottom_card {
+  margin-top: 6rem;
+}
+
+@media (min-width: 1200px) {
+  .featured_product__cards_parent {
+    margin: 4rem 4rem;
+  }
+}
