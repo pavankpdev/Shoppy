@@ -89,6 +89,15 @@
   cursor: not-allowed;
 }
 
+.carousel_style {
+  margin: 2rem 1rem;
+}
+
+.carousel-inner {
+  border-radius: 1rem;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1),
+    0 2px 4px -1px rgba(0, 0, 0, 0.06);
+}
 .carousel-item > img {
   height: 250px !important;
 }
@@ -134,6 +143,16 @@
 }
 
 @media (min-width: 1200px) {
+  .carousel_style {
+    margin: 1rem 4rem;
+  }
+  .carousel-inner {
+    border-radius: 0.5rem !important;
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  }
+  .carousel-item > img {
+    height: 480px !important;
+  }
   .trendingCard {
     width: 30%;
   }
