@@ -46,21 +46,41 @@ const TrackOrder = () => {
       <Container className="pt-6">
         <div className=" d-md-flex flex-row-reverse justify-content-between align-items-center">
           <Col>
-            <img
-              src="https://assets-ouch.icons8.com/free-download/49/0fec1730-5b29-422e-b92e-749932c6cb95.png?filename=pablo-866.png"
-              alt="shipping image"
-              className="img-fluid"
-            />
+            {trackingInfo.shippingStatus === "Shipping" ? (
+              <img
+                src="https://assets-ouch.icons8.com/free-download/49/0fec1730-5b29-422e-b92e-749932c6cb95.png?filename=pablo-866.png"
+                alt="shipping"
+                className="img-fluid"
+              />
+            ) : (
+              <img
+                src="https://assets-ouch.icons8.com/free-download/676/a293f9ff-ebe1-4f30-8ce2-d7e079d9e6fd.png?filename=bermuda-delivery-3.png"
+                alt="delivery"
+                className="img-fluid"
+              />
+            )}
           </Col>
           <Col>
             <Card className="shadow">
               <CardBody>
                 <div className="d-flex flex-row-reverse justify-content-between align-items-center">
                   <div className="d-flex">
-                    <Spinner type="grow" color="warning" size="sm" />
-                    <h6 className="ml-1 text-warning">Shipping</h6>
+                    {trackingInfo.shippingStatus === "Shipping" ? (
+                      <>
+                        <Spinner type="grow" color="warning" size="sm" />
+                        <h6 className="ml-1 text-warning">
+                          {trackingInfo.shippingStatus}
+                        </h6>
+                      </>
+                    ) : (
+                      <>
+                        <i className="fas fa-check-circle text-success" />
+                        <h6 className="ml-1 text-success">
+                          {trackingInfo.shippingStatus}
+                        </h6>
+                      </>
+                    )}
                   </div>
-
                   <h4>
                     Order placed on{" "}
                     {moment(trackingInfo.shippingDate).format("MMM DD")}

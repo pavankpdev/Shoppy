@@ -10,6 +10,7 @@ import {
   Label,
   Button,
   Alert,
+  CardBody,
 } from "reactstrap";
 import { useSelector, useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
@@ -105,6 +106,16 @@ const Cart = (props) => {
                 <h2 className=" text-primary">Total</h2>
                 <h2 className=" text-primary">{totalPrice}</h2>
               </div>
+
+              <Card className="bg-default mb-3">
+                <CardBody className="text-white font-weight-500">
+                  Please use these below card details for payment
+                  <br />
+                  Card Number: 4111 1111 1111 1111 <br />
+                  Expire: any future expiry date <br />
+                  Cvv: any 3 digit number
+                </CardBody>
+              </Card>
 
               <PaymentButton
                 disabled={!address}

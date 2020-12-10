@@ -17,3 +17,7 @@ functions:
     request:
       template:
         application/json: '{ "email" : "$input.params(''email'')","fullname" : "$input.params(''fullname'')","totaItems" : "$input.params(''totaItems'')","totalPrice" : "$input.params(''totalPrice'')" }'
+  deliverOrder:
+    handler: deliver.deliverOrder
+    events:
+      - schedule: cron(4 4 * * ? *)
