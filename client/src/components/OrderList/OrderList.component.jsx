@@ -61,13 +61,15 @@ const OrderList = ({ allOrders }) => {
                           </h3>
                         </td>
                         <td>
-                          <span
-                            className={classnames("text-warning", {
-                              "text-success": shippingStatus !== "Shipping",
-                            })}
-                          >
-                            {shippingStatus}
-                          </span>
+                          {shippingStatus === "Shipping" ? (
+                            <span className="text-warning">
+                              {shippingStatus}
+                            </span>
+                          ) : (
+                            <span className="text-success">
+                              {shippingStatus}
+                            </span>
+                          )}
                         </td>
                         <td>
                           <Link to={`/track/${shippingId}/`}>
