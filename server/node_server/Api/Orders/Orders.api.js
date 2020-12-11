@@ -4,7 +4,6 @@
 
 //  Libraries
 const Router = require("express").Router();
-const uniq = require("lodash/uniq");
 
 // Mysql connection instance
 const { Query } = require("../../database/index");

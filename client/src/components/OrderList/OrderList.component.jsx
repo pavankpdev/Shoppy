@@ -63,7 +63,7 @@ const OrderList = ({ allOrders }) => {
                         <td>
                           <span
                             className={classnames("text-warning", {
-                              "text-success": shippingAddress !== "Shipping",
+                              "text-success": shippingStatus !== "Shipping",
                             })}
                           >
                             {shippingStatus}
