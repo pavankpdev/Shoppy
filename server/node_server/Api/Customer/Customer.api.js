@@ -12,6 +12,9 @@ const { Query } = require("../../database/index");
 const { log4js } = require("../../config/logs.config");
 const customerLogger = log4js.getLogger("customer");
 
+// Queries
+const { getCustomerId, addNewCustomer } = require("../../Query/Customer");
+
 // @Route   POST /customer
 // @des     authenticate customer
 // @access  PUBLIC
@@ -21,29 +24,20 @@ Router.post("/", async (req, res) => {
     const { email, fullname } = req.body;
 
     // check if customer already exisit in database
-    const getCustomer = await Query(`SELECT Customer_ID 
-    FROM   customer 
-    WHERE  email = "${email}"; `);
+    const getCustomer = await getCustomerId(email);
 
     if (getCustomer.length > 0) {
       return res.status(200).json({ customerID: getCustomer[0].Customer_ID });
     }
 
     // Create new customer record in database
-    const addCustomer = await Query(`INSERT INTO customer
-    (
-    Fullname, Email
-    )
-    VALUES(
-        "${fullname}","${email}"
-    );
-    `);
+    await addNewCustomer(fullname, email);
 
-    const getNewCustomerId = await Query(
-      `SELECT Customer_ID FROM customer WHERE Email= "${email}";`
-    );
+    const getNewCustomerId = await getCustomerId(email);
 
-    return res.status(200).json({ customerID: getNewCustomerId[0].Customer_ID });
+    return res
+      .status(200)
+      .json({ customerID: getNewCustomerId[0].Customer_ID });
   } catch (error) {
     customerLogger.error(error);
     return res.json({ error: error.message });

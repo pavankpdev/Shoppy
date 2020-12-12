@@ -6,20 +6,20 @@
 const Router = require("express").Router();
 const randomize = require("lodash/sampleSize");
 
-// Mysql connection instance
-const { Query } = require("../../database/index");
-
 // Configs
 const { log4js } = require("../../config/logs.config");
 const homeLogger = log4js.getLogger("home");
 
+// Queries
+const { getAllProducts } = require("../../Query/Home");
+
 // @Route   GET /
 // @des     GET all the list of products
 // @access  PUBLIC
-Router.get("/", async (req, res) => {
+Router.get("/", async (_, res) => {
   try {
     // Get all product data
-    const allProducts = await Query("select * from product;");
+    const allProducts = await getAllProducts();
 
     const newArrivals = [
       ...randomize(
