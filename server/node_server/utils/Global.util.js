@@ -7,7 +7,7 @@ const getCurrentDateTime = (type) => {
     time: moment().format("HH:mm:ss"),
   };
 
-  return current[type];
+  return current[type] || null;
 };
 
 module.exports = { getCurrentDateTime };
