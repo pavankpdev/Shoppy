@@ -1,7 +1,6 @@
 // Libraries
 import React from "react";
 import { Card, CardImg, CardBody, Col } from "reactstrap";
-import classnames from "classnames";
 import { Link } from "react-router-dom";
 
 // Components

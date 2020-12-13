@@ -2,7 +2,6 @@
 import React, { useState, useEffect } from "react";
 import {
   Container,
-  Row,
   Col,
   Card,
   Modal,
@@ -72,7 +71,7 @@ const Cart = (props) => {
               <img
                 src="https://assets-ouch.icons8.com/free-download/304/ff381043-e5e3-4b0a-95d3-708000f97eda.png?filename=kingdom-order-completed.png"
                 className="img-fluid w-50"
-                alt="payment success image"
+                alt="payment success"
               />
             </div>
             <h2 className="mt-3 display-3 text-default text-center">

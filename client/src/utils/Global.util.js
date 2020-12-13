@@ -4,11 +4,6 @@
 
 // Libraries
 import axios from "axios";
-import moment from "moment";
-import filter from "lodash/filter";
-
-// Configs
-// import { clientEncryptor } from "../config/Global.config";
 
 // utility function to set header to axios
 export const setAxiosHeader = (headerType, data) => {

@@ -6,9 +6,6 @@ import { useAuth0 } from "@auth0/auth0-react";
 import { useSelector, useDispatch } from "react-redux";
 import moment from "moment";
 
-// Components
-import CustomSpinner from "../components/CustomSpinner/CustomSpinner.component";
-
 // Redux action
 import { getTrackingData } from "../redux/reducer/Orders/Orders.action";
 

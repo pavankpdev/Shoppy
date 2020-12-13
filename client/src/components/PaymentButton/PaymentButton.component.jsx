@@ -1,6 +1,6 @@
 // Libraries
-import React, { useState } from "react";
-import { Button, Modal, ModalBody } from "reactstrap";
+import React from "react";
+import { Button } from "reactstrap";
 import { useDispatch, useSelector } from "react-redux";
 import { useAuth0 } from "@auth0/auth0-react";
 import classname from "classnames";
