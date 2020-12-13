@@ -1,6 +1,6 @@
 // Libraries
 import React, { useState, useEffect } from "react";
-import { Container, Row, Col, Card, Table, Button } from "reactstrap";
+import { Container } from "reactstrap";
 import { useDispatch, useSelector } from "react-redux";
 
 // Redux Actions
@@ -29,7 +29,6 @@ const Order = () => {
       const getAllCustomerOrders = await dispatch(
         getAllOrders(reduxState.customer.customerID)
       );
-      console.log(getAllCustomerOrders);
       setAllOrders(getAllCustomerOrders.payload);
     };
     getAllorderAction();
