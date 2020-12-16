@@ -50,6 +50,14 @@ const ShoppyNavBar = (props) => {
             </h1>
           </Link>
         </NavbarBrand>
+        <div className="d-md-none">
+          <Link className="text-default" to="/cart">
+            <i className="fas fa-shopping-cart fa-lg" />
+            <Badge color="primary" className="bg-primary text-white">
+              {reduxState.cart.cart.length}
+            </Badge>
+          </Link>
+        </div>
         <button
           aria-controls="navbar-default"
           aria-expanded={false}
@@ -72,6 +80,7 @@ const ShoppyNavBar = (props) => {
                   </h1>
                 </Link>
               </Col>
+
               <Col className="collapse-close" xs="6">
                 <button
                   aria-controls="navbar-default"
@@ -89,6 +98,7 @@ const ShoppyNavBar = (props) => {
               </Col>
             </Row>
           </div>
+
           <Nav className="mr-auto" navbar>
             <NavItem>
               <NavLink>
