@@ -64,6 +64,10 @@ const SelectedProduct = () => {
 
   // Updating selected product
   useEffect(() => {
+    window.scroll({
+      top: 0,
+      behavior: "smooth",
+    });
     const selectedProduct = reduxState.products.home.allProducts.filter(
       ({ Product_ID }) => Product_ID === toNumber(product_id)
     );
