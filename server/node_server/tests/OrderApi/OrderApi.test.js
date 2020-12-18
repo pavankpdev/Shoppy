@@ -8,6 +8,7 @@ const {
 
 jest.mock("axios");
 
+// Test suite 4 - contains 4 test cases
 describe("Testing Order Api", () => {
   test("fetches successfull data from order API", async () => {
     const data = {

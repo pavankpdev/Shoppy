@@ -27,7 +27,7 @@ module.exports.deliverOrder = async () => {
       )
   );
 
-  await mysql.end();
+  await mysql.end(); 
 
   return mysql.quit();
 };

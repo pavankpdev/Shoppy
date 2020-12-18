@@ -7,6 +7,7 @@ const {
 
 jest.mock("axios");
 
+// Test suite 2 - contains 3 test cases
 describe("Testing Customer Api", () => {
   test("fetches successfully data from Customer API", async () => {
     const data = { data: { customerID: 8 } };
@@ -22,7 +23,7 @@ describe("Testing Customer Api", () => {
     await expect(CustomerApiEmailError()).rejects.toThrow(errorMessage);
   });
 
-  test("fetches email error data from Customer API", async () => {
+  test("fetches Fullname error data from Customer API", async () => {
     const errorMessage = "Fullname Is required";
     axios.post.mockImplementationOnce(() =>
       Promise.reject(new Error(errorMessage))

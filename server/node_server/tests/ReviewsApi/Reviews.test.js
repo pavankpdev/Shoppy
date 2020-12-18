@@ -6,6 +6,7 @@ const {
 
 jest.mock("axios");
 
+// Test suite 6 - contains 2 test cases
 describe("Testing Review Api", () => {
   test("fetches successfull data from Review API", async () => {
     const data = {
