@@ -3,6 +3,7 @@ const { HomeApiSuccess } = require("../__Mocks__/Home.mock");
 
 jest.mock("axios");
 
+// Test suite 3 - contains 1 test case
 describe("Testing Home Api", () => {
   test("fetches successfully data from Home API", async () => {
     const data = {

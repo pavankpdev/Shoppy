@@ -7,6 +7,7 @@ const { getCurrentDateTime } = require("../utils/");
 const currentDate = moment().format("YYYY-MM-DD");
 const currenttime = moment().format("HH:mm:ss");
 
+// Test suite 1 - contains 3 test cases
 describe("Testing getCurrentDateTime utility funtion", () => {
   test("Test 1: funtion should return current date", () => {
     expect(getCurrentDateTime("date")).toBe(currentDate);
