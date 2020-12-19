@@ -1,7 +1,7 @@
 const axios = require("axios");
 
 const CustomerApiSuccess = async () => {
-  const response = await axios.post("http://localhost:4000/customer", {
+  const response = await axios.post("https://shoppyapp.live/node/customer", {
     data: { email: "pavankumar@gmail.com", fullname: "pavankumar" },
   });
 
@@ -9,7 +9,7 @@ const CustomerApiSuccess = async () => {
 };
 
 const CustomerApiEmailError = async () => {
-  const response = await axios.post("http://localhost:4000/customer", {
+  const response = await axios.post("https://shoppyapp.live/node/customer", {
     data: { fullname: "pavankumar" },
   });
 
@@ -17,7 +17,7 @@ const CustomerApiEmailError = async () => {
 };
 
 const CustomerApiFullnameError = async () => {
-  const response = await axios.post("http://localhost:4000/customer", {
+  const response = await axios.post("https://shoppyapp.live/node/customer", {
     data: { email: "pavankumar@gmail.com" },
   });
 
