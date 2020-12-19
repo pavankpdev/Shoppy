@@ -1,9 +1,9 @@
 const axios = require("axios");
 
 const ReviewApiSuccess = async () =>
-  await axios.get("http://localhost:4000/review/2");
+  await axios.get("https://shoppyapp.live/node/review/2");
 
 const ReviewApiError = async () =>
-  await axios.get("http://localhost:4000/review/2");
+  await axios.get("https://shoppyapp.live/node/review/2562");
 
 module.exports = { ReviewApiSuccess, ReviewApiError };
