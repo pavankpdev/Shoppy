@@ -13,6 +13,7 @@ log4js.configure({
     home: { type: "file", filename: "./logs/home.log" },
     customer: { type: "file", filename: "./logs/customer.log" },
     review: { type: "file", filename: "./logs/review.log" },
+    admin: { type: "file", filename: "./logs/admin.log" },
   },
   categories: {
     default: { appenders: ["app"], level: "debug" },
@@ -21,6 +22,7 @@ log4js.configure({
     orders: { appenders: ["orders"], level: "debug" },
     customer: { appenders: ["customer"], level: "debug" },
     review: { appenders: ["review"], level: "debug" },
+    admin: { appenders: ["admin"], level: "debug" },
   },
 });
 

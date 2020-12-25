@@ -25,7 +25,11 @@ Router.get("/:product_id", async (req, res) => {
     // Get all the reviews related to the specfied product
     const getReviews = await getAllreviewsOfAProduct(product_id);
 
-    return res.status(200).json(getReviews);
+    const filterRejectedReviews = getReviews.filter(
+      (e) => e.Audit_status !== "rejected"
+    );
+
+    return res.status(200).json(filterRejectedReviews);
   } catch (error) {
     reviewLogger.error(error);
     return res.status(500).json({ error: error.message });
@@ -46,9 +50,13 @@ Router.post("/new/:product_id/:customer_id", async (req, res) => {
     // get new updated set of reviews
     const getReviews = await getAllreviewsOfAProduct(product_id);
 
+    const filterRejectedReviews = getReviews.filter(
+      (e) => e.Audit_status !== "rejected"
+    );
+
     return res
       .status(200)
-      .json({ message: "Review successfully recorded", getReviews });
+      .json({ message: "Review successfully recorded", getReviews:filterRejectedReviews });
   } catch (error) {
     reviewLogger.error(error);
     return res.status(500).json({ error: error.message });

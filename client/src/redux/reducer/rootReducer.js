@@ -13,6 +13,7 @@ import order from "./Orders/Orders.reducer";
 import customer from "./Customer/Customer.reducer";
 import search from "./Search/Search.reducer";
 import review from "./Review/Review.reducer";
+import Admin from "./Admin/Admin.reducer";
 import error from "./Error/error.reducer";
 
 // root reducer
@@ -24,6 +25,7 @@ const rootReducer = combineReducers({
   customer,
   search,
   review,
+  Admin,
   error,
 });
 

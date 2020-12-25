@@ -3,7 +3,8 @@ const { getCurrentDateTime } = require("../../utils");
 
 const getAllreviewsOfAProduct = async (product_id) =>
   await Query(`
-SELECT reviews.subject     AS subject, 
+SELECT reviews.Audit_status, 
+   reviews.subject     AS subject, 
    reviews.reviewdate  AS reviewdate, 
    reviews.rating      AS rating, 
    reviews.review_desc AS review, 

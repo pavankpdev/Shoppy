@@ -5,9 +5,6 @@
 //  Libraries
 const Router = require("express").Router();
 
-// Mysql connection instance
-const { Query } = require("../../database/index");
-
 // Configs
 const { log4js } = require("../../config/logs.config");
 const customerLogger = log4js.getLogger("customer");
@@ -18,7 +15,6 @@ const { getCustomerId, addNewCustomer } = require("../../Query/Customer");
 // @Route   POST /customer
 // @des     authenticate customer
 // @access  PUBLIC
-
 Router.post("/", async (req, res) => {
   try {
     const { email, fullname } = req.body;

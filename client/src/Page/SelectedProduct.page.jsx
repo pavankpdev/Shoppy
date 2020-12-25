@@ -27,6 +27,7 @@ import ReviewCard from "../components/ReviewCard/ReviewCard.component";
 import { addToCart, removeFromCart } from "../redux/reducer/Cart/Cart.action";
 import { getSpecificProductData } from "../redux/reducer/Products/Products.actions";
 import { getReviews, postReview } from "../redux/reducer/Review/Review.action";
+import { authCustomer } from "../redux/reducer/Customer/Customer.action";
 
 const SelectedProduct = () => {
   // Component State
@@ -60,7 +61,7 @@ const SelectedProduct = () => {
   // Initializing Hooks
   const { product_id } = useParams();
   const dispatch = useDispatch();
-  const { isAuthenticated, loginWithPopup } = useAuth0();
+  const { isAuthenticated, loginWithPopup, user } = useAuth0();
 
   // Updating selected product
   useEffect(() => {
@@ -68,9 +69,13 @@ const SelectedProduct = () => {
       top: 0,
       behavior: "smooth",
     });
-    const selectedProduct = reduxState.products.home.allProducts.filter(
-      ({ Product_ID }) => Product_ID === toNumber(product_id)
-    );
+
+    const selectedProduct =
+      reduxState.products.home.length !== 0
+        ? reduxState.products.home.allProducts.filter(
+            ({ Product_ID }) => Product_ID === toNumber(product_id)
+          )
+        : [];
 
     if (selectedProduct.length !== 0) {
       const isInCart = reduxState.cart.cart.filter(
@@ -132,6 +137,17 @@ const SelectedProduct = () => {
     };
     getReviewsAction();
   }, []);
+
+  useEffect(() => {
+    const authAction = async () => {
+      if (user) {
+        const id = await dispatch(
+          authCustomer(user.email, user.nickname, user.picture)
+        );
+      }
+    };
+    authAction();
+  }, [user]);
 
   //  Function add the selected product to cart
   const addProductToCart = () => {

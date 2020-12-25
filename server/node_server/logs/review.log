@@ -45,3 +45,50 @@
     '      2020-12-6\n' +
     '    )'
 }
+[2020-12-25T17:32:13.006] [ERROR] review - Error: ER_BAD_NULL_ERROR: Column 'Customer_ID' cannot be null
+    at Query.Sequence._packetToError (C:\Users\pavan\Desktop\stuffs\Shoppy\server\node_server\node_modules\mysql\lib\protocol\sequences\Sequence.js:47:14)
+    at Query.ErrorPacket (C:\Users\pavan\Desktop\stuffs\Shoppy\server\node_server\node_modules\mysql\lib\protocol\sequences\Query.js:79:18)
+    at Protocol._parsePacket (C:\Users\pavan\Desktop\stuffs\Shoppy\server\node_server\node_modules\mysql\lib\protocol\Protocol.js:291:23)
+    at Parser._parsePacket (C:\Users\pavan\Desktop\stuffs\Shoppy\server\node_server\node_modules\mysql\lib\protocol\Parser.js:433:10)
+    at Parser.write (C:\Users\pavan\Desktop\stuffs\Shoppy\server\node_server\node_modules\mysql\lib\protocol\Parser.js:43:10)
+    at Protocol.write (C:\Users\pavan\Desktop\stuffs\Shoppy\server\node_server\node_modules\mysql\lib\protocol\Protocol.js:38:16)
+    at Socket.<anonymous> (C:\Users\pavan\Desktop\stuffs\Shoppy\server\node_server\node_modules\mysql\lib\Connection.js:88:28)
+    at Socket.<anonymous> (C:\Users\pavan\Desktop\stuffs\Shoppy\server\node_server\node_modules\mysql\lib\Connection.js:526:10)
+    at Socket.emit (events.js:315:20)
+    at addChunk (_stream_readable.js:295:12)
+    --------------------
+    at Protocol._enqueue (C:\Users\pavan\Desktop\stuffs\Shoppy\server\node_server\node_modules\mysql\lib\protocol\Protocol.js:144:48)
+    at Connection.query (C:\Users\pavan\Desktop\stuffs\Shoppy\server\node_server\node_modules\mysql\lib\Connection.js:198:25)
+    at C:\Users\pavan\Desktop\stuffs\Shoppy\server\node_server\database\queryInstance.js:6:21
+    at new Promise (<anonymous>)
+    at promisifiedQueryWrapper (C:\Users\pavan\Desktop\stuffs\Shoppy\server\node_server\database\queryInstance.js:5:10)
+    at InsertNewReview (C:\Users\pavan\Desktop\stuffs\Shoppy\server\node_server\Query\Reviews\index.js:25:9)
+    at C:\Users\pavan\Desktop\stuffs\Shoppy\server\node_server\Api\Reviews\Review.api.js:44:11
+    at Layer.handle [as handle_request] (C:\Users\pavan\Desktop\stuffs\Shoppy\server\node_server\node_modules\express\lib\router\layer.js:95:5)
+    at next (C:\Users\pavan\Desktop\stuffs\Shoppy\server\node_server\node_modules\express\lib\router\route.js:137:13)
+    at Route.dispatch (C:\Users\pavan\Desktop\stuffs\Shoppy\server\node_server\node_modules\express\lib\router\route.js:112:3) {
+  code: 'ER_BAD_NULL_ERROR',
+  errno: 1048,
+  sqlMessage: "Column 'Customer_ID' cannot be null",
+  sqlState: '23000',
+  index: 0,
+  sql: '\n' +
+    'INSERT INTO reviews\n' +
+    '(\n' +
+    '  Customer_ID,\n' +
+    '  Product_ID,\n' +
+    '  Rating,\n' +
+    '  Review_desc,\n' +
+    '  Subject,\n' +
+    '  reviewdate\n' +
+    ')\n' +
+    '  VALUES\n' +
+    '(\n' +
+    '  null,\n' +
+    '  6,\n' +
+    '  5,\n' +
+    `  "Good Computer worth money, can't be any better",\n` +
+    '  "Good Computer worth money",\n' +
+    '  "2020-12-25"\n' +
+    ')'
+}
