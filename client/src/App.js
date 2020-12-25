@@ -1,6 +1,6 @@
 // Libraries
 import React, { Suspense } from "react";
-import { Route, Switch } from "react-router-dom";
+import { Route, Router, Switch } from "react-router-dom";
 import { useAuth0 } from "@auth0/auth0-react";
 
 // Components
@@ -16,6 +16,7 @@ const CartPage = React.lazy(() => import("./Page/Cart.page"));
 const OrderPage = React.lazy(() => import("./Page/Orders.page"));
 const TrackPage = React.lazy(() => import("./Page/Track.page"));
 const SearchPage = React.lazy(() => import("./Page/Search.page"));
+const AuditReviews = React.lazy(() => import("./Page/Admin/AuditReviews.page"));
 
 function App() {
   // Destructuring auth data from Auth0 hook
@@ -40,6 +41,7 @@ function App() {
           <Route path="/orders" exact component={OrderPage} />
           <Route path="/track/:shippingId" exact component={TrackPage} />
           <Route path="/search" exact component={SearchPage} />
+          <Route path="/admin/audit-review" exact component={AuditReviews} />
         </Suspense>
       </Switch>
     </div>

@@ -15,6 +15,7 @@ const Products = require("./Api/Products/Products.api");
 const Orders = require("./Api/Orders/Orders.api");
 const Customer = require("./Api/Customer/Customer.api");
 const Reviews = require("./Api/Reviews/Review.api");
+const Admin = require("./Api/Admin/Admin.api");
 
 // Establishing DB connection
 mysqlConnection.connect((error) => {
@@ -37,6 +38,7 @@ Shoppy.use("/products", Products);
 Shoppy.use("/orders", Orders);
 Shoppy.use("/customer", Customer);
 Shoppy.use("/review", Reviews);
+Shoppy.use("/admin", Admin);
 
 // 404 route
 Shoppy.get("*", (req, res) => {

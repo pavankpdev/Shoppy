@@ -12,6 +12,7 @@ const ReviewCard = ({
   subject,
   reviewdate,
   profilepic,
+  Audit_status,
 }) => {
   return (
     <>
@@ -30,6 +31,13 @@ const ReviewCard = ({
             )}
             <h3 className="mt-2 ml-2">
               {fullname}
+              <span className="h5 font-weight-300 ml-2">
+                {Audit_status !== "Pending" ? (
+                  <i className="fas fa-check-circle text-primary" data-toggle="tooltip" title="This review verified and approved."/>
+                ) : (
+                  <i className="fas fa-clock text-primary" data-toggle="tooltip" title="This review is not approved yet."/>
+                )}
+              </span>
               <span className="h5 font-weight-300 ml-2">
                 ( Reviewed on {moment(reviewdate).format("DD MMM YYYY")} )
               </span>

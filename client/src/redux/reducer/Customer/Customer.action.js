@@ -19,7 +19,6 @@ import { keys } from "../../../utils/keys";
 export const authCustomer = (email, fullname, picture) => async (dispatch) => {
   try {
     dispatch(loading());
-    console.log(email);
     const authCustomerApi = await axios({
       method: "POST",
       url: `${keys.NODE_API_URL}customer/`,
