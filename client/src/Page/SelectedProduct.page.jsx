@@ -174,17 +174,19 @@ const SelectedProduct = () => {
 
   // Function to post review
   const addnewReview = async () => {
-    const postReviewAction = await dispatch(
-      postReview(
-        product_id,
-        reduxState.customer.customerID,
-        rating,
-        review,
-        subject
-      )
-    );
-    setToggleReview(!toggleReview);
-    setReviewData(postReviewAction.payload.getReviews);
+    if (reduxState.customer.customerID) {
+      const postReviewAction = await dispatch(
+        postReview(
+          product_id,
+          reduxState.customer.customerID,
+          rating,
+          review,
+          subject
+        )
+      );
+      setToggleReview(!toggleReview);
+      setReviewData(postReviewAction.payload.getReviews);
+    }
   };
 
   return (

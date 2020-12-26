@@ -2,10 +2,7 @@ delimiter //
 
 -- Stored Procedure to add new review to review_audit table
 
-CREATE PROCEDURE addnewreview (in reviewid    int, 
-                               IN customer_id int, 
-                               IN product_id  int, 
-                               IN rating      int, 
+CREATE PROCEDURE addnewreview (in reviewid    int,                            
                                IN review_desc varchar(500), 
                                IN sub         varchar(300), 
                                IN reviewdate  date) 
@@ -13,20 +10,14 @@ BEGIN
   -- Inserting into audit table
   INSERT INTO `shoppy`.`review_audit` 
               ( 
-                          `review_id`, 
-                          `customer_id`, 
-                          `product_id`, 
-                          `rating`, 
+                          `review_id`,                           
                           `review_desc`, 
                           `subject`, 
                           `reviewdate` 
               ) 
               VALUES 
               ( 
-                          reviewid, 
-                          customer_id, 
-                          product_id, 
-                          rating, 
+                          reviewid,                          
                           review_desc, 
                           sub, 
                           reviewdate 

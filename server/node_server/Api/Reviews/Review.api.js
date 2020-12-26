@@ -44,6 +44,7 @@ Router.post("/new/:product_id/:customer_id", async (req, res) => {
     const { product_id, customer_id } = req.params;
     const { rating, review, subject } = req.body.reviewData;
 
+
     // add new review
     await InsertNewReview(customer_id, product_id, rating, review, subject);
 
@@ -54,9 +55,10 @@ Router.post("/new/:product_id/:customer_id", async (req, res) => {
       (e) => e.Audit_status !== "rejected"
     );
 
-    return res
-      .status(200)
-      .json({ message: "Review successfully recorded", getReviews:filterRejectedReviews });
+    return res.status(200).json({
+      message: "Review successfully recorded",
+      getReviews: filterRejectedReviews,
+    });
   } catch (error) {
     reviewLogger.error(error);
     return res.status(500).json({ error: error.message });

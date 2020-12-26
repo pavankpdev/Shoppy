@@ -33,7 +33,7 @@ const ReviewCard = ({
               {fullname}
               <span className="h5 font-weight-300 ml-2">
                 {Audit_status !== "Pending" ? (
-                  <i className="fas fa-check-circle text-primary" data-toggle="tooltip" title="This review verified and approved."/>
+                  <i className="fas fa-check-circle text-primary" data-toggle="tooltip" title="This review was verified and approved."/>
                 ) : (
                   <i className="fas fa-clock text-primary" data-toggle="tooltip" title="This review is not approved yet."/>
                 )}
