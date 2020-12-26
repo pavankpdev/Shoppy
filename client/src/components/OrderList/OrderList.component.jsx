@@ -31,7 +31,7 @@ const OrderList = ({ allOrders }) => {
                     shippingAddress,
                     quantity,
                     productID,
-                    shippingId,
+                    orderId,
                   }) => (
                     <>
                       <tr key={productID}>
@@ -71,7 +71,7 @@ const OrderList = ({ allOrders }) => {
                           )}
                         </td>
                         <td>
-                          <Link to={`/track/${shippingId}/`}>
+                          <Link to={`/track/${orderId}/`}>
                             <Button outline size="sm">
                               track <i className="fas fa-map-marker-alt ml-1" />
                             </Button>

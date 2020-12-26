@@ -41,12 +41,6 @@ Router.post("/new/:customer_id", async (req, res) => {
     const { customer_id } = req.params;
     const { purchaseData, address } = req.body;
 
-    // get the Current order ID
-    let getCurrentOrderID = await getNewOrderID();
-
-    getCurrentOrderID = getCurrentOrderID[0].id
-      ? getCurrentOrderID[0].id + 1
-      : 1;
     for (let index = 0; index < purchaseData.length; index++) {
       const { Product_Price, quantity, Product_ID } = purchaseData[index];
 
@@ -56,7 +50,6 @@ Router.post("/new/:customer_id", async (req, res) => {
         quantity,
         Product_ID,
         Product_Price,
-        getCurrentOrderID,
         address
       );
     }

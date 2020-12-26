@@ -17,7 +17,17 @@ const adminLogger = log4js.getLogger("admin");
 Router.get("/pending-reviews", async (_, res) => {
   try {
     const getPendingReviews = await Query(
-      `select * from review_audit where Audit_status="Pending";`
+      `select 
+      review_audit.Audit_ID, 
+      review_audit.Audit_status, 
+      reviews.Review_desc, 
+      reviews.subject, 
+      reviews.reviewdate 
+    from 
+      review_audit 
+      INNER Join reviews ON reviews.Review_ID = review_audit.Review_ID 
+      AND review_audit.Audit_status = "Pending"
+    `
     );
     return res.json(getPendingReviews);
   } catch (error) {
@@ -40,7 +50,16 @@ Router.post("/audit-reviews", async (req, res) => {
     }
 
     const getPendingReviews = await Query(
-      `select * from review_audit where Audit_status="Pending";`
+      `select 
+      review_audit.Audit_ID, 
+      review_audit.Audit_status, 
+      reviews.Review_desc, 
+      reviews.subject, 
+      reviews.reviewdate 
+    from 
+      review_audit 
+      INNER Join reviews ON reviews.Review_ID = review_audit.Review_ID 
+      AND review_audit.Audit_status = "Pending";`
     );
     console.log(getPendingReviews);
     return res.json(getPendingReviews);

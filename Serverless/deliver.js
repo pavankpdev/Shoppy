@@ -14,14 +14,14 @@ module.exports.deliverOrder = async () => {
   // Get all orders from DB
   let AllOrders = await mysql.query(
     `SELECT order_id 
-     FROM orders 
+     FROM shipping 
      WHERE shipping_status="Shipping";`
   );
 
   AllOrders.forEach(
     async ({ order_id }) =>
       await mysql.query(
-        `UPDATE orders 
+        `UPDATE shipping 
          SET shipping_status = 'Delivered' 
          WHERE  ( order_id = ${order_id} ); `
       )
