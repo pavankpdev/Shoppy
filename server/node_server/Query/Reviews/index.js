@@ -13,7 +13,7 @@ SELECT reviews.Audit_status,
 FROM   reviews 
    INNER JOIN customer 
            ON reviews.customer_id = customer.customer_id 
-              AND reviews.product_id = ${product_id}
+              AND reviews.product_id = ${product_id} AND reviews.Audit_status !="Rejected"
 `);
 
 const InsertNewReview = async (

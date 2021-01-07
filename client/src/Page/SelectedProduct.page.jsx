@@ -132,7 +132,7 @@ const SelectedProduct = () => {
   useEffect(() => {
     const getReviewsAction = async () => {
       const getReviewsData = await dispatch(getReviews(product_id));
-      console.log(getReviewsData);
+
       setReviewData(getReviewsData.payload);
     };
     getReviewsAction();
@@ -188,7 +188,7 @@ const SelectedProduct = () => {
       setReviewData(postReviewAction.payload.getReviews);
     }
   };
-
+  console.log(selectedProductData);
   return (
     <>
       <Container className="pb-8 pt-5 ">
@@ -290,7 +290,7 @@ const SelectedProduct = () => {
           <Col lg="6">
             <h2 className="mt-3 mt-lg-0">{selectedProductData.Product_name}</h2>
             <div className="mt-2">
-              <RatingStars rating={5} lg />
+              <RatingStars rating={selectedProductData.Rating} lg />
             </div>
             <h1 className="display-3 mt-1 font-weight-900">
               ₹ {selectedProductData.Product_Price}
