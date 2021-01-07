@@ -28,8 +28,8 @@ const AuditReviews = () => {
   const ApproveReview = (id) => {
     setPendingReviews(
       pendingReviews.map((review) => {
-        if (review.Audit_ID === id) {
-          review.Audit_status = "Approved";
+        if (review.audit_id === id) {
+          review.audit_status = "Approved";
           return review;
         }
         return review;
@@ -37,26 +37,26 @@ const AuditReviews = () => {
     );
 
     setAuditedReviews(
-      pendingReviews.map(({ Audit_ID, Audit_status }) => ({
-        Audit_ID,
-        Audit_status,
+      pendingReviews.map(({ audit_id, audit_status }) => ({
+        audit_id,
+        audit_status,
       }))
     );
   };
   const RejectReview = (id) => {
     setPendingReviews(
       pendingReviews.map((review) => {
-        if (review.Audit_ID === id) {
-          review.Audit_status = "Rejected";
+        if (review.audit_id === id) {
+          review.audit_status = "Rejected";
           return review;
         }
         return review;
       })
     );
     setAuditedReviews(
-      pendingReviews.map(({ Audit_ID, Audit_status }) => ({
-        Audit_ID,
-        Audit_status,
+      pendingReviews.map(({ audit_id, audit_status }) => ({
+        audit_id,
+        audit_status,
       }))
     );
   };
@@ -71,7 +71,7 @@ const AuditReviews = () => {
       console.error(error);
     }
   };
-
+  console.log(pendingReviews);
   return (
     <>
       <Container className="mt-3">
@@ -93,31 +93,31 @@ const AuditReviews = () => {
               <tbody>
                 {pendingReviews.map(
                   ({
-                    Audit_ID,
-                    Review_desc,
-                    Subject,
-                    ReviewDate,
-                    Audit_status,
+                    audit_id,
+                    review_desc,
+                    subject,
+                    reviewdate,
+                    audit_status,
                   }) => (
                     <>
-                      <tr key={Audit_ID}>
+                      <tr key={audit_id}>
                         <td>
-                          {Audit_status === "Pending" ? (
+                          {audit_status === "Pending" ? (
                             <span className="text-info font-weight-600">
-                              {Audit_status}
+                              {audit_status}
                             </span>
-                          ) : Audit_status === "Approved" ? (
+                          ) : audit_status === "Approved" ? (
                             <span className="text-success font-weight-600">
-                              {Audit_status}
+                              {audit_status}
                             </span>
                           ) : (
                             <span className="text-danger font-weight-600">
-                              {Audit_status}
+                              {audit_status}
                             </span>
                           )}
                         </td>
-                        <td>{moment(ReviewDate).format("MMM DD")}</td>
-                        <td>{Subject}</td>
+                        <td>{moment(reviewdate).format("MMM DD")}</td>
+                        <td>{subject}</td>
                         <td
                           style={{
                             whiteSpace: "nowrap",
@@ -126,7 +126,7 @@ const AuditReviews = () => {
                             width: "80%",
                           }}
                         >
-                          {Review_desc}
+                          {review_desc}
                         </td>
                         <td>
                           <Button
@@ -137,7 +137,7 @@ const AuditReviews = () => {
                             data-toggle="tooltip"
                             title="Approve Review"
                             outline
-                            onClick={() => ApproveReview(Audit_ID)}
+                            onClick={() => ApproveReview(audit_id)}
                           >
                             <i className="fas fa-check" />
                           </Button>
@@ -148,7 +148,7 @@ const AuditReviews = () => {
                             size="sm"
                             title="Reject Review"
                             outline
-                            onClick={() => RejectReview(Audit_ID)}
+                            onClick={() => RejectReview(audit_id)}
                           >
                             <i className="fas fa-times" />
                           </Button>

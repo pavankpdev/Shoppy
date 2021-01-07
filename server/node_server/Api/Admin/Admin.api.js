@@ -11,24 +11,21 @@ const { Query } = require("../../database/");
 const { log4js } = require("../../config/logs.config");
 const adminLogger = log4js.getLogger("admin");
 
+// DB Queries
+const {
+  getCategoryWiseOrderReport,
+  getPendingAuditReviews,
+  getProductSalesReport,
+  getTotalOrderReport,
+  updateReviewAudit,
+} = require("../../Query/Admin");
+
 // @Route   GET /admin/pending-reviews
 // @des     Gets all the list of reviews which requires auditing
 // @access  PUBLIC
 Router.get("/pending-reviews", async (_, res) => {
   try {
-    const getPendingReviews = await Query(
-      `select 
-      review_audit.Audit_ID, 
-      review_audit.Audit_status, 
-      reviews.Review_desc, 
-      reviews.subject, 
-      reviews.reviewdate 
-    from 
-      review_audit 
-      INNER Join reviews ON reviews.Review_ID = review_audit.Review_ID 
-      AND review_audit.Audit_status = "Pending"
-    `
-    );
+    const getPendingReviews = await getPendingAuditReviews();
     return res.json(getPendingReviews);
   } catch (error) {
     adminLogger.error(error);
@@ -42,27 +39,42 @@ Router.get("/pending-reviews", async (_, res) => {
 Router.post("/audit-reviews", async (req, res) => {
   try {
     const { auditList } = req.body;
-    console.log(req.body);
     for (const audit of auditList) {
-      await Query(
-        `UPDATE review_audit SET Audit_status = "${audit.Audit_status}" WHERE Audit_ID = ${audit.Audit_ID};`
-      );
+      await updateReviewAudit(audit);
     }
 
-    const getPendingReviews = await Query(
-      `select 
-      review_audit.Audit_ID, 
-      review_audit.Audit_status, 
-      reviews.Review_desc, 
-      reviews.subject, 
-      reviews.reviewdate 
-    from 
-      review_audit 
-      INNER Join reviews ON reviews.Review_ID = review_audit.Review_ID 
-      AND review_audit.Audit_status = "Pending";`
-    );
-    console.log(getPendingReviews);
+    const getPendingReviews = await getPendingAuditReviews();
     return res.json(getPendingReviews);
+  } catch (error) {
+    adminLogger.error(error);
+    return res.json({ error: error.message });
+  }
+});
+
+// @Route   GET /admin/analytics
+// @des     Generates sales and orders reports
+// @access  PUBLIC
+Router.get("/analytics", async (req, res) => {
+  try {
+    const getAllCategory = await getCategoryWiseOrderReport();
+
+    const orderReports = {
+      Total: await getTotalOrderReport(),
+      "Electricals & Electronics": getAllCategory.filter(
+        ({ category }) => category === "Electricals & Electronics"
+      ),
+      Sports: getAllCategory.filter(({ category }) => category === "Sports"),
+      "Home Appliances": getAllCategory.filter(
+        ({ category }) => category === "Home Appliances"
+      ),
+      Furniture: getAllCategory.filter(
+        ({ category }) => category === "Furniture"
+      ),
+    };
+    
+    const productSalesReport = await getProductSalesReport();
+
+    return res.status(200).json({ orderReports, productSalesReport });
   } catch (error) {
     adminLogger.error(error);
     return res.json({ error: error.message });
