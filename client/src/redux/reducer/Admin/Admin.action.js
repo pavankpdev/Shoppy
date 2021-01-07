@@ -10,7 +10,7 @@ import { requestfailed } from "../Error/error.action";
 import { requestSuccess, loading } from "../../../utils/Global.util";
 
 // Reducer Types
-import { GET_PENDING_REVIEWS, AUDIT_REVIEWS } from "./Admin.types";
+import { GET_PENDING_REVIEWS, AUDIT_REVIEWS, GET_REPORTS } from "./Admin.types";
 
 // Utilities
 import { keys } from "../../../utils/keys";
@@ -32,7 +32,6 @@ export const GetPendingReview = () => async (dispatch) => {
 // Action to dispatch new audit reviews
 export const AuditReview = (auditList) => async (dispatch) => {
   try {
-    console.log(auditList);
     dispatch(loading());
     const adminReviewApi = await axios({
       method: "POST",
@@ -40,6 +39,22 @@ export const AuditReview = (auditList) => async (dispatch) => {
       data: { auditList },
     });
     return dispatch(requestSuccess(AUDIT_REVIEWS, adminReviewApi.data));
+  } catch (error) {
+    return dispatch(requestfailed(error));
+  }
+};
+
+// Action to get report
+export const GetReports = () => async (dispatch) => {
+  try {
+    dispatch(loading());
+
+    const getReportsApi = await axios({
+      method: "GET",
+      url: `${keys.NODE_API_URL}admin/analytics/`,
+    });
+
+    return dispatch(requestSuccess(GET_REPORTS, getReportsApi.data));
   } catch (error) {
     return dispatch(requestfailed(error));
   }

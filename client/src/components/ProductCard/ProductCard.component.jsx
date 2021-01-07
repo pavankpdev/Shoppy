@@ -7,12 +7,12 @@ import { Link } from "react-router-dom";
 import RatingStar from "../RatingStars/RatingStars.component";
 
 const ProductCard = ({
-  rating,
   Product_image1,
   Product_name,
   Product_Price,
   Category,
   Product_ID,
+  Rating,
 }) => {
   return (
     <>
@@ -27,7 +27,7 @@ const ProductCard = ({
             />
           </Link>
           <CardBody>
-            <RatingStar rating={5} />
+            <RatingStar rating={Rating} />
 
             <Link to={`/products/${Category}/${Product_ID}`}>
               <h4 className="mt-1 text-truncate font-weight-400">

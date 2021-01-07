@@ -21,10 +21,20 @@ const insertNewProduct = async ({
   );
 
 const getSpecifiedProductData = async (product_id) =>
-  await Query(`select * from product WHERE Product_ID=${product_id};`);
+  await Query(`SELECT P.*, 
+  (SELECT Floor(Avg(R.rating)) 
+   FROM   reviews R 
+   WHERE  R.product_id = P.product_id) AS Rating 
+FROM   product P 
+WHERE  product_id =${product_id};`);
 
 const getProductsWithCategory = async (category) =>
-  await Query(`select * from product where Category="${category}"`);
+  await Query(`SELECT P.*, 
+  (SELECT Floor(Avg(R.rating)) 
+   FROM   reviews R 
+   WHERE  R.product_id = P.product_id) AS Rating 
+FROM   product P 
+WHERE  category ="${category}"`);
 
 module.exports = {
   insertNewProduct,

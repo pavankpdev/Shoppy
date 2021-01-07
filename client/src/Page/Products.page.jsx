@@ -59,7 +59,7 @@ const ProductPage = () => {
     setProductData(productDataCopy);
     setPriceRange("30000");
   };
-
+  console.log(productData);
   return (
     <>
       <Modal isOpen={showFilter} toggle={toggle} backdrop>

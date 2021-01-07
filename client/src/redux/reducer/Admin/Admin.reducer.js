@@ -1,9 +1,13 @@
 // Reducer Types
-import { GET_PENDING_REVIEWS, AUDIT_REVIEWS } from "./Admin.types";
+import { GET_PENDING_REVIEWS, AUDIT_REVIEWS, GET_REPORTS } from "./Admin.types";
+
+// Utilities
+import { REHYDRATE } from "../../../utils/Global.util";
 
 const INITIAL_STATE = {
   pendingReviews: [],
   loading: false,
+  reports: {},
 };
 
 const AdminReducer = (state = INITIAL_STATE, action) => {
@@ -18,15 +22,25 @@ const AdminReducer = (state = INITIAL_STATE, action) => {
       return {
         ...state,
         loading: false,
-        pendingReviews: action,
+        pendingReviews: action.payload,
       };
 
     case AUDIT_REVIEWS:
       return {
         ...state,
         loading: false,
-        pendingReviews: action,
+        pendingReviews: action.payload,
       };
+
+    case GET_REPORTS:
+      return {
+        ...state,
+        loading: false,
+        reports: action.payload,
+      };
+
+    case REHYDRATE:
+      return action.payload ? action.payload.Admin : INITIAL_STATE;
 
     default:
       return {
