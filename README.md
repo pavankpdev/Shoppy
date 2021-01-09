@@ -25,6 +25,7 @@ Shoppy is a modern e-commerce platform.
 
 ### install dependencies
 
+- `cd shoppy`
 - `cd client`
 - `npm i`
 - `cd ..`
