@@ -1,4 +1,5 @@
 delimiter // 
+
 -- Stored Procedure to add new review to review_audit table
 CREATE PROCEDURE addnewreview (in reviewid int)
 BEGIN 
@@ -6,6 +7,7 @@ BEGIN
   INSERT INTO `shoppy`.`review_audit` (`review_id`) VALUES (reviewid);
 
 END// 
+
 -- Stored Procedure to update review audit status in reviews table
 CREATE PROCEDURE updatereviewaudit (in reviewid int, IN audit_status varchar(20)) 
 BEGIN 
