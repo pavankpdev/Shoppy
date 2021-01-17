@@ -88,3 +88,4 @@ CREATE TABLE `shoppy`.`review_audit` (
   PRIMARY KEY (`Audit_ID`),
   FOREIGN KEY (Review_ID) REFERENCES reviews(Review_ID)
 );
+

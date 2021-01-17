@@ -135,10 +135,12 @@ const SelectedProduct = () => {
   }, []);
 
   useEffect(() => {
-    const isInList = reduxState.products.list.filter(
-      ({ Product_ID }) => Product_ID === toNumber(product_id)
-    );
-    if (isInList.length !== 0) setAddeddToList(true);
+    if (reduxState.products && reduxState.products.list.length !== 0) {
+      const isInList = reduxState.products.list.filter(
+        ({ Product_ID }) => Product_ID === toNumber(product_id)
+      );
+      if (isInList.length !== 0) setAddeddToList(true);
+    }
 
     const getReviewsAction = async () => {
       const getReviewsData = await dispatch(getReviews(product_id));
