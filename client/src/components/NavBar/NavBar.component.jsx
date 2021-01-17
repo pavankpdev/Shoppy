@@ -51,6 +51,10 @@ const ShoppyNavBar = (props) => {
           </Link>
         </NavbarBrand>
         <div className="d-md-none">
+          <Link className="text-default mr-4" to="/saved">
+            <i className="fas fa-bookmark fa-lg" />
+          </Link>
+
           <Link className="text-default" to="/cart">
             <i className="fas fa-shopping-cart fa-lg" />
             <Badge color="primary" className="bg-primary text-white">
@@ -213,6 +217,11 @@ const ShoppyNavBar = (props) => {
             </UncontrolledDropdown>
           </NavbarText>
 
+          <NavbarText className="mr-4">
+            <Link className="text-default" to="/saved">
+              <i className="fas fa-bookmark fa-lg" />
+            </Link>
+          </NavbarText>
           <NavbarText className="mr-2">
             <Link className="text-default" to="/cart">
               <i className="fas fa-shopping-cart fa-lg" />

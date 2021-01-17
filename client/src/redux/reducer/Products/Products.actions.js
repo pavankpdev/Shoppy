@@ -15,6 +15,9 @@ import {
   GET_HOME_pAGE_DATA,
   GET_PRODUCT_WITH_CATEGORY,
   GET_PRODUCT_DETAILS,
+  GET_LIST,
+  REMOVE_FROM_LIST,
+  ADD_TO_LIST,
 } from "./Products.type";
 
 // Utilities
@@ -86,6 +89,56 @@ export const getSpecificProductData = (productId) => async (dispatch) => {
       requestSuccess(GET_PRODUCT_DETAILS, getSpecificProductDataApi.data)
     );
   } catch (error) {
-    requestfailed(error);
+    return dispatch(requestfailed(error));
+  }
+};
+
+// Actions to get all the list
+export const getAllList = (customer) => async (dispatch) => {
+  try {
+    dispatch(loading());
+
+    const getList = await axios({
+      method: "GET",
+      url: `${keys.NODE_API_URL}products/saved/${customer}`,
+    });
+
+    return dispatch(requestSuccess(GET_LIST, getList.data.list));
+  } catch (error) {
+    return dispatch(requestfailed(error));
+  }
+};
+
+// Action to add item to list
+export const addList = (listData) => async (dispatch) => {
+  try {
+    dispatch(loading());
+
+    const addListd = await axios({
+      method: "POST",
+      url: `${keys.NODE_API_URL}products/saved/add`,
+      data: { listData },
+    });
+
+    return dispatch(requestSuccess(ADD_TO_LIST, addListd.data.list));
+  } catch (error) {
+    return dispatch(requestfailed(error));
+  }
+};
+
+// Action to delete item from list
+export const deleteList = (listData) => async (dispatch) => {
+  try {
+    dispatch(loading());
+
+    const DeteleList = await axios({
+      method: "POST",
+      url: `${keys.NODE_API_URL}products/saved/delete`,
+      data: { listData },
+    });
+
+    return dispatch(requestSuccess(REMOVE_FROM_LIST, DeteleList.data.list));
+  } catch (error) {
+    return dispatch(requestfailed(error));
   }
 };

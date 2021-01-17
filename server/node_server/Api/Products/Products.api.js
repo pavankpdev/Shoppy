@@ -14,6 +14,9 @@ const {
   insertNewProduct,
   getSpecifiedProductData,
   getProductsWithCategory,
+  getAllList,
+  addToList,
+  detelFromList,
 } = require("../../Query/Products");
 
 // @Route   POST /products/upload
@@ -78,4 +81,47 @@ Router.get("/c/:category", async (req, res) => {
   }
 });
 
+// @Route   GET /products/saved
+// @des     GET all saved list
+// @access  PUBLIC
+Router.get("/saved/:customer", async (req, res) => {
+  try {
+    const { customer } = req.params;
+    const list = await getAllList(customer);
+    return res.status(200).json({ list });
+  } catch (error) {
+    productsLogger.error(error);
+    return res.json({ error: error.message });
+  }
+});
+
+// @Route   POST /products/saved/add
+// @des     add saved data to database
+// @access  PUBLIC
+Router.post("/saved/add", async (req, res) => {
+  try {
+    const { listData } = req.body;
+    await addToList(listData);
+    const list = await getAllList(listData.Customer_ID);
+    return res.status(200).json({ list });
+  } catch (error) {
+    productsLogger.error(error);
+    return res.json({ error: error.message });
+  }
+});
+
+// @Route   POST /products/saved/delete
+// @des     delete saved data from database
+// @access  PUBLIC
+Router.post("/saved/delete", async (req, res) => {
+  try {
+    const { listData } = req.body;
+    await detelFromList(listData);
+    const list = await getAllList(listData.Customer_ID);
+    return res.status(200).json({ list });
+  } catch (error) {
+    productsLogger.error(error);
+    return res.json({ error: error.message });
+  }
+});
 module.exports = Router;

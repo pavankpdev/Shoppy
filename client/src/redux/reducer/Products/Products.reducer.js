@@ -4,6 +4,9 @@ import {
   GET_HOME_pAGE_DATA,
   GET_PRODUCT_DETAILS,
   GET_PRODUCT_WITH_CATEGORY,
+  GET_LIST,
+  ADD_TO_LIST,
+  REMOVE_FROM_LIST,
 } from "./Products.type";
 
 // Utilities
@@ -14,6 +17,7 @@ const INITIAL_STATE = {
   home: [],
   category: [],
   product: [],
+  list: [],
 };
 
 const productsReducer = (state = INITIAL_STATE, action) => {
@@ -38,6 +42,15 @@ const productsReducer = (state = INITIAL_STATE, action) => {
 
     case GET_PRODUCT_DETAILS:
       return { ...state, product: action.payload, loading: false };
+
+    case GET_LIST:
+      return { ...state, list: action.payload, loading: false };
+
+    case ADD_TO_LIST:
+      return { ...state, list: action.payload, loading: false };
+
+    case REMOVE_FROM_LIST:
+      return { ...state, list: action.payload, loading: false };
 
     case REHYDRATE:
       return action.payload ? action.payload.products : INITIAL_STATE;

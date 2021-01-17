@@ -18,6 +18,7 @@ const TrackPage = React.lazy(() => import("./Page/Track.page"));
 const SearchPage = React.lazy(() => import("./Page/Search.page"));
 const AuditReviews = React.lazy(() => import("./Page/Admin/AuditReviews.page"));
 const Analytics = React.lazy(() => import("./Page/Admin/Analytics.page"));
+const Saved = React.lazy(() => import("./Page/List.page"));
 
 function App() {
   // Destructuring auth data from Auth0 hook
@@ -44,6 +45,7 @@ function App() {
           <Route path="/search" exact component={SearchPage} />
           <Route path="/admin/audit-review" exact component={AuditReviews} />
           <Route path="/admin/analytics" exact component={Analytics} />
+          <Route path="/saved" exact component={Saved} />
         </Suspense>
       </Switch>
     </div>

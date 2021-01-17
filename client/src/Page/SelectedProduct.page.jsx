@@ -25,7 +25,11 @@ import ReviewCard from "../components/ReviewCard/ReviewCard.component";
 
 // Redux Actions
 import { addToCart, removeFromCart } from "../redux/reducer/Cart/Cart.action";
-import { getSpecificProductData } from "../redux/reducer/Products/Products.actions";
+import {
+  getSpecificProductData,
+  addList,
+  deleteList,
+} from "../redux/reducer/Products/Products.actions";
 import { getReviews, postReview } from "../redux/reducer/Review/Review.action";
 import { authCustomer } from "../redux/reducer/Customer/Customer.action";
 
@@ -47,6 +51,7 @@ const SelectedProduct = () => {
   const [toggleReview, setToggleReview] = useState(false);
   const [rating, setRating] = useState(1);
   const [addedToCart, setAddedToCart] = useState(false);
+  const [addeddToList, setAddeddToList] = useState(false);
   const [subject, setSubject] = useState("");
   const [review, setReview] = useState("");
   const [reviewData, setReviewData] = useState([]);
@@ -130,6 +135,11 @@ const SelectedProduct = () => {
   }, []);
 
   useEffect(() => {
+    const isInList = reduxState.products.list.filter(
+      ({ Product_ID }) => Product_ID === toNumber(product_id)
+    );
+    if (isInList.length !== 0) setAddeddToList(true);
+
     const getReviewsAction = async () => {
       const getReviewsData = await dispatch(getReviews(product_id));
 
@@ -164,6 +174,28 @@ const SelectedProduct = () => {
     }
   };
 
+  //  Function add the selected product to cart
+  const addProductToList = async () => {
+    if (!isAuthenticated) return loginWithPopup();
+    await dispatch(
+      addList({
+        Product_ID: selectedProductData.Product_ID,
+        Customer_ID: reduxState.customer.customerID,
+      })
+    );
+    return setAddeddToList(true);
+  };
+  //  Function remove the selected product from the cart
+  const removeProductFromList = async () => {
+    await dispatch(
+      deleteList({
+        Product_ID: selectedProductData.Product_ID,
+        Customer_ID: reduxState.customer.customerID,
+      })
+    );
+    return setAddeddToList(false);
+  };
+
   // Function to check for auth and toggle review modal
   const addnewReviewToggle = () => {
     if (isAuthenticated) {
@@ -188,7 +220,7 @@ const SelectedProduct = () => {
       setReviewData(postReviewAction.payload.getReviews);
     }
   };
-  console.log(selectedProductData);
+
   return (
     <>
       <Container className="pb-8 pt-5 ">
@@ -302,6 +334,15 @@ const SelectedProduct = () => {
             ) : (
               <Button color="primary" onClick={addProductToCart}>
                 <i className="fas fa-shopping-cart" /> Add To Cart
+              </Button>
+            )}
+            {addeddToList ? (
+              <Button outline onClick={removeProductFromList} size="sm">
+                <i className="fas fa-times" /> Remove from Saved List
+              </Button>
+            ) : (
+              <Button onClick={addProductToList} outline size="sm">
+                <i className="fas fa-bookmark" /> SAve for later
               </Button>
             )}
             <h2 className="mt-4 font-weight-700">Delivery:</h2>
