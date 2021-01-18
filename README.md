@@ -34,7 +34,7 @@ Shoppy is a modern e-commerce platform.
 #### Below command is for the contributor only
 ### Switch to your assigned branch
 
-- `git branch -b <your branch name>`    ---> run this command when you're setting up the app for the first time.
+- `git branch <your branch name>`    ---> run this command when you're setting up the app for the first time.
 
 - `git checkout <your branch name>`
 
