@@ -23,26 +23,18 @@ Shoppy is a modern e-commerce platform.
 
 - `git clone https://github.com/pavankpdev/Shoppy.git shoppy`
 
-### install dependencies
+### install shoppy
 
-- `cd shoppy`
-- `cd client`
-- `npm i`
-- `cd ..`
-- `cd server\node_server`
-- `npm i`
+- `npm run install_shoppy`
 
-### run node server
+### run shoppy
 
-- `cd server/node_server`
-- `npm run dev` (server starts in development mode)
+- `npm run shoppy` 
 
-### run python server
+#### Below command is for the contributor only
+### Switch to your assigned branch
 
-- `cd server/python_server`
-- `python manage.py runserver`
+- `git branch -b <your branch name>`    ---> run this command when you're setting up the app for the first time.
 
-### run client
+- `git checkout <your branch name>`
 
-- `cd client`
-- `npm start`
