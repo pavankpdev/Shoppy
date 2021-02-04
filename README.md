@@ -23,6 +23,8 @@ Shoppy is a modern e-commerce platform.
 
 - `git clone https://github.com/pavankpdev/Shoppy.git shoppy`
 
+- `cd shoppy`
+
 ### install shoppy
 
 - `npm run install_shoppy`
